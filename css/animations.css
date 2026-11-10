@@ -1,0 +1,1387 @@
+/* =========================================================
+   MATÍAS CORTÉS — PORTFOLIO
+   GLOBAL ANIMATION SYSTEM
+
+   Este archivo controla las animaciones generales del sitio.
+
+   Aquí viven:
+
+   - animaciones al aparecer durante scroll
+   - entrada inicial del Hero
+   - entrada de la escena 3D
+   - entrada del cerebro
+   - elementos flotantes de Sobre mí
+   - animaciones de mini gráficos
+   - timeline
+   - transición entre páginas
+   - estados visuales de imágenes
+   - accesibilidad para movimiento reducido
+
+   IMPORTANTE:
+
+   NO controlamos aquí:
+   - las neuronas del cerebro
+   - los pulsos sinápticos
+   - las fórmulas matemáticas flotantes
+   - la animación interna del avatar 3D
+
+   Esas animaciones ya tienen sus propios sistemas:
+
+   brain.js
+   formulas.js
+   avatar.js
+
+   Así evitamos que CSS y JavaScript intenten modificar
+   simultáneamente los mismos transform.
+   ========================================================= */
+
+
+/* =========================================================
+   01. CURVA DE ANIMACIÓN GENERAL
+   ========================================================= */
+
+/*
+   Esta curva comienza rápido y termina suavemente.
+
+   La usamos en los reveals porque genera una sensación
+   más natural que un simple "ease".
+*/
+
+:root {
+  --animation-ease:
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+
+  --animation-reveal-duration:
+    850ms;
+
+  --animation-reveal-distance:
+    32px;
+}
+
+
+/* =========================================================
+   02. SISTEMA DE REVEAL — ESTADO INICIAL
+   ========================================================= */
+
+/*
+   animations.js agrega la clase:
+
+   .has-animations
+
+   al documento cuando confirma que JavaScript está
+   funcionando.
+
+   Esta condición es importante.
+
+   Si JS falla, los elementos permanecen visibles en lugar
+   de quedar ocultos permanentemente.
+*/
+
+.has-animations [data-animate] {
+  opacity:
+    0;
+
+  will-change:
+    opacity,
+    transform,
+    filter;
+
+  transition:
+    opacity
+      var(--animation-reveal-duration)
+      var(--animation-ease),
+
+    transform
+      var(--animation-reveal-duration)
+      var(--animation-ease),
+
+    filter
+      var(--animation-reveal-duration)
+      var(--animation-ease);
+}
+
+
+/* =========================================================
+   03. FADE UP
+   ========================================================= */
+
+/*
+   El elemento aparece ligeramente desde abajo.
+*/
+
+.has-animations
+[data-animate="fade-up"] {
+  transform:
+    translate3d(
+      0,
+      var(--animation-reveal-distance),
+      0
+    );
+}
+
+
+/* =========================================================
+   04. FADE DOWN
+   ========================================================= */
+
+/*
+   El elemento aparece ligeramente desde arriba.
+*/
+
+.has-animations
+[data-animate="fade-down"] {
+  transform:
+    translate3d(
+      0,
+      -28px,
+      0
+    );
+}
+
+
+/* =========================================================
+   05. FADE LEFT
+   ========================================================= */
+
+/*
+   El elemento entra desde la derecha hacia su posición.
+
+   El nombre describe la dirección visual final del
+   movimiento.
+*/
+
+.has-animations
+[data-animate="fade-left"] {
+  transform:
+    translate3d(
+      36px,
+      0,
+      0
+    );
+}
+
+
+/* =========================================================
+   06. FADE RIGHT
+   ========================================================= */
+
+/*
+   El elemento entra desde la izquierda.
+*/
+
+.has-animations
+[data-animate="fade-right"] {
+  transform:
+    translate3d(
+      -36px,
+      0,
+      0
+    );
+}
+
+
+/* =========================================================
+   07. SCALE
+   ========================================================= */
+
+/*
+   Entrada con un pequeño aumento de escala.
+
+   Debe ser sutil para no sentirse como una animación
+   demasiado llamativa.
+*/
+
+.has-animations
+[data-animate="scale"] {
+  transform:
+    scale(0.955);
+}
+
+
+/* =========================================================
+   08. BLUR REVEAL
+   ========================================================= */
+
+/*
+   Combina:
+   - desenfoque
+   - desplazamiento vertical
+   - aparición
+
+   Funciona bien en títulos o bloques editoriales.
+*/
+
+.has-animations
+[data-animate="blur"] {
+  filter:
+    blur(10px);
+
+  transform:
+    translate3d(
+      0,
+      18px,
+      0
+    );
+}
+
+
+/* =========================================================
+   09. ELEMENTO YA REVELADO
+   ========================================================= */
+
+/*
+   animations.js agrega .is-visible cuando el elemento
+   entra al viewport.
+*/
+
+.has-animations
+[data-animate].is-visible {
+  opacity:
+    1;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    )
+    scale(1);
+
+  filter:
+    blur(0);
+
+  /*
+     Una vez terminada la animación el navegador ya no
+     necesita mantener optimizaciones especiales.
+  */
+
+  will-change:
+    auto;
+}
+
+
+/* =========================================================
+   10. STAGGER / RETRASOS
+   ========================================================= */
+
+/*
+   Permite mostrar elementos uno después de otro.
+
+   Ejemplo:
+
+   data-animate="fade-up"
+   data-delay="2"
+
+   Antes estos selectores eran globales y podían afectar
+   otras transiciones del sitio.
+
+   Ahora solamente modifican elementos del sistema reveal.
+*/
+
+.has-animations
+[data-animate][data-delay="1"] {
+  transition-delay:
+    80ms;
+}
+
+
+.has-animations
+[data-animate][data-delay="2"] {
+  transition-delay:
+    160ms;
+}
+
+
+.has-animations
+[data-animate][data-delay="3"] {
+  transition-delay:
+    240ms;
+}
+
+
+.has-animations
+[data-animate][data-delay="4"] {
+  transition-delay:
+    320ms;
+}
+
+
+.has-animations
+[data-animate][data-delay="5"] {
+  transition-delay:
+    400ms;
+}
+
+
+.has-animations
+[data-animate][data-delay="6"] {
+  transition-delay:
+    480ms;
+}
+
+
+/* =========================================================
+   11. ENTRADA DEL CONTENIDO DEL HOME
+   ========================================================= */
+
+/*
+   Al cargar la página hacemos aparecer progresivamente:
+
+   nombre
+   título
+   descripción
+   áreas
+   Universidad
+   botones
+
+   Esto sucede únicamente durante la entrada inicial.
+*/
+
+.has-animations
+.hero__content > * {
+  opacity:
+    0;
+
+  transform:
+    translate3d(
+      0,
+      24px,
+      0
+    );
+
+  transition:
+    opacity
+      900ms
+      var(--animation-ease),
+
+    transform
+      900ms
+      var(--animation-ease);
+}
+
+
+.is-ready
+.hero__content > * {
+  opacity:
+    1;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+
+/* =========================================================
+   12. STAGGER DEL HERO
+   ========================================================= */
+
+/*
+   Cada hijo aparece unas milésimas después del anterior.
+
+   No estamos identificando elementos por clase porque así
+   podemos cambiar ligeramente el contenido del Hero sin
+   reconstruir todo el sistema.
+*/
+
+.is-ready
+.hero__content
+> *:nth-child(1) {
+  transition-delay:
+    70ms;
+}
+
+
+.is-ready
+.hero__content
+> *:nth-child(2) {
+  transition-delay:
+    140ms;
+}
+
+
+.is-ready
+.hero__content
+> *:nth-child(3) {
+  transition-delay:
+    210ms;
+}
+
+
+.is-ready
+.hero__content
+> *:nth-child(4) {
+  transition-delay:
+    280ms;
+}
+
+
+.is-ready
+.hero__content
+> *:nth-child(5) {
+  transition-delay:
+    350ms;
+}
+
+
+.is-ready
+.hero__content
+> *:nth-child(6) {
+  transition-delay:
+    420ms;
+}
+
+
+/* =========================================================
+   13. ENTRADA DE "SOBRE MÍ"
+   ========================================================= */
+
+/*
+   Utilizamos el mismo lenguaje visual que en Home,
+   pero con tiempos ligeramente diferentes.
+*/
+
+.has-animations
+.about-showcase__content > * {
+  opacity:
+    0;
+
+  transform:
+    translate3d(
+      0,
+      24px,
+      0
+    );
+
+  transition:
+    opacity
+      900ms
+      var(--animation-ease),
+
+    transform
+      900ms
+      var(--animation-ease);
+}
+
+
+.is-ready
+.about-showcase__content > * {
+  opacity:
+    1;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+
+/* =========================================================
+   14. STAGGER DE "SOBRE MÍ"
+   ========================================================= */
+
+.is-ready
+.about-showcase__content
+> *:nth-child(1) {
+  transition-delay:
+    80ms;
+}
+
+
+.is-ready
+.about-showcase__content
+> *:nth-child(2) {
+  transition-delay:
+    150ms;
+}
+
+
+.is-ready
+.about-showcase__content
+> *:nth-child(3) {
+  transition-delay:
+    220ms;
+}
+
+
+.is-ready
+.about-showcase__content
+> *:nth-child(4) {
+  transition-delay:
+    290ms;
+}
+
+
+.is-ready
+.about-showcase__content
+> *:nth-child(5) {
+  transition-delay:
+    360ms;
+}
+
+
+.is-ready
+.about-showcase__content
+> *:nth-child(6) {
+  transition-delay:
+    430ms;
+}
+
+
+/* =========================================================
+   15. ENTRADA DE LA ESCENA 3D
+   ========================================================= */
+
+/*
+   Animamos el CONTENEDOR de la escena.
+
+   No animamos directamente el canvas de Three.js porque
+   avatar.js necesita controlarlo independientemente.
+*/
+
+.has-animations
+.about-showcase__scene {
+  opacity:
+    0;
+
+  transform:
+    translate3d(
+      38px,
+      0,
+      0
+    )
+    scale(0.97);
+
+  filter:
+    blur(5px);
+
+  transition:
+    opacity
+      1100ms
+      var(--animation-ease),
+
+    transform
+      1200ms
+      var(--animation-ease),
+
+    filter
+      1000ms
+      var(--animation-ease);
+}
+
+
+.is-ready
+.about-showcase__scene {
+  opacity:
+    1;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    )
+    scale(1);
+
+  filter:
+    blur(0);
+
+  transition-delay:
+    220ms;
+}
+
+
+/* =========================================================
+   16. ENTRADA DEL CEREBRO
+   ========================================================= */
+
+/*
+   CORRECCIÓN IMPORTANTE:
+
+   Antes animábamos .hero__visual directamente usando:
+
+   opacity: 0;
+   opacity: 1;
+
+   Pero responsive.css también utiliza opacity para decidir
+   cuánto protagonismo debe tener el cerebro en cada tamaño.
+
+   Eso generaba un conflicto.
+
+   Ahora dejamos intacto .hero__visual y hacemos la entrada
+   sobre el CANVAS.
+
+   Resultado:
+
+   responsive.css
+       controla la opacidad general
+
+   animations.css
+       controla solamente la entrada
+
+   brain.js
+       controla la animación interna
+*/
+
+.has-animations
+#brain-canvas {
+  opacity:
+    0;
+
+  transform:
+    translate3d(
+      45px,
+      0,
+      0
+    )
+    scale(0.975);
+
+  filter:
+    blur(7px);
+
+  transition:
+    opacity
+      1200ms
+      var(--animation-ease),
+
+    transform
+      1350ms
+      var(--animation-ease),
+
+    filter
+      1100ms
+      var(--animation-ease);
+}
+
+
+.is-ready
+#brain-canvas {
+  opacity:
+    1;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    )
+    scale(1);
+
+  filter:
+    blur(0);
+
+  transition-delay:
+    250ms;
+}
+
+
+/* =========================================================
+   17. ENTRADA DEL GLOW DEL CEREBRO
+   ========================================================= */
+
+/*
+   El aura CSS que rodea al cerebro también aparece
+   progresivamente.
+
+   Como el padre mantiene su opacity responsive, este efecto
+   sigue adaptándose correctamente a cada pantalla.
+*/
+
+.has-animations
+.hero__visual::before {
+  opacity:
+    0;
+
+  transition:
+    opacity
+      1500ms
+      var(--animation-ease);
+}
+
+
+.is-ready
+.hero__visual::before {
+  opacity:
+    1;
+
+  transition-delay:
+    350ms;
+}
+
+
+/* =========================================================
+   18. ELEMENTOS FLOTANTES
+   ========================================================= */
+
+/*
+   Las tarjetas y mini gráficos alrededor del avatar flotan
+   lentamente.
+
+   El movimiento es pequeño a propósito.
+
+   La intención es dar profundidad, no hacer que toda la
+   interfaz esté constantemente saltando.
+*/
+
+@keyframes float-soft {
+
+  0%,
+  100% {
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+
+  50% {
+    transform:
+      translate3d(
+        0,
+        -8px,
+        0
+      );
+  }
+}
+
+
+@keyframes float-soft-alt {
+
+  0%,
+  100% {
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+
+  50% {
+    transform:
+      translate3d(
+        0,
+        7px,
+        0
+      );
+  }
+}
+
+
+/* Tarjeta izquierda */
+
+.tech-card--python {
+  animation:
+    float-soft
+    6.8s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    -0.7s;
+}
+
+
+/* Tarjeta superior derecha */
+
+.tech-card--ds {
+  animation:
+    float-soft
+    7.2s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    -2.1s;
+}
+
+
+/* Tarjeta inferior derecha */
+
+.tech-card--ml {
+  animation:
+    float-soft-alt
+    7.6s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    -3.2s;
+}
+
+
+/* Mini histograma */
+
+.about-chart--bars {
+  animation:
+    float-soft-alt
+    8.2s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    -2.4s;
+}
+
+
+/* Mini serie */
+
+.about-chart--line {
+  animation:
+    float-soft
+    7.8s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    -4.1s;
+}
+
+
+/* =========================================================
+   19. VIDA DEL MINI HISTOGRAMA
+   ========================================================= */
+
+/*
+   Las barras respiran ligeramente.
+
+   No modificamos sus alturas reales declaradas en pages.css.
+   scaleY simplemente amplía o reduce visualmente cada barra.
+*/
+
+@keyframes bar-breathe {
+
+  0%,
+  100% {
+    transform:
+      scaleY(0.94);
+
+    opacity:
+      0.72;
+  }
+
+  50% {
+    transform:
+      scaleY(1);
+
+    opacity:
+      1;
+  }
+}
+
+
+.about-chart--bars span {
+  transform-origin:
+    center bottom;
+
+  animation:
+    bar-breathe
+    3.4s
+    ease-in-out
+    infinite;
+}
+
+
+.about-chart--bars
+span:nth-child(2) {
+  animation-delay:
+    -0.6s;
+}
+
+
+.about-chart--bars
+span:nth-child(3) {
+  animation-delay:
+    -1.2s;
+}
+
+
+.about-chart--bars
+span:nth-child(4) {
+  animation-delay:
+    -1.8s;
+}
+
+
+.about-chart--bars
+span:nth-child(5) {
+  animation-delay:
+    -2.4s;
+}
+
+
+/* =========================================================
+   20. RESPIRACIÓN DEL GLOW DEL AVATAR
+   ========================================================= */
+
+/*
+   CORRECCIÓN IMPORTANTE:
+
+   pages.css centra este glow utilizando:
+
+   translate(-50%, -50%)
+
+   La versión anterior del keyframe reemplazaba ese transform
+   completamente por scale(...).
+
+   Resultado:
+   el glow podía moverse de su centro.
+
+   Ahora SIEMPRE conservamos translate(-50%, -50%).
+*/
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    opacity:
+      0.68;
+
+    transform:
+      translate(
+        -50%,
+        -50%
+      )
+      scale(0.96);
+  }
+
+  50% {
+    opacity:
+      1;
+
+    transform:
+      translate(
+        -50%,
+        -50%
+      )
+      scale(1.035);
+  }
+}
+
+
+.about-showcase__glow {
+  animation:
+    glow-pulse
+    6.5s
+    ease-in-out
+    infinite;
+}
+
+
+/* =========================================================
+   21. PROJECT CARD + SISTEMA REVEAL
+   ========================================================= */
+
+/*
+   components.css controla el hover de Project Card.
+
+   Aquí solamente agregamos opacity al reveal.
+
+   Es importante conservar border-color y box-shadow
+   para que el hover continúe funcionando.
+*/
+
+.has-animations
+.project-card[data-animate] {
+  transition:
+    opacity
+      800ms
+      var(--animation-ease),
+
+    transform
+      850ms
+      var(--animation-ease),
+
+    filter
+      850ms
+      var(--animation-ease),
+
+    background
+      var(--transition-base),
+
+    border-color
+      var(--transition-base),
+
+    box-shadow
+      var(--transition-base);
+}
+
+
+/* =========================================================
+   22. TIMELINE — MARCADORES
+   ========================================================= */
+
+/*
+   Antes se creaba otra línea vertical usando:
+
+   .timeline-item::before
+
+   El problema era que esa línea no coincidía exactamente
+   con la línea principal definida en pages.css.
+
+   Ahora mantenemos UNA sola línea y animamos los marcadores.
+*/
+
+.has-animations
+.timeline-item__marker {
+  opacity:
+    0;
+
+  transform:
+    scale(0.45);
+
+  transition:
+    opacity
+      500ms
+      var(--animation-ease),
+
+    transform
+      650ms
+      var(--animation-ease),
+
+    box-shadow
+      var(--transition-base);
+}
+
+
+/*
+   animations.js agrega .is-visible al timeline-item.
+
+   Cuando esto ocurre aparece su marcador.
+*/
+
+.has-animations
+.timeline-item.is-visible
+.timeline-item__marker {
+  opacity:
+    1;
+
+  transform:
+    scale(1);
+}
+
+
+/* =========================================================
+   23. LINKS Y FLECHAS
+   ========================================================= */
+
+/*
+   components.css ya define la mayoría de estos movimientos.
+
+   Dejamos aquí únicamente una transición común como respaldo.
+*/
+
+.project-card__link span,
+.home-explore__arrow,
+.button span {
+  transition:
+    transform
+    var(--transition-fast);
+}
+
+
+/* =========================================================
+   24. TRANSICIÓN AL CAMBIAR DE PÁGINA
+   ========================================================= */
+
+/*
+   navigation.js puede agregar:
+
+   body.is-leaving
+
+   justo antes de navegar hacia otra página.
+
+   Hacemos un fade corto para suavizar el cambio sin retrasar
+   demasiado la navegación.
+*/
+
+body {
+  transition:
+    opacity
+    180ms
+    ease;
+}
+
+
+body.is-leaving {
+  opacity:
+    0;
+}
+
+
+/* =========================================================
+   25. IMÁGENES — ESTADO DE CARGA
+   ========================================================= */
+
+/*
+   CORRECCIÓN IMPORTANTE:
+
+   Antes teníamos:
+
+   img:not(.is-loaded)
+
+   Eso significaba que si main.js fallaba, cualquier imagen
+   podía permanecer invisible.
+
+   Ahora solamente ocultamos/desenfocamos una imagen cuando
+   JavaScript explícitamente agrega:
+
+   .is-loading
+
+   Si JS falla, la imagen simplemente aparece normalmente.
+*/
+
+img.is-loading {
+  opacity:
+    0.35;
+
+  filter:
+    blur(7px);
+
+  transition:
+    opacity
+      500ms
+      var(--animation-ease),
+
+    filter
+      500ms
+      var(--animation-ease);
+}
+
+
+img.is-loaded {
+  opacity:
+    1;
+
+  filter:
+    blur(0);
+
+  transition:
+    opacity
+      500ms
+      var(--animation-ease),
+
+    filter
+      500ms
+      var(--animation-ease);
+}
+
+
+/* =========================================================
+   26. EVITAR ANIMACIONES EN ELEMENTOS OCULTOS
+   ========================================================= */
+
+/*
+   No tiene sentido gastar recursos animando elementos
+   explícitamente ocultos.
+*/
+
+[hidden] {
+  animation:
+    none !important;
+
+  transition:
+    none !important;
+}
+
+
+/* =========================================================
+   27. REDUCED MOTION
+   ========================================================= */
+
+/*
+   Si el usuario tiene activado:
+
+   "Reducir movimiento"
+
+   todo el contenido aparece inmediatamente.
+
+   Esto complementa la regla global de base.css y además
+   resuelve específicamente los estados iniciales que este
+   archivo crea.
+*/
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  /* -------------------------------------------------------
+     Reveals de scroll
+     ------------------------------------------------------- */
+
+  [data-animate] {
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+
+    filter:
+      none !important;
+
+    transition:
+      none !important;
+
+    will-change:
+      auto !important;
+  }
+
+
+  /* -------------------------------------------------------
+     Hero
+     ------------------------------------------------------- */
+
+  .hero__content > *,
+  .about-showcase__content > *,
+  .about-showcase__scene,
+  #brain-canvas {
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+
+    filter:
+      none !important;
+
+    transition:
+      none !important;
+  }
+
+
+  /*
+     El canvas vuelve a su posición normal.
+
+     El movimiento INTERNO de brain.js se controla desde
+     JavaScript.
+  */
+
+  #brain-canvas {
+    transform:
+      none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     Glow del cerebro
+     ------------------------------------------------------- */
+
+  .hero__visual::before {
+    opacity:
+      1 !important;
+
+    transition:
+      none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     Elementos flotantes
+     ------------------------------------------------------- */
+
+  .tech-card,
+  .about-chart,
+  .about-chart--bars span {
+    animation:
+      none !important;
+  }
+
+
+  /*
+     El glow debe conservar su centrado incluso sin animación.
+  */
+
+  .about-showcase__glow {
+    animation:
+      none !important;
+
+    transform:
+      translate(
+        -50%,
+        -50%
+      ) !important;
+  }
+
+
+  /* -------------------------------------------------------
+     Timeline
+     ------------------------------------------------------- */
+
+  .timeline-item__marker {
+    opacity:
+      1 !important;
+
+    transform:
+      scale(1) !important;
+
+    transition:
+      none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     Cambio de página
+     ------------------------------------------------------- */
+
+  body {
+    transition:
+      none !important;
+  }
+
+
+  body.is-leaving {
+    opacity:
+      1;
+  }
+
+
+  /* -------------------------------------------------------
+     Imágenes
+     ------------------------------------------------------- */
+
+  img.is-loading,
+  img.is-loaded {
+    opacity:
+      1;
+
+    filter:
+      none;
+
+    transition:
+      none !important;
+  }
+}
+
+
+/* =========================================================
+   28. DISPOSITIVOS CON POCA PRECISIÓN DE PUNTERO
+   ========================================================= */
+
+/*
+   En dispositivos táctiles mantenemos las animaciones de
+   entrada, pero evitamos depender de movimientos hover.
+
+   components.css y responsive.css tienen sus reglas
+   específicas para botones y cards.
+*/
+
+@media (
+  hover: none
+) {
+
+  .project-card__link span,
+  .button span {
+    transition-duration:
+      120ms;
+  }
+}

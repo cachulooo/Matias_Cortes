@@ -1,0 +1,27 @@
+.pets-controls label:has(#pets-type),.pets-card .pets-chip,.pets-ficha-note{display:none!important}
+.pets-controls:not(.pets-controls--compare){grid-template-columns:minmax(230px,1.5fr) repeat(3,minmax(140px,1fr))}
+.pets-kpis>div{transition:transform .2s,border-color .2s}
+.pets-kpis>div:hover{transform:translateY(-3px);border-color:var(--pets-accent)}
+.pets-card-photo{height:215px}
+.pets-versus{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);gap:12px;align-items:center;margin:25px 0}
+.pets-vcard{background:var(--pets-panel);border:1px solid var(--pets-stroke);border-radius:20px;overflow:hidden;min-width:0}
+.pets-vcard>img{width:100%;height:245px;object-fit:cover;display:block}
+.pets-vcard>div{padding:22px}
+.pets-vcard small{font-size:.75rem;color:var(--pets-sub)}
+.pets-vcard h3{font-size:1.65rem;color:var(--pets-text);margin:8px 0}
+.pets-vcard p{font-size:.88rem;color:var(--pets-sub);line-height:1.5}
+.pets-vcard section{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.pets-vcard section span{display:flex;flex-direction:column;gap:5px;padding:12px;border-radius:12px;background:var(--pets-panel-2)}
+.pets-vcard section strong{color:var(--pets-text);font-size:.96rem}
+.pets-vs{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--pets-accent);color:var(--pets-bg)}
+.pets-charts{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:25px 0}
+.pets-chart{background:var(--pets-panel);border:1px solid var(--pets-stroke);border-radius:18px;padding:22px}
+.pets-chart h3{color:var(--pets-text);font-size:1.12rem;margin:0 0 20px}
+.pets-chart button{width:100%;display:grid;grid-template-columns:minmax(100px,1.3fr) minmax(40px,1fr) 24px;align-items:center;gap:9px;padding:7px 0;background:transparent;border:0;color:var(--pets-text);cursor:pointer;text-align:left;font:inherit}
+.pets-chart button span{font-size:.77rem;line-height:1.35}
+.pets-chart button strong{font-size:.85rem;text-align:right}
+.pets-chart button i{height:11px;background:var(--pets-panel-2);border-radius:10px;overflow:hidden}
+.pets-chart button b{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,var(--pets-accent),#b5a0f1)}
+.pets-chart button:hover span{color:var(--pets-accent)}
+@media(max-width:950px){.pets-charts{grid-template-columns:1fr}.pets-controls:not(.pets-controls--compare){grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pets-versus{grid-template-columns:1fr}.pets-vs{margin:auto}.pets-card-photo{height:145px}}

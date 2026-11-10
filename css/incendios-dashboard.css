@@ -1,0 +1,217 @@
+﻿/* ================================================
+   MATIAS CORTES | DASHBOARD LGCP
+   ================================================ */
+
+.thesis-dashboard {
+  background: var(--thesis-bg, #090911);
+}
+
+.thesis-dashboard .section-header {
+  margin-bottom: 28px;
+}
+
+.thesis-db__panel {
+  padding: clamp(18px, 3vw, 34px);
+  border: 1px solid var(--thesis-border-strong, rgba(255,255,255,.16));
+  border-radius: 24px;
+  background: var(--thesis-surface, #11111b);
+}
+
+.thesis-db__controls {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.thesis-db__controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  color: var(--thesis-muted, #aaa6b5);
+  font-size: .76rem;
+  font-weight: 700;
+}
+
+.thesis-db__controls select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--thesis-border-strong, #303040);
+  border-radius: 10px;
+  background: var(--thesis-elevated, #1a1a27);
+  color: var(--thesis-text, #fff);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.thesis-db__controls select:focus-visible {
+  outline: 2px solid var(--thesis-primary, #9b6dff);
+  outline-offset: 2px;
+}
+
+.thesis-db__message {
+  margin: 0 0 20px;
+  color: var(--thesis-muted, #aaa6b5);
+  font-size: .82rem;
+}
+
+.thesis-db__message.is-error {
+  color: #ff8585;
+}
+
+.thesis-db__kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.thesis-db__kpis article {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--thesis-border, #29293b);
+  border-radius: 15px;
+  background: var(--thesis-elevated, #171722);
+}
+
+.thesis-db__kpis article span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--thesis-muted, #aaa6b5);
+  font-size: .79rem;
+}
+
+.thesis-db__kpis article strong {
+  display: block;
+  color: var(--thesis-text, #fff);
+  font-family: var(--font-display, "Space Grotesk", sans-serif);
+  font-size: clamp(1.3rem, 2.4vw, 2.1rem);
+  letter-spacing: -.04em;
+  overflow-wrap: anywhere;
+}
+
+.thesis-db__chart-panel {
+  padding: 24px;
+  border: 1px solid var(--thesis-border, #29293b);
+  border-radius: 17px;
+  background: var(--thesis-elevated, #171722);
+}
+
+.thesis-db__chart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.thesis-db__chart-header h3 {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+}
+
+.thesis-db__chart-header p {
+  margin: 0;
+  color: var(--thesis-muted, #aaa6b5);
+  font-size: .82rem;
+}
+
+.thesis-db__periodos {
+  color: var(--thesis-primary, #9b6dff);
+  white-space: nowrap;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.thesis-db__chart-scroll {
+  width: 100%;
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+.thesis-db__chart-scroll svg {
+  display: block;
+  width: 100%;
+  min-width: 580px;
+  height: auto;
+  color: var(--thesis-text, #fff);
+}
+
+.thesis-db__details {
+  margin-top: 15px;
+  border: 1px solid var(--thesis-border, #29293b);
+  border-radius: 12px;
+}
+
+.thesis-db__details summary {
+  padding: 16px 20px;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.thesis-db__table-scroll {
+  max-height: 300px;
+  overflow: auto;
+  border-top: 1px solid var(--thesis-border, #29293b);
+}
+
+.thesis-db__table-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thesis-db__table-scroll th,
+.thesis-db__table-scroll td {
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--thesis-border, #29293b);
+  text-align: left;
+  font-size: .83rem;
+}
+
+.thesis-db__table-scroll td,
+.thesis-db__table-scroll thead th:last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.thesis-db__source {
+  margin: 18px 0 0;
+  color: var(--thesis-muted, #aaa6b5);
+  font-size: .78rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 1000px) {
+  .thesis-db__controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .thesis-db__controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .thesis-db__kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .thesis-db__panel {
+    border-radius: 16px;
+  }
+
+  .thesis-db__chart-panel {
+    padding: 13px;
+  }
+
+  .thesis-db__chart-header {
+    flex-wrap: wrap;
+  }
+}
+
+html[data-theme="light"] .thesis-db__controls select {
+  background: #f6f3fc;
+  color: #242031;
+}

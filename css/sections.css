@@ -1,0 +1,1875 @@
+/* =========================================================
+   MATÍAS CORTÉS — PORTFOLIO
+   HOME / SECTIONS
+
+   Este archivo controla solamente las secciones principales
+   de index.html.
+
+   Aquí viven:
+   - Hero principal
+   - Cerebro estadístico
+   - Fórmulas matemáticas del fondo
+   - Información Universidad de Valparaíso
+   - Botones del Hero
+   - Sección "Explorar"
+   - Responsive específico del Home
+
+   IMPORTANTE:
+   Los colores NO deberían definirse directamente aquí.
+   La mayoría vienen desde variables.css para que todo pueda
+   cambiar correctamente entre modo oscuro y modo claro.
+   ========================================================= */
+
+
+/* =========================================================
+   01. HERO PRINCIPAL
+   ========================================================= */
+
+/*
+   El Hero ocupa prácticamente toda la primera pantalla.
+
+   isolation: isolate nos permite trabajar cómodamente con
+   capas negativas de z-index sin que escapen de esta sección.
+*/
+
+.hero {
+  position: relative;
+
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+
+  padding:
+    clamp(7.5rem, 12vh, 9.5rem)
+    0
+    clamp(4rem, 8vh, 6rem);
+
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   02. FONDO GENERAL DEL HERO
+   ========================================================= */
+
+/*
+   Primera capa visual.
+
+   Tiene dos luces ambientales:
+   - violeta
+   - azul
+
+   Ambas utilizan variables del tema, por lo que también
+   funcionan automáticamente en modo claro.
+*/
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -4;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 76% 42%,
+      var(--hero-glow-primary),
+      transparent 31%
+    ),
+
+    radial-gradient(
+      circle at 88% 59%,
+      var(--hero-glow-secondary),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      180deg,
+      var(--hero-background-start),
+      var(--color-bg)
+    );
+}
+
+
+/* =========================================================
+   03. CAPA DE FÓRMULAS MATEMÁTICAS
+   ========================================================= */
+
+/*
+   formulas.js inserta dentro de este contenedor expresiones
+   matemáticas relacionadas con nuestra formación:
+
+   - Probabilidad
+   - Inferencia
+   - Modelos lineales
+   - GLM
+   - Machine Learning
+   - Series de tiempo
+   - Muestreo
+   - Simulación
+   - Análisis espacial
+   - Evaluación de proyectos
+   - Investigación de operaciones
+
+   Esta capa está DETRÁS del cerebro y del contenido.
+*/
+
+.hero__formulas {
+  position: absolute;
+  inset: 0;
+
+  z-index: -3;
+
+  overflow: hidden;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* =========================================================
+   04. FÓRMULA INDIVIDUAL
+   ========================================================= */
+
+/*
+   Cada fórmula es creada dinámicamente por formulas.js.
+
+   --formula-rotation es individual para cada expresión y
+   permite una inclinación muy pequeña para evitar que todo
+   parezca demasiado rígido.
+*/
+
+.hero__formula {
+  --formula-rotation: 0deg;
+
+  position: absolute;
+
+  white-space: nowrap;
+
+  color:
+    var(--formula-purple);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    var(--text-sm);
+
+  font-weight:
+    var(--weight-medium);
+
+  line-height: 1;
+
+  letter-spacing:
+    0.025em;
+
+  opacity:
+    var(--formula-opacity-base);
+
+  transform:
+    translate3d(0, 0, 0)
+    rotate(
+      var(--formula-rotation)
+    );
+
+  text-shadow:
+    0 0 18px
+    var(--formula-shadow);
+
+  will-change:
+    transform,
+    opacity;
+
+  animation:
+    formula-drift
+    32s
+    linear
+    infinite;
+
+  transition:
+    opacity
+    500ms
+    ease;
+}
+
+
+/* =========================================================
+   05. COLORES DE LAS FÓRMULAS
+   ========================================================= */
+
+/*
+   No usamos rgba directamente aquí.
+
+   variables.css decide cómo se ve cada fórmula dependiendo
+   de si estamos en:
+
+   data-theme="dark"
+
+   o
+
+   data-theme="light"
+*/
+
+.hero__formula--purple {
+  color:
+    var(--formula-purple);
+}
+
+
+.hero__formula--blue {
+  color:
+    var(--formula-blue);
+}
+
+
+.hero__formula--cream {
+  color:
+    var(--formula-cream);
+}
+
+
+/* Fórmulas que queremos casi imperceptibles */
+
+.hero__formula--soft {
+  opacity:
+    var(--formula-opacity-soft);
+}
+
+
+/* Fórmulas que queremos destacar ligeramente */
+
+.hero__formula--strong {
+  opacity:
+    var(--formula-opacity-strong);
+}
+
+
+/*
+   formulas.js utiliza esta clase cuando reemplaza una fórmula
+   por otra. Primero desaparece y después cambia el contenido.
+*/
+
+.hero__formula.is-changing {
+  opacity: 0 !important;
+}
+
+
+/* =========================================================
+   06. MOVIMIENTO DE LAS FÓRMULAS
+   ========================================================= */
+
+/*
+   El movimiento es deliberadamente lento.
+
+   No queremos que parezca Matrix ni una pantalla de trading.
+   Debe sentirse como conocimiento matemático flotando detrás
+   de la composición.
+*/
+
+@keyframes formula-drift {
+
+  0% {
+    transform:
+      translate3d(
+        75px,
+        0,
+        0
+      )
+      rotate(
+        var(--formula-rotation)
+      );
+  }
+
+
+  25% {
+    transform:
+      translate3d(
+        38px,
+        -5px,
+        0
+      )
+      rotate(
+        var(--formula-rotation)
+      );
+  }
+
+
+  50% {
+    transform:
+      translate3d(
+        0,
+        3px,
+        0
+      )
+      rotate(
+        var(--formula-rotation)
+      );
+  }
+
+
+  75% {
+    transform:
+      translate3d(
+        -42px,
+        -3px,
+        0
+      )
+      rotate(
+        var(--formula-rotation)
+      );
+  }
+
+
+  100% {
+    transform:
+      translate3d(
+        -95px,
+        0,
+        0
+      )
+      rotate(
+        var(--formula-rotation)
+      );
+  }
+}
+
+
+/* =========================================================
+   07. CEREBRO ESTADÍSTICO
+   ========================================================= */
+
+/*
+   Esta capa contiene exclusivamente el canvas de brain.js.
+
+   Orden de profundidad del Hero:
+
+   -4  fondo
+   -3  fórmulas
+   -2  cerebro
+   -1  overlay de legibilidad
+    5  contenido
+
+   Así ninguna fórmula puede tapar el título o los botones.
+*/
+
+.hero__visual {
+  position: absolute;
+
+  top:
+    var(--navbar-height);
+
+  right:
+    clamp(
+      0rem,
+      2vw,
+      2rem
+    );
+
+  bottom: 0;
+
+  width:
+    min(
+      58vw,
+      980px
+    );
+
+  z-index: -2;
+
+  pointer-events: none;
+
+  opacity: 0.98;
+}
+
+
+/* =========================================================
+   08. CANVAS DEL CEREBRO
+   ========================================================= */
+
+/*
+   brain.js controla internamente:
+   - tamaño real del canvas
+   - densidad
+   - neuronas
+   - pulsos
+   - gráficos
+   - interacción
+*/
+
+#brain-canvas {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: none;
+
+  display: block;
+}
+
+
+/* =========================================================
+   09. AURA DETRÁS DEL CEREBRO
+   ========================================================= */
+
+/*
+   Este glow pertenece al CSS.
+
+   Es independiente del glow que brain.js dibuja dentro del
+   canvas. Sirve para integrar el cerebro con el fondo.
+*/
+
+.hero__visual::before {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  right: 3%;
+
+  width:
+    min(
+      48vw,
+      760px
+    );
+
+  aspect-ratio: 1;
+
+  transform:
+    translateY(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+
+      var(--brain-ambient-primary)
+      0%,
+
+      var(--brain-ambient-secondary)
+      40%,
+
+      transparent
+      72%
+    );
+
+  filter:
+    blur(24px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   10. OVERLAY DE LEGIBILIDAD
+   ========================================================= */
+
+/*
+   Esta capa oscurece/aclara principalmente el lado izquierdo.
+
+   Su objetivo es que las fórmulas, el cerebro y los efectos
+   nunca compitan con:
+
+   Matías Cortés
+   Estadística.
+   Ciencia de datos.
+*/
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+
+      var(--hero-overlay-strong)
+      0%,
+
+      var(--hero-overlay-medium)
+      30%,
+
+      var(--hero-overlay-soft)
+      52%,
+
+      transparent
+      78%
+    );
+}
+
+
+/* =========================================================
+   11. CONTENEDOR DEL HERO
+   ========================================================= */
+
+/*
+   Esta regla corrigió un problema importante que tuvimos:
+
+   NO usamos:
+
+   width: 100%;
+
+   porque eso hacía que el contenido terminara pegado al borde.
+
+   Ahora usamos exactamente el mismo ancho conceptual que el
+   resto del portafolio.
+*/
+
+.hero__container {
+  position: relative;
+
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--container-padding) * 2
+        )
+      ),
+      var(--container-width)
+    );
+
+  margin-inline: auto;
+
+  z-index:
+    var(--z-content);
+
+  min-height:
+    calc(
+      100svh -
+      var(--navbar-height) -
+      6rem
+    );
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+/* =========================================================
+   12. CONTENIDO PRINCIPAL
+   ========================================================= */
+
+.hero__content {
+  width:
+    min(
+      100%,
+      610px
+    );
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  padding-block:
+    2rem;
+}
+
+
+/* =========================================================
+   13. NOMBRE
+   ========================================================= */
+
+.hero__content .eyebrow {
+  margin-bottom:
+    1.25rem;
+}
+
+
+/* =========================================================
+   14. TÍTULO PRINCIPAL
+   ========================================================= */
+
+/*
+   El título es deliberadamente grande.
+
+   max-width controla dónde se corta:
+   Estadística.
+   Ciencia de
+   datos.
+
+   Si después queremos "Ciencia de datos." en una sola línea,
+   aumentaremos este ancho.
+*/
+
+.hero__content h1 {
+  max-width:
+    9ch;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      4rem,
+      6.7vw,
+      7.2rem
+    );
+
+  font-weight:
+    var(--weight-semibold);
+
+  line-height:
+    0.92;
+
+  letter-spacing:
+    -0.065em;
+
+  text-wrap:
+    balance;
+}
+
+
+/* =========================================================
+   15. PROPUESTA DE VALOR
+   ========================================================= */
+
+.hero__description {
+  max-width:
+    530px;
+
+  margin-top:
+    2rem;
+
+  color:
+    var(--color-text);
+
+  font-size:
+    clamp(
+      1.15rem,
+      1.55vw,
+      1.45rem
+    );
+
+  font-weight:
+    var(--weight-medium);
+
+  line-height:
+    1.5;
+}
+
+
+/* =========================================================
+   16. ÁREAS DE TRABAJO
+   ========================================================= */
+
+.hero__subdescription {
+  max-width:
+    540px;
+
+  margin-top:
+    0.85rem;
+
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    var(--text-base);
+
+  line-height:
+    1.75;
+}
+
+
+/* =========================================================
+   17. UNIVERSIDAD DE VALPARAÍSO
+   ========================================================= */
+
+/*
+   Esta pieza conecta el portafolio personal con nuestra
+   formación académica sin convertir el sitio en una página
+   institucional de la Universidad.
+*/
+
+.hero__affiliation {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    0.9rem;
+
+  margin-top:
+    1.7rem;
+}
+
+
+/* =========================================================
+   18. MARCADOR UV
+   ========================================================= */
+
+/*
+   Por ahora usamos "UV" tipográfico.
+
+   Más adelante podemos reemplazarlo por un recurso oficial
+   si decidimos utilizar el logotipo institucional.
+*/
+
+.hero__affiliation-mark {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex:
+    0 0 auto;
+
+  width:
+    42px;
+
+  height:
+    42px;
+
+  border:
+    1px solid
+    var(--color-border-hover);
+
+  border-radius:
+    var(--radius-md);
+
+  color:
+    var(--color-primary-light);
+
+  background:
+    linear-gradient(
+      145deg,
+
+      var(--hero-glow-primary),
+
+      var(--hero-glow-secondary)
+    );
+
+  box-shadow:
+    0 0 24px
+    var(--brain-glow-soft);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    0.82rem;
+
+  font-weight:
+    var(--weight-semibold);
+
+  letter-spacing:
+    0.06em;
+}
+
+
+/* =========================================================
+   19. TEXTO DE FORMACIÓN
+   ========================================================= */
+
+.hero__affiliation-text {
+  display: flex;
+
+  flex-direction: column;
+
+  gap:
+    0.15rem;
+}
+
+
+.hero__affiliation-label {
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    0.72rem;
+
+  font-weight:
+    var(--weight-medium);
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.12em;
+}
+
+
+.hero__affiliation strong {
+  color:
+    var(--color-text);
+
+  font-size:
+    0.96rem;
+
+  font-weight:
+    var(--weight-medium);
+}
+
+
+.hero__affiliation small {
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    0.82rem;
+}
+
+
+/* =========================================================
+   20. BOTONES DEL HERO
+   ========================================================= */
+
+.hero__actions {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap:
+    0.9rem;
+
+  margin-top:
+    2.2rem;
+}
+
+
+.hero__actions .button--primary {
+  min-width:
+    165px;
+}
+
+
+/* =========================================================
+   21. LÍNEA DECORATIVA DEL HERO
+   ========================================================= */
+
+/*
+   Es una pequeña firma visual bajo la composición.
+   No contiene información y por eso es completamente
+   decorativa.
+*/
+
+.hero__container::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 2rem;
+
+  width:
+    190px;
+
+  height:
+    1px;
+
+  background:
+    linear-gradient(
+      90deg,
+
+      var(--color-primary-light),
+
+      transparent
+    );
+
+  opacity:
+    0.35;
+}
+
+
+/* =========================================================
+   22. SECCIÓN EXPLORAR
+   ========================================================= */
+
+/*
+   Es la transición desde el Home hacia las dos áreas
+   importantes del portafolio:
+
+   01 Proyectos
+   02 Sobre mí
+*/
+
+.home-explore {
+  position: relative;
+
+  min-height:
+    72vh;
+
+  display: flex;
+
+  align-items: center;
+
+  padding-block:
+    clamp(
+      5.5rem,
+      9vw,
+      8rem
+    );
+
+  border-top:
+    1px solid
+    var(--color-border);
+
+  background:
+    radial-gradient(
+      circle at 15% 25%,
+
+      var(--explore-glow),
+
+      transparent 28%
+    ),
+
+    var(--color-bg);
+}
+
+
+/* =========================================================
+   23. ENCABEZADO DE EXPLORAR
+   ========================================================= */
+
+.home-explore
+.section-header {
+  max-width:
+    760px;
+
+  margin-bottom:
+    clamp(
+      3rem,
+      6vw,
+      5rem
+    );
+}
+
+
+.home-explore
+.section-header h2 {
+  max-width:
+    10ch;
+}
+
+
+.home-explore
+.section-header
+> p:last-child {
+  max-width:
+    620px;
+
+  margin-top:
+    1rem;
+
+  color:
+    var(--color-text-muted);
+
+  line-height:
+    1.7;
+}
+
+
+/* =========================================================
+   24. GRID DE EXPLORAR
+   ========================================================= */
+
+.home-explore__grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    1.25rem;
+}
+
+
+/* =========================================================
+   25. TARJETA DE EXPLORAR
+   ========================================================= */
+
+.home-explore__item {
+  position: relative;
+
+  min-height:
+    245px;
+
+  display: grid;
+
+  grid-template-columns:
+    50px
+    minmax(0, 1fr)
+    auto;
+
+  align-items:
+    center;
+
+  gap:
+    1.4rem;
+
+  padding:
+    2rem
+    1.8rem;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    var(--radius-xl);
+
+  background:
+    var(--surface-glass);
+
+  box-shadow:
+    var(--shadow-card);
+
+  transition:
+    transform
+      var(--transition-base),
+
+    background
+      var(--transition-base),
+
+    border-color
+      var(--transition-base),
+
+    box-shadow
+      var(--transition-base);
+}
+
+
+/* =========================================================
+   26. GRADIENTE INTERNO DE LA TARJETA
+   ========================================================= */
+
+.home-explore__item::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      135deg,
+
+      var(--explore-card-gradient),
+
+      transparent
+      65%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity
+    var(--transition-base);
+}
+
+
+/* =========================================================
+   27. HOVER DE LA TARJETA
+   ========================================================= */
+
+.home-explore__item:hover {
+  transform:
+    translateY(-5px);
+
+  border-color:
+    var(--color-border-hover);
+
+  background:
+    var(--surface-glass-hover);
+
+  box-shadow:
+    var(--shadow-card-hover);
+}
+
+
+.home-explore__item:hover::before {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   28. NÚMERO 01 / 02
+   ========================================================= */
+
+.home-explore__number {
+  align-self:
+    start;
+
+  padding-top:
+    0.35rem;
+
+  color:
+    var(--color-primary-light);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    var(--text-sm);
+
+  font-weight:
+    var(--weight-medium);
+
+  letter-spacing:
+    var(--tracking-wide);
+}
+
+
+/* =========================================================
+   29. TEXTO DE LA TARJETA
+   ========================================================= */
+
+.home-explore__item h3 {
+  margin-bottom:
+    0.75rem;
+
+  font-size:
+    clamp(
+      1.7rem,
+      3vw,
+      2.5rem
+    );
+
+  letter-spacing:
+    -0.045em;
+
+  transition:
+    color
+    var(--transition-fast);
+}
+
+
+.home-explore__item p {
+  max-width:
+    470px;
+
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    var(--text-base);
+
+  line-height:
+    1.7;
+}
+
+
+.home-explore__item:hover h3 {
+  color:
+    var(--color-primary-light);
+}
+
+
+/* =========================================================
+   30. FLECHA DE LAS TARJETAS
+   ========================================================= */
+
+.home-explore__arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width:
+    52px;
+
+  height:
+    52px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    50%;
+
+  color:
+    var(--color-text);
+
+  background:
+    var(--color-surface);
+
+  font-size:
+    var(--text-lg);
+
+  transition:
+    color
+      var(--transition-fast),
+
+    background
+      var(--transition-fast),
+
+    border-color
+      var(--transition-fast),
+
+    transform
+      var(--transition-slow),
+
+    box-shadow
+      var(--transition-base);
+}
+
+
+/* Hover de la flecha */
+
+.home-explore__item:hover
+.home-explore__arrow {
+  color:
+    var(--color-on-primary);
+
+  background:
+    var(--color-primary);
+
+  border-color:
+    var(--color-primary);
+
+  transform:
+    translateX(4px)
+    rotate(-12deg);
+
+  box-shadow:
+    var(--shadow-primary);
+}
+
+
+/* =========================================================
+   31. GRID TECNOLÓGICO DE FONDO
+   ========================================================= */
+
+/*
+   Aparece solamente en una esquina.
+   Su función es añadir textura tecnológica sin robar
+   protagonismo al contenido.
+*/
+
+.home-explore::after {
+  content: "";
+
+  position: absolute;
+
+  right:
+    -130px;
+
+  bottom:
+    -150px;
+
+  width:
+    500px;
+
+  height:
+    500px;
+
+  pointer-events:
+    none;
+
+  opacity:
+    0.14;
+
+  background-image:
+    linear-gradient(
+      var(--grid-line)
+      1px,
+
+      transparent
+      1px
+    ),
+
+    linear-gradient(
+      90deg,
+
+      var(--grid-line)
+      1px,
+
+      transparent
+      1px
+    );
+
+  background-size:
+    34px 34px;
+
+  mask-image:
+    radial-gradient(
+      circle,
+      black,
+      transparent 70%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle,
+      black,
+      transparent 70%
+    );
+
+  transform:
+    perspective(600px)
+    rotateX(60deg);
+}
+
+
+/* =========================================================
+   32. TABLET / LAPTOP PEQUEÑO
+   ========================================================= */
+
+/*
+   A esta resolución seguimos mostrando cerebro y texto
+   simultáneamente, pero reducimos el espacio visual que
+   ocupa el cerebro.
+*/
+
+@media (max-width: 1100px) {
+
+  .hero {
+    min-height:
+      auto;
+
+    padding-top:
+      calc(
+        var(--navbar-height)
+        +
+        4rem
+      );
+
+    padding-bottom:
+      4rem;
+  }
+
+
+  .hero__container {
+    min-height:
+      620px;
+  }
+
+
+  .hero__content {
+    width:
+      min(
+        100%,
+        580px
+      );
+  }
+
+
+  .hero__visual {
+    width:
+      62vw;
+
+    right:
+      -8%;
+  }
+
+
+  /*
+     Reducimos ligeramente las fórmulas para que el layout
+     no se vuelva demasiado cargado.
+  */
+
+  .hero__formulas {
+    opacity:
+      0.82;
+  }
+
+
+  .home-explore__grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .home-explore__item {
+    min-height:
+      200px;
+  }
+}
+
+
+/* =========================================================
+   33. MOBILE
+   ========================================================= */
+
+/*
+   En móvil la prioridad es:
+
+   1. Texto
+   2. Acciones
+   3. Cerebro
+   4. Fórmulas
+
+   Por eso el cerebro pasa a la parte inferior.
+*/
+
+@media (max-width: 768px) {
+
+  .hero {
+    padding-top:
+      calc(
+        var(--navbar-height)
+        +
+        3rem
+      );
+
+    padding-bottom:
+      3rem;
+  }
+
+
+  .hero__container {
+    min-height:
+      720px;
+
+    align-items:
+      flex-start;
+  }
+
+
+  .hero__content {
+    width:
+      100%;
+
+    padding-block:
+      0;
+  }
+
+
+  .hero__content h1 {
+    max-width:
+      9ch;
+
+    font-size:
+      clamp(
+        3.2rem,
+        14vw,
+        5.1rem
+      );
+  }
+
+
+  .hero__description {
+    max-width:
+      100%;
+
+    font-size:
+      1.1rem;
+  }
+
+
+  .hero__subdescription {
+    max-width:
+      100%;
+  }
+
+
+  /*
+     El cerebro deja de ocupar toda la derecha y pasa a
+     convertirse en una pieza visual inferior.
+  */
+
+  .hero__visual {
+    top:
+      auto;
+
+    right:
+      -28%;
+
+    bottom:
+      -3%;
+
+    width:
+      115vw;
+
+    height:
+      48%;
+  }
+
+
+  /*
+     En móvil ocultamos buena parte de las fórmulas.
+     formulas.js también reduce automáticamente la cantidad.
+  */
+
+  .hero__formulas {
+    opacity:
+      0.55;
+  }
+
+
+  /*
+     El overlay cambia de horizontal a vertical porque ahora
+     el cerebro está debajo del texto.
+  */
+
+  .hero::after {
+    background:
+      linear-gradient(
+        180deg,
+
+        var(--hero-overlay-strong)
+        0%,
+
+        var(--hero-overlay-medium)
+        50%,
+
+        transparent
+        82%
+      );
+  }
+
+
+  .hero__actions {
+    width:
+      100%;
+  }
+
+
+  .hero__actions .button {
+    flex:
+      1 1 auto;
+  }
+
+
+  /*
+     La línea decorativa no aporta demasiado en móvil y puede
+     interferir con el cerebro, así que la ocultamos.
+  */
+
+  .hero__container::after {
+    display:
+      none;
+  }
+
+
+  .home-explore__item {
+    grid-template-columns:
+      1fr
+      auto;
+
+    gap:
+      1rem;
+
+    padding:
+      1.6rem;
+  }
+
+
+  .home-explore__number {
+    grid-column:
+      1 / -1;
+  }
+}
+
+
+/* =========================================================
+   34. TELÉFONOS PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+  /*
+     En teléfonos pequeños los botones pasan a una columna
+     para mantener áreas táctiles cómodas.
+  */
+
+  .hero__actions {
+    flex-direction:
+      column;
+  }
+
+
+  .hero__actions .button {
+    width:
+      100%;
+  }
+
+
+  .hero__affiliation {
+    align-items:
+      flex-start;
+  }
+
+
+  /*
+     Damos más tamaño relativo al cerebro porque el viewport
+     es mucho más estrecho.
+  */
+
+  .hero__visual {
+    right:
+      -38%;
+
+    width:
+      135vw;
+  }
+
+
+  /*
+     Las fórmulas quedan todavía más sutiles.
+  */
+
+  .hero__formulas {
+    opacity:
+      0.42;
+  }
+
+
+  .home-explore__item {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .home-explore__arrow {
+    justify-self:
+      end;
+  }
+}
+
+
+/* =========================================================
+   35. DISPOSITIVOS SIN HOVER REAL
+   ========================================================= */
+
+/*
+   En pantallas táctiles no tiene sentido conservar efectos
+   que dependen exclusivamente de pasar el mouse.
+*/
+
+@media (hover: none) {
+
+  .home-explore__item:hover {
+    transform:
+      none;
+  }
+
+
+  .home-explore__item:hover
+  .home-explore__arrow {
+    transform:
+      none;
+  }
+}
+
+
+/* =========================================================
+   36. ACCESIBILIDAD — REDUCED MOTION
+   ========================================================= */
+
+/*
+   Si el usuario pide reducir movimiento desde su sistema
+   operativo:
+
+   - las fórmulas dejan de desplazarse;
+   - las tarjetas dejan de elevarse;
+   - las flechas dejan de rotar.
+
+   brain.js también detecta esta preferencia por separado.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero__formula {
+    animation:
+      none;
+
+    transform:
+      rotate(
+        var(--formula-rotation)
+      );
+  }
+
+
+  .home-explore__item,
+  .home-explore__item::before,
+  .home-explore__arrow {
+    transform:
+      none !important;
+
+    transition:
+      none !important;
+  }
+}
+
+
+/* === BEGIN HOME HERO VIEWPORT FIT V1 === */
+
+
+/* =========================================================
+   HOME — AJUSTE DE ALTURA EN DESKTOP
+   ========================================================= */
+
+/*
+   El header sticky ya ocupa espacio real.
+
+   Por eso no necesitamos que el hero tenga además:
+   - 100svh completos
+   - gran padding superior
+   - otro min-height de casi 100svh en el container.
+
+   Este bloque compacta únicamente desktop.
+*/
+
+@media (min-width: 1101px) {
+
+  /* -------------------------------------------------------
+     HERO
+     ------------------------------------------------------- */
+
+  .hero {
+    /*
+       Restamos la navbar porque el header ya se encuentra
+       encima del hero dentro del flujo del documento.
+    */
+
+    min-height:
+      calc(
+        100svh -
+        var(--navbar-height) -
+        1rem
+      );
+
+
+    /*
+       Antes:
+       7.5rem–9.5rem arriba.
+
+       Ahora dejamos aproximadamente:
+       2.75rem–3.75rem.
+
+       Sigue respirando, pero aprovechamos mucho mejor
+       una pantalla de notebook.
+    */
+
+    padding:
+      clamp(
+        2.75rem,
+        4.5vh,
+        3.75rem
+      )
+      0
+      clamp(
+        2rem,
+        3.5vh,
+        3rem
+      );
+  }
+
+
+  /* -------------------------------------------------------
+     CONTAINER
+     ------------------------------------------------------- */
+
+  .hero__container {
+    /*
+       El hero ya controla la altura.
+
+       No necesitamos otro contenedor intentando ocupar
+       prácticamente el viewport completo.
+    */
+
+    min-height:
+      auto;
+
+    align-items:
+      center;
+  }
+
+
+  /* -------------------------------------------------------
+     CONTENIDO
+     ------------------------------------------------------- */
+
+  .hero__content {
+    /*
+       Antes también agregábamos 2rem arriba y abajo
+       dentro del contenido.
+    */
+
+    padding-block:
+      0;
+  }
+
+
+  /* -------------------------------------------------------
+     ESPACIADO INTERNO
+     ------------------------------------------------------- */
+
+  .hero__content .eyebrow {
+    margin-bottom:
+      0.9rem;
+  }
+
+
+  .hero__description {
+    margin-top:
+      1.45rem;
+  }
+
+
+  .hero__subdescription {
+    margin-top:
+      0.7rem;
+  }
+
+
+  .hero__affiliation {
+    margin-top:
+      1.25rem;
+  }
+
+
+  .hero__actions {
+    margin-top:
+      1.55rem;
+  }
+
+
+  /* -------------------------------------------------------
+     CEREBRO
+     ------------------------------------------------------- */
+
+  /*
+     Como el hero comienza después del header,
+     ya no necesitamos reservar otra navbar completa
+     dentro del área visual del cerebro.
+
+     Esto le entrega más altura al Canvas.
+  */
+
+  .hero__visual {
+    top:
+      0;
+  }
+
+
+  /* -------------------------------------------------------
+     LÍNEA DECORATIVA
+     ------------------------------------------------------- */
+
+  .hero__container::after {
+    bottom:
+      -1.25rem;
+  }
+
+}
+
+
+/* === END HOME HERO VIEWPORT FIT V1 === */

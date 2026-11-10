@@ -1,0 +1,1788 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+
+<head>
+
+  <!-- =====================================================
+       MATÍAS CORTÉS | PORTAFOLIO PROFESIONAL
+
+       PROYECTO DE INVESTIGACIÓN:
+       MODELAMIENTO DE IGNICIONES DE INCENDIOS FORESTALES
+       MEDIANTE PROCESOS DE COX LOG-GAUSSIANOS
+
+       Archivo: projects/incendios.html
+       ===================================================== -->
+
+
+  <!-- =====================================================
+       01. CONFIGURACIÓN GENERAL
+       ===================================================== -->
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta name="color-scheme" content="dark light" />
+
+  <meta
+    name="description"
+    content="Investigación de Matías Cortés sobre el modelamiento espacio-temporal de igniciones de incendios forestales en Chile mediante procesos de Cox log-gaussianos, modelos de Poisson, estadística bayesiana e INLA-SPDE."
+  />
+
+  <meta name="author" content="Matías Cortés" />
+
+  <meta
+    name="theme-color"
+    id="theme-color-meta"
+    content="#050507"
+  />
+
+  <title>
+    Modelamiento de incendios forestales | Matías Cortés
+  </title>
+
+
+  <!-- =====================================================
+       02. TIPOGRAFÍAS
+       ===================================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+
+  <!-- =====================================================
+       03. SISTEMA DE TEMA
+       ===================================================== -->
+
+  <script src="../js/theme.js"></script>
+
+
+  <!-- =====================================================
+       04. ESTILOS DEL PORTAFOLIO
+       ===================================================== -->
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+
+
+  <!-- =====================================================
+       05. ESTILOS EXCLUSIVOS DE LA TESIS
+
+       Archivo que desarrollaremos a continuación.
+       ===================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="../css/proyecto-incendios.css"
+  />
+
+
+  <!-- =====================================================
+       06. KATEX
+       ===================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.css"
+  />
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.js"
+    defer
+  ></script>
+
+  <link
+    rel="stylesheet"
+    href="../css/incendios-dashboard.css"
+  />
+  <link rel="stylesheet" href="../css/incendios-espaciado.css">
+</head>
+
+
+<body>
+
+  <!-- =====================================================
+       07. NAVEGACIÓN PRINCIPAL
+       ===================================================== -->
+
+  <header
+    class="site-header"
+    id="site-header"
+  >
+
+    <nav
+      class="navbar container"
+      aria-label="Navegación principal"
+    >
+
+      <!-- Identidad -->
+
+      <a
+        class="navbar__brand"
+        href="../index.html"
+        aria-label="Volver al inicio"
+      >
+        MC<span>.</span>
+      </a>
+
+
+      <!-- Enlaces -->
+
+      <ul class="navbar__links">
+
+        <li>
+          <a href="../index.html">
+            Inicio
+          </a>
+        </li>
+
+        <li>
+          <a href="../pages/proyectos.html">
+            Proyectos
+          </a>
+        </li>
+
+        <li>
+          <a href="../pages/sobre-mi.html">
+            Sobre mí
+          </a>
+        </li>
+
+      </ul>
+
+
+      <!-- Acciones -->
+
+      <div class="navbar__actions">
+
+        <!-- Modo claro / oscuro -->
+
+        <button
+          class="navbar__theme"
+          id="theme-toggle"
+          type="button"
+          aria-label="Cambiar tema"
+          aria-pressed="false"
+          title="Cambiar tema"
+        >
+
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--sun"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="M4.93 4.93l1.42 1.42"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="M4.93 19.07l1.42-1.42"></path>
+            <path d="M17.66 6.34l1.41-1.41"></path>
+          </svg>
+
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--moon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.5 14.5 A8.5 8.5 0 0 1 9.5 3.5 A8.5 8.5 0 1 0 20.5 14.5"
+            ></path>
+          </svg>
+
+        </button>
+
+
+        <!-- Currículum -->
+
+        <a
+          href="../assets/cv/CV_Matias_Cortes.pdf"
+          class="navbar__cv"
+          download
+        >
+          CV
+        </a>
+
+
+        <!-- Menú móvil -->
+
+        <button
+          class="navbar__menu"
+          id="menu-button"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+       ===================================================== -->
+
+  <main class="thesis-page" id="contenido">
+
+
+    <!-- ===================================================
+         08. PORTADA DE LA INVESTIGACIÓN
+         =================================================== -->
+
+    <section
+      class="thesis-hero"
+      aria-labelledby="thesis-title"
+    >
+
+      <div class="container thesis-hero__layout">
+
+        <div class="thesis-hero__content">
+
+          <!-- Navegación de retorno -->
+
+          <a
+            class="thesis-back"
+            href="../pages/proyectos.html"
+          >
+            <span aria-hidden="true">←</span>
+            Volver a proyectos
+          </a>
+
+
+          <!-- Tipo de investigación -->
+
+          <p class="eyebrow thesis-hero__eyebrow">
+            Investigación aplicada · Estadística espacial
+          </p>
+
+
+          <!-- Estado -->
+
+          <p class="thesis-status">
+            Tesis de pregrado · Investigación en desarrollo
+          </p>
+
+
+          <!-- Título oficial -->
+
+          <h1 id="thesis-title" class="thesis-hero__title">
+            Modelamiento de igniciones
+            de incendios forestales
+            en Chile
+          </h1>
+
+
+          <!-- Subtítulo -->
+
+          <p class="thesis-hero__subtitle">
+            Mediante procesos de Cox log-gaussianos
+            (LGCP)
+          </p>
+
+
+          <!-- Descripción -->
+
+          <p class="thesis-hero__description">
+            Investigación orientada a caracterizar y modelar
+            la ocurrencia espacio-temporal de igniciones
+            forestales en Chile central y centro-sur,
+            integrando información ambiental, territorial
+            y antrópica mediante herramientas de
+            estadística espacial y modelamiento bayesiano.
+          </p>
+
+
+          <!-- Tecnologías -->
+
+          <div class="tags thesis-hero__tags">
+
+            <span class="tag">Python</span>
+            <span class="tag">R</span>
+            <span class="tag">INLA</span>
+            <span class="tag">SPDE</span>
+            <span class="tag">LGCP</span>
+            <span class="tag">GIS</span>
+
+          </div>
+
+
+          <!-- Acciones -->
+
+          <div class="thesis-hero__actions">
+
+            <a
+              class="button button--primary"
+              href="#visualizaciones"
+            >
+              Explorar visualizaciones
+              <span aria-hidden="true">↓</span>
+            </a>
+
+            <a
+              class="button button--secondary"
+              href="#metodologia"
+            >
+              Ver metodología
+              <span aria-hidden="true">→</span>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Panel conceptual -->
+
+        <aside
+          class="thesis-hero__panel"
+          aria-label="Información de la investigación"
+        >
+
+          <p class="eyebrow">
+            Proyecto de investigación
+          </p>
+
+          <div class="thesis-hero__panel-content">
+
+            <div class="thesis-hero__panel-item">
+              <span>Institución</span>
+              <strong>Universidad de Valparaíso</strong>
+            </div>
+
+            <div class="thesis-hero__panel-item">
+              <span>Área</span>
+              <strong>Estadística espacio-temporal</strong>
+            </div>
+
+            <div class="thesis-hero__panel-item">
+              <span>Enfoque</span>
+              <strong>Inferencia bayesiana</strong>
+            </div>
+
+            <div class="thesis-hero__panel-item">
+              <span>Territorio</span>
+              <strong>Chile central y centro-sur</strong>
+            </div>
+
+            <div class="thesis-hero__panel-item">
+              <span>Modelos</span>
+              <strong>Poisson / LGCP</strong>
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         09. NAVEGACIÓN INTERNA
+         =================================================== -->
+
+    <nav
+      class="thesis-nav"
+      aria-label="Secciones de la investigación"
+    >
+
+      <div class="container thesis-nav__inner">
+
+        <a href="#resumen">
+          Resumen
+        </a>
+
+        <a href="#visualizaciones">
+          Igniciones
+        </a>
+
+        <a href="#covariables">
+          Covariables
+        </a>
+
+        <a href="#metodologia">
+          Metodología
+        </a>
+
+        <a href="#resultados">
+          Resultados
+        </a>
+
+        <a href="#difusion">
+          Difusión
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <!-- ===================================================
+         10. RESUMEN DE INVESTIGACIÓN
+         =================================================== -->
+
+    <section
+      class="section thesis-intro"
+      id="resumen"
+      aria-labelledby="resumen-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            01 / Contexto
+          </p>
+
+          <h2 id="resumen-title">
+            Comprender dónde y cuándo
+            ocurren las igniciones.
+          </h2>
+
+        </header>
+
+
+        <div class="thesis-intro__grid">
+
+          <div class="thesis-intro__description">
+
+            <p>
+              La ocurrencia de incendios forestales presenta
+              heterogeneidad espacial y temporal asociada
+              a factores meteorológicos, características
+              de la vegetación, condiciones topográficas
+              y actividades humanas.
+            </p>
+
+            <p>
+              Esta investigación estudia las igniciones
+              como eventos distribuidos en el espacio y
+              el tiempo, utilizando procesos puntuales
+              y modelos estadísticos capaces de representar
+              variaciones de intensidad e incertidumbre.
+            </p>
+
+            <p>
+              El objetivo es evaluar el aporte de modelos
+              de Poisson y procesos de Cox log-gaussianos
+              para caracterizar patrones de ignición
+              mediante información georreferenciada
+              y covariables explicativas.
+            </p>
+
+          </div>
+
+
+          <!-- Preguntas de investigación -->
+
+          <div class="thesis-intro__questions">
+
+            <article class="thesis-info-card">
+
+              <span class="thesis-info-card__number">
+                01
+              </span>
+
+              <h3>Distribución territorial</h3>
+
+              <p>
+                ¿Cómo cambia la distribución espacial
+                de las igniciones entre distintas
+                regiones y provincias?
+              </p>
+
+            </article>
+
+
+            <article class="thesis-info-card">
+
+              <span class="thesis-info-card__number">
+                02
+              </span>
+
+              <h3>Factores explicativos</h3>
+
+              <p>
+                ¿Qué relación presentan las igniciones
+                con las condiciones ambientales,
+                la cobertura del suelo y las
+                variables antrópicas?
+              </p>
+
+            </article>
+
+
+            <article class="thesis-info-card">
+
+              <span class="thesis-info-card__number">
+                03
+              </span>
+
+              <h3>Heterogeneidad no observada</h3>
+
+              <p>
+                ¿Qué variación espacial y temporal
+                adicional puede representar un
+                proceso de Cox log-gaussiano?
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         11. CIFRAS DEL ANÁLISIS EXPLORATORIO
+
+         Datos correspondientes a las figuras compartidas.
+
+         IMPORTANTE:
+         Estos valores representan registros observados,
+         no probabilidades ni tasas de riesgo.
+         =================================================== -->
+
+    <section
+      class="thesis-overview"
+      aria-label="Cifras del análisis exploratorio"
+    >
+
+      <div class="container thesis-overview__grid">
+
+        <article class="thesis-stat">
+
+          <p class="thesis-stat__label">
+            Valparaíso
+          </p>
+
+          <strong class="thesis-stat__value">
+            17.271
+          </strong>
+
+          <p class="thesis-stat__detail">
+            Registros georreferenciados del EDA
+          </p>
+
+        </article>
+
+
+        <article class="thesis-stat">
+
+          <p class="thesis-stat__label">
+            Biobío
+          </p>
+
+          <strong class="thesis-stat__value">
+            49.932
+          </strong>
+
+          <p class="thesis-stat__detail">
+            Registros georreferenciados del EDA
+          </p>
+
+        </article>
+
+
+        <article class="thesis-stat">
+
+          <p class="thesis-stat__label">
+            Período de las figuras
+          </p>
+
+          <strong class="thesis-stat__value">
+            2002–2025
+          </strong>
+
+          <p class="thesis-stat__detail">
+            Ventana del análisis exploratorio presentado
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         12. DISTRIBUCIÓN ESPACIAL DE IGNICIONES
+         =================================================== -->
+
+    <section
+      class="section thesis-observations"
+      id="visualizaciones"
+      aria-labelledby="observations-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            02 / Análisis exploratorio espacial
+          </p>
+
+          <h2 id="observations-title">
+            Igniciones observadas
+            y georreferenciadas.
+          </h2>
+
+          <p class="thesis-section-description">
+            Visualizaciones de los registros observados
+            en las regiones de Valparaíso y Biobío,
+            incluyendo su distribución provincial
+            y localización espacial.
+          </p>
+
+        </header>
+
+
+        <!-- Galería de mapas -->
+
+        <div class="thesis-observations__grid">
+
+
+          <!-- ===============================================
+               FIGURA 01: VALPARAÍSO
+               =============================================== -->
+
+          <figure class="thesis-figure">
+
+            <div class="thesis-figure__header">
+
+              <span class="thesis-figure__category">
+                Distribución espacial
+              </span>
+
+              <h3>
+                Región de Valparaíso
+              </h3>
+
+              <p>
+                Igniciones observadas · 2002–2025
+              </p>
+
+            </div>
+
+
+            <!-- Imagen original -->
+
+            <a
+              class="thesis-figure__link"
+              href="../assets/images/projects/incendios/Valparaiso.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-thesis-zoom
+              data-figure-title="Igniciones observadas — Valparaíso"
+              aria-label="Ampliar mapa de igniciones de Valparaíso"
+            >
+
+              <img
+                src="../assets/images/projects/incendios/Valparaiso.png"
+                alt="Mapa de igniciones observadas en Valparaíso, con distribución provincial, ubicaciones georreferenciadas y un total de 17.271 registros."
+                loading="lazy"
+                decoding="async"
+              />
+
+              <span class="thesis-figure__expand">
+                Ampliar figura ↗
+              </span>
+
+            </a>
+
+
+            <figcaption class="thesis-figure__caption">
+
+              <strong>
+                Figura 1. Distribución espacial de igniciones
+                en la Región de Valparaíso.
+              </strong>
+
+              <p>
+                Registros georreferenciados del análisis
+                exploratorio, con desagregación provincial.
+                La figura presenta 17.271 registros
+                para el período 2002–2025.
+              </p>
+
+            </figcaption>
+
+          </figure>
+
+
+          <!-- ===============================================
+               FIGURA 02: BIOBÍO
+               =============================================== -->
+
+          <figure class="thesis-figure">
+
+            <div class="thesis-figure__header">
+
+              <span class="thesis-figure__category">
+                Distribución espacial
+              </span>
+
+              <h3>
+                Región del Biobío
+              </h3>
+
+              <p>
+                Igniciones observadas · 2002–2025
+              </p>
+
+            </div>
+
+
+            <!-- Imagen original -->
+
+            <a
+              class="thesis-figure__link"
+              href="../assets/images/projects/incendios/Biobio.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-thesis-zoom
+              data-figure-title="Igniciones observadas — Biobío"
+              aria-label="Ampliar mapa de igniciones del Biobío"
+            >
+
+              <img
+                src="../assets/images/projects/incendios/Biobio.png"
+                alt="Mapa de igniciones observadas en Biobío, con distribución provincial y 49.932 registros georreferenciados."
+                loading="lazy"
+                decoding="async"
+              />
+
+              <span class="thesis-figure__expand">
+                Ampliar figura ↗
+              </span>
+
+            </a>
+
+
+            <figcaption class="thesis-figure__caption">
+
+              <strong>
+                Figura 2. Distribución espacial de igniciones
+                en la Región del Biobío.
+              </strong>
+
+              <p>
+                Representación de 49.932 registros
+                observados para el período 2002–2025,
+                con distribución en las provincias
+                de Arauco, Concepción y Biobío.
+              </p>
+
+            </figcaption>
+
+          </figure>
+
+        </div>
+
+
+        <!-- Nota estadística -->
+
+        <aside class="thesis-note">
+
+          <h3>Interpretación de los registros</h3>
+
+          <p>
+            La cantidad y concentración de eventos
+            observados permite identificar patrones
+            espaciales de ignición. Sin embargo,
+            los conteos absolutos no representan por sí
+            solos una medida comparable de riesgo entre
+            territorios. Su interpretación requiere
+            considerar exposición, cobertura de los
+            registros y características del área estudiada.
+          </p>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         13. COVARIABLES ESPACIALES
+         =================================================== -->
+
+    <section
+      class="section thesis-covariates"
+      id="covariables"
+      aria-labelledby="covariates-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            03 / Integración de información territorial
+          </p>
+
+          <h2 id="covariates-title">
+            Covariables ambientales,
+            territoriales y antrópicas.
+          </h2>
+
+          <p class="thesis-section-description">
+            El modelamiento incorpora información
+            espacial auxiliar para estudiar la
+            heterogeneidad de la intensidad de igniciones.
+          </p>
+
+        </header>
+
+
+        <!-- Imagen MapBiomas y WorldPop -->
+
+        <figure
+          class="thesis-figure thesis-figure--wide"
+        >
+
+          <div class="thesis-figure__header">
+
+            <span class="thesis-figure__category">
+              Fuentes de datos geoespaciales
+            </span>
+
+            <h3>
+              MapBiomas y WorldPop
+            </h3>
+
+            <p>
+              Cobertura de suelo y distribución poblacional
+            </p>
+
+          </div>
+
+
+          <a
+            class="thesis-figure__link"
+            href="../assets/images/projects/incendios/Mapbiomas.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-thesis-zoom
+            data-figure-title="Covariables espaciales — MapBiomas y WorldPop"
+            aria-label="Ampliar figura de MapBiomas y WorldPop"
+          >
+
+            <img
+              src="../assets/images/projects/incendios/Mapbiomas.png"
+              alt="Visualización de MapBiomas con clases de cobertura y uso de suelo, y de WorldPop con distribución espacial poblacional en regiones del centro y centro-sur de Chile."
+              loading="lazy"
+              decoding="async"
+            />
+
+            <span class="thesis-figure__expand">
+              Ampliar figura ↗
+            </span>
+
+          </a>
+
+
+          <figcaption class="thesis-figure__caption">
+
+            <strong>
+              Figura 3. Información geoespacial auxiliar.
+            </strong>
+
+            <p>
+              Representación de la cobertura y uso de suelo
+              mediante MapBiomas y de la distribución
+              espacial de población mediante WorldPop.
+              Estas fuentes permiten construir variables
+              territoriales relevantes para el análisis
+              de igniciones.
+            </p>
+
+          </figcaption>
+
+        </figure>
+
+
+        <!-- Familias de covariables -->
+
+        <div class="thesis-covariates__grid">
+
+          <article class="thesis-data-card">
+
+            <span class="thesis-data-card__index">01</span>
+
+            <h3>Meteorología</h3>
+
+            <p>
+              Variables asociadas a condiciones
+              atmosféricas que pueden influir
+              en la ocurrencia de igniciones.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Temperatura</span>
+              <span class="tag">Humedad relativa</span>
+              <span class="tag">Precipitación</span>
+              <span class="tag">Viento</span>
+
+            </div>
+
+            <p class="thesis-data-card__source">
+              Fuente de referencia: ERA5-Land
+            </p>
+
+          </article>
+
+
+          <article class="thesis-data-card">
+
+            <span class="thesis-data-card__index">02</span>
+
+            <h3>Vegetación y cobertura</h3>
+
+            <p>
+              Caracterización del territorio según
+              cobertura, uso del suelo y propiedades
+              asociadas a la vegetación.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Bosques</span>
+              <span class="tag">Agricultura</span>
+              <span class="tag">Silvicultura</span>
+              <span class="tag">NDVI</span>
+
+            </div>
+
+            <p class="thesis-data-card__source">
+              Fuente de referencia: MapBiomas
+            </p>
+
+          </article>
+
+
+          <article class="thesis-data-card">
+
+            <span class="thesis-data-card__index">03</span>
+
+            <h3>Actividad humana</h3>
+
+            <p>
+              Factores relacionados con distribución
+              poblacional, accesibilidad e
+              infraestructura territorial.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Población</span>
+              <span class="tag">Red vial</span>
+              <span class="tag">Urbanización</span>
+
+            </div>
+
+            <p class="thesis-data-card__source">
+              Fuentes: WorldPop y cartografía vial
+            </p>
+
+          </article>
+
+
+          <article class="thesis-data-card">
+
+            <span class="thesis-data-card__index">04</span>
+
+            <h3>Topografía</h3>
+
+            <p>
+              Representación de las condiciones
+              del relieve y sus características
+              espaciales.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Elevación</span>
+              <span class="tag">Pendiente</span>
+              <span class="tag">Orientación</span>
+
+            </div>
+
+            <p class="thesis-data-card__source">
+              Fuente: modelos digitales de elevación
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         14. METODOLOGÍA ESTADÍSTICA
+         =================================================== -->
+
+    <section
+      class="section thesis-method"
+      id="metodologia"
+      aria-labelledby="method-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            04 / Metodología
+          </p>
+
+          <h2 id="method-title">
+            Del evento observado
+            al modelo probabilístico.
+          </h2>
+
+          <p class="thesis-section-description">
+            La investigación utiliza herramientas
+            de estadística espacial para modelar
+            la intensidad de eventos y representar
+            variación no explicada por las covariables.
+          </p>
+
+        </header>
+
+
+        <!-- Flujo de trabajo -->
+
+        <div class="thesis-pipeline">
+
+          <article class="thesis-pipeline__step">
+
+            <span>01</span>
+
+            <h3>Recopilación</h3>
+
+            <p>
+              Registros georreferenciados
+              y fuentes auxiliares.
+            </p>
+
+          </article>
+
+
+          <article class="thesis-pipeline__step">
+
+            <span>02</span>
+
+            <h3>Procesamiento</h3>
+
+            <p>
+              Limpieza, homologación
+              e integración espacial.
+            </p>
+
+          </article>
+
+
+          <article class="thesis-pipeline__step">
+
+            <span>03</span>
+
+            <h3>Covariables</h3>
+
+            <p>
+              Construcción de predictores
+              ambientales y antrópicos.
+            </p>
+
+          </article>
+
+
+          <article class="thesis-pipeline__step">
+
+            <span>04</span>
+
+            <h3>Modelamiento</h3>
+
+            <p>
+              Poisson inhomogéneo
+              y proceso LGCP.
+            </p>
+
+          </article>
+
+
+          <article class="thesis-pipeline__step">
+
+            <span>05</span>
+
+            <h3>Evaluación</h3>
+
+            <p>
+              Diagnóstico, comparación
+              y validación de modelos.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <!-- Modelos -->
+
+        <div class="thesis-models">
+
+
+          <!-- Modelo Poisson -->
+
+          <article class="thesis-model-card">
+
+            <p class="eyebrow">
+              Modelo de referencia
+            </p>
+
+            <h3>
+              Proceso de Poisson inhomogéneo
+            </h3>
+
+            <p>
+              Permite representar una intensidad
+              de eventos que cambia con la ubicación
+              y las covariables explicativas.
+            </p>
+
+            <p>
+              Constituye una referencia estadística
+              para comparar la capacidad explicativa
+              y predictiva frente a formulaciones
+              con efectos latentes.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Intensidad</span>
+              <span class="tag">Covariables</span>
+              <span class="tag">Modelo base</span>
+
+            </div>
+
+          </article>
+
+
+          <!-- Modelo LGCP -->
+
+          <article class="thesis-model-card thesis-model-card--featured">
+
+            <p class="eyebrow">
+              Modelo principal
+            </p>
+
+            <h3>
+              Proceso de Cox log-gaussiano
+            </h3>
+
+            <p>
+              El LGCP permite representar la intensidad
+              mediante covariables y un campo aleatorio
+              gaussiano latente, incorporando
+              heterogeneidad espacial no observada.
+            </p>
+
+            <p>
+              Su implementación bayesiana contempla
+              aproximaciones mediante INLA y la
+              representación espacial SPDE.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">LGCP</span>
+              <span class="tag">Bayesiano</span>
+              <span class="tag">INLA</span>
+              <span class="tag">SPDE</span>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- Expresión estadística -->
+
+        <div class="thesis-equation">
+
+          <p class="eyebrow">
+            Formulación estadística conceptual
+          </p>
+
+          <h3>
+            Intensidad con efecto latente
+          </h3>
+
+          <div class="thesis-equation__formula">
+
+            <code>
+              log(μᵢₜ) = log(Eᵢₜ) + β₀ + Σ βₖxᵢₜₖ + wᵢₜ
+            </code>
+
+          </div>
+
+          <p>
+            En una representación discretizada,
+            μ corresponde al conteo esperado,
+            E a la exposición, β a los parámetros
+            de regresión y w al efecto latente
+            espacio-temporal.
+          </p>
+
+          <p class="thesis-equation__note">
+            Expresión general de referencia.
+            La especificación definitiva depende
+            del soporte espacio-temporal y de la
+            estructura utilizada en el ajuste.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         15. RESULTADOS Y EVALUACIÓN
+         =================================================== -->
+
+    <section
+      class="section thesis-results"
+      id="resultados"
+      aria-labelledby="results-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            05 / Evaluación estadística
+          </p>
+
+          <h2 id="results-title">
+            Comparación de modelos
+            e incertidumbre.
+          </h2>
+
+          <p class="thesis-section-description">
+            El proceso de evaluación contempla
+            medidas de ajuste, desempeño predictivo
+            y representación de la incertidumbre
+            asociada a los modelos.
+          </p>
+
+        </header>
+
+
+        <!-- Métricas previstas -->
+
+        <div class="thesis-results__grid">
+
+          <article class="thesis-result-card">
+
+            <h3>
+              Evaluación de conteos
+            </h3>
+
+            <p>
+              Comparación entre frecuencias observadas
+              y esperadas mediante métricas de error
+              y diagnóstico del ajuste.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">MAE</span>
+              <span class="tag">RMSE</span>
+              <span class="tag">Devianza</span>
+
+            </div>
+
+          </article>
+
+
+          <article class="thesis-result-card">
+
+            <h3>
+              Desempeño discriminativo
+            </h3>
+
+            <p>
+              Evaluación de la capacidad para
+              distinguir unidades con y sin
+              eventos registrados, según la
+              definición de la tarea predictiva.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">ROC-AUC</span>
+              <span class="tag">PR-AUC</span>
+              <span class="tag">Brier</span>
+
+            </div>
+
+          </article>
+
+
+          <article class="thesis-result-card">
+
+            <h3>
+              Inferencia bayesiana
+            </h3>
+
+            <p>
+              Análisis de parámetros, efectos
+              espaciales latentes e incertidumbre
+              posterior asociados al modelo LGCP.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Posteriores</span>
+              <span class="tag">WAIC</span>
+              <span class="tag">Incertidumbre</span>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- Estado de resultados -->
+
+        <aside class="thesis-results__status">
+
+          <span class="thesis-results__status-icon"
+                aria-hidden="true">
+            ◉
+          </span>
+
+          <div>
+
+            <h3>
+              Resultados en revisión
+            </h3>
+
+            <p>
+              La investigación continúa en desarrollo.
+              Las métricas finales, mapas de intensidad
+              estimada y resultados de validación
+              se incorporarán cuando estén consolidados
+              y documentados.
+            </p>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         16. DIFUSIÓN ACADÉMICA
+         =================================================== -->
+
+    <section
+      class="section thesis-dissemination"
+      id="difusion"
+      aria-labelledby="dissemination-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            06 / Difusión académica
+          </p>
+
+          <h2 id="dissemination-title">
+            Investigación y comunidad científica.
+          </h2>
+
+        </header>
+
+
+        <div class="thesis-dissemination__grid">
+
+          <!-- Fotografía real del evento -->
+
+          <figure class="thesis-figure">
+
+            <a
+              class="thesis-figure__link"
+              href="../assets/images/profile/soche.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-thesis-zoom
+              data-figure-title="XLVIII Jornadas Nacionales de Estadística"
+              aria-label="Ampliar fotografía del congreso"
+            >
+
+              <img
+                src="../assets/images/profile/soche.png"
+                alt="Fotografía grupal en las XLVIII Jornadas Nacionales de Estadística realizadas en Valparaíso en octubre de 2026."
+                loading="lazy"
+                decoding="async"
+              />
+
+              <span class="thesis-figure__expand">
+                Ampliar fotografía ↗
+              </span>
+
+            </a>
+
+            <figcaption class="thesis-figure__caption">
+              XLVIII Jornadas Nacionales de Estadística,
+              Valparaíso, octubre de 2026.
+            </figcaption>
+
+          </figure>
+
+
+          <!-- Información académica -->
+
+          <div class="thesis-dissemination__content">
+
+            <p class="eyebrow">
+              Vinculación académica
+            </p>
+
+            <h3>
+              XLVIII Jornadas Nacionales
+              de Estadística
+            </h3>
+
+            <p>
+              Instancia de encuentro académico
+              de la comunidad estadística,
+              realizada entre el 20 y el
+              23 de octubre de 2026
+              en la Universidad de Valparaíso.
+            </p>
+
+            <p>
+              La participación en actividades
+              científicas forma parte del desarrollo
+              profesional y de la comunicación
+              de investigaciones estadísticas aplicadas.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Valparaíso</span>
+              <span class="tag">2026</span>
+              <span class="tag">Estadística</span>
+              <span class="tag">Investigación</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         17. HERRAMIENTAS COMPUTACIONALES
+         =================================================== -->
+
+    <section
+      class="section thesis-tools"
+      id="herramientas"
+      aria-labelledby="tools-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            07 / Herramientas
+          </p>
+
+          <h2 id="tools-title">
+            Estadística y programación
+            aplicadas.
+          </h2>
+
+        </header>
+
+
+        <div class="thesis-tools__grid">
+
+          <article class="thesis-tool">
+
+            <h3>Python</h3>
+
+            <p>
+              Procesamiento de información,
+              análisis exploratorio y
+              visualización de datos espaciales.
+            </p>
+
+          </article>
+
+
+          <article class="thesis-tool">
+
+            <h3>R e INLA</h3>
+
+            <p>
+              Formulación y aproximación
+              bayesiana para modelos con
+              estructura espacial latente.
+            </p>
+
+          </article>
+
+
+          <article class="thesis-tool">
+
+            <h3>SPDE</h3>
+
+            <p>
+              Representación de campos
+              aleatorios espaciales mediante
+              aproximaciones numéricas.
+            </p>
+
+          </article>
+
+
+          <article class="thesis-tool">
+
+            <h3>Análisis geoespacial</h3>
+
+            <p>
+              Integración de capas territoriales,
+              sistemas de coordenadas,
+              cartografía y datos raster/vectoriales.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         18. NAVEGACIÓN DE SALIDA
+         =================================================== -->
+
+    <section class="thesis-ending">
+
+      <div class="container thesis-ending__content">
+
+        <p class="eyebrow">
+          Continuar explorando
+        </p>
+
+        <h2>
+          Estadística aplicada
+          a problemas reales.
+        </h2>
+
+        <p>
+          Explora otros proyectos de modelamiento,
+          ciencia de datos e investigación.
+        </p>
+
+        <div class="thesis-ending__actions">
+
+          <a
+            class="button button--primary"
+            href="../pages/proyectos.html"
+          >
+            Ver otros proyectos
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a
+            class="button button--secondary"
+            href="../pages/sobre-mi.html"
+          >
+            Sobre mí
+            <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       19. VISOR AMPLIADO DE FIGURAS
+
+       Se conectará mediante js/incendios.js.
+
+       Mientras tanto, cada imagen tiene un enlace
+       directo a su archivo PNG original.
+       ===================================================== -->
+
+  <dialog
+    class="thesis-lightbox"
+    id="thesis-lightbox"
+    aria-label="Visualización ampliada"
+  >
+
+    <button
+      class="thesis-lightbox__close"
+      type="button"
+      data-thesis-close
+      aria-label="Cerrar imagen ampliada"
+    >
+      &times;
+    </button>
+
+    <div class="thesis-lightbox__content">
+
+      <img
+        class="thesis-lightbox__image"
+        id="thesis-lightbox-image"
+        alt=""
+      />
+
+      <p
+        class="thesis-lightbox__caption"
+        id="thesis-lightbox-caption"
+      ></p>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- =====================================================
+       20. PIE DE PÁGINA
+       ===================================================== -->
+
+  <footer class="footer">
+
+    <div class="container footer__container">
+
+      <p>
+        Matías Cortés
+      </p>
+
+      <p>
+        Estadística & Ciencia de Datos
+      </p>
+
+      <p>
+        © <span id="current-year"></span>
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       21. JAVASCRIPT GENERAL
+       ===================================================== -->
+
+  <script
+    src="../js/navigation.js"
+    defer
+  ></script>
+
+  <script
+    src="../js/animations.js"
+    defer
+  ></script>
+
+  <script
+    src="../js/main.js"
+    defer
+  ></script>
+
+  <script
+    src="../js/formulas.js"
+    defer
+  ></script>
+
+
+  <!-- =====================================================
+       22. JAVASCRIPT DE LA INVESTIGACIÓN
+
+       Próxima etapa:
+       - Visor de figuras
+       - Navegación interna
+       - Interacciones
+       - Mejoras de presentación
+       ===================================================== -->
+
+  <script
+    src="../js/incendios.js"
+    defer
+  ></script>
+
+  <script
+    src="../js/incendios-dashboard.js"
+    defer
+  ></script>
+</body>
+</html>

@@ -1,0 +1,3815 @@
+/* =========================================================
+   MATÃAS CORTÃ‰S â€” PORTFOLIO
+   INTERNAL PAGES
+
+   Este archivo controla las pÃ¡ginas internas del portafolio:
+
+   pages/
+   â”œâ”€â”€ proyectos.html
+   â””â”€â”€ sobre-mi.html
+
+   y tambiÃ©n deja preparada la estructura para los
+   casos de estudio individuales:
+
+   projects/
+   â”œâ”€â”€ incendios.html
+   â”œâ”€â”€ nutricion.html
+   â””â”€â”€ pets.html
+
+   IMPORTANTE:
+   - Los colores vienen principalmente de variables.css.
+   - El responsive general vive en responsive.css.
+   - Los componentes reutilizables viven en components.css.
+   ========================================================= */
+
+
+/* =========================================================
+   01. HERO BASE DE PÃGINAS INTERNAS
+   ========================================================= */
+
+/*
+   Proyectos y Sobre mÃ­ comparten una misma estructura
+   general de Hero.
+
+   isolation: isolate permite trabajar con fondos y grÃ¡ficos
+   usando z-index negativos sin que se mezclen con otras
+   secciones del sitio.
+*/
+
+.page-hero {
+  position: relative;
+
+  min-height:
+      86svh;
+
+  display: flex;
+  align-items: center;
+
+  padding:
+    calc(
+      var(--navbar-height) +
+      var(--space-16)
+    )
+    0
+    var(--space-20);
+
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+
+/*
+   Todo el contenido del Hero debe quedar siempre por encima
+   de las capas decorativas.
+*/
+
+.page-hero > .container {
+  position: relative;
+
+  z-index: var(--z-content);
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   02. FONDO AMBIENTAL DE PÃGINAS INTERNAS
+   ========================================================= */
+
+/*
+   Creamos profundidad utilizando dos luces muy suaves.
+
+   No usamos colores escritos directamente porque:
+   variables.css modifica estas luces cuando cambia
+   entre tema oscuro y tema claro.
+*/
+
+.page-hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -3;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 75% 35%,
+      var(--hero-glow-primary),
+      transparent 31%
+    ),
+
+    radial-gradient(
+      circle at 86% 72%,
+      var(--hero-glow-secondary),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      180deg,
+      var(--hero-background-start),
+      var(--color-bg)
+    );
+}
+
+
+/* =========================================================
+   03. GRID TECNOLÃ“GICO DEL HERO
+   ========================================================= */
+
+/*
+   Este grid aÃ±ade textura al fondo.
+
+   No representa datos reales.
+   Es solamente un recurso visual para conectar el diseÃ±o
+   con estadÃ­stica, programaciÃ³n y ciencia de datos.
+*/
+
+.page-hero::after {
+  content: "";
+
+  position: absolute;
+
+  right: -180px;
+  top: 50%;
+
+  width: 650px;
+  height: 650px;
+
+  z-index: -2;
+
+  opacity: 0.15;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      var(--grid-line) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      var(--grid-line) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    38px 38px;
+
+  /*
+     La mÃ¡scara hace que el grid desaparezca gradualmente
+     en los bordes.
+  */
+
+  mask-image:
+    radial-gradient(
+      circle,
+      black 18%,
+      transparent 70%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle,
+      black 18%,
+      transparent 70%
+    );
+
+  transform:
+    translateY(-50%)
+    perspective(700px)
+    rotateY(-18deg)
+    rotateX(10deg);
+
+  transform-origin:
+    center;
+}
+
+
+/* =========================================================
+   04. TÃTULOS DE PÃGINAS INTERNAS
+   ========================================================= */
+
+/*
+   Utilizamos tÃ­tulos grandes porque son uno de los elementos
+   principales de la identidad visual del portafolio.
+*/
+
+.page-hero h1 {
+  max-width: 9ch;
+
+  margin-top:
+    var(--space-4);
+
+  font-size:
+    clamp(
+      4rem,
+      8vw,
+      8rem
+    );
+
+  font-weight:
+    var(--weight-semibold);
+
+  line-height:
+    0.93;
+
+  letter-spacing:
+    -0.07em;
+
+  text-wrap:
+    balance;
+}
+
+
+/* Texto introductorio situado debajo del tÃ­tulo */
+
+.page-hero__description {
+  max-width: 620px;
+
+  margin-top:
+    var(--space-8);
+
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    clamp(
+      1rem,
+      1.5vw,
+      1.2rem
+    );
+
+  line-height:
+    var(--leading-relaxed);
+}
+
+
+/* =========================================================
+   05. HERO DE PROYECTOS
+   ========================================================= */
+
+/*
+   El Hero de proyectos es ligeramente mÃ¡s corto porque
+   despuÃ©s queremos mostrar el catÃ¡logo rÃ¡pidamente.
+*/
+
+.page-hero--projects {
+  min-height:
+    78svh;
+}
+
+
+.page-hero--projects .container {
+  position: relative;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   06. PANEL DE DATOS â€” PROYECTOS
+   ========================================================= */
+
+/*
+   Este panel funciona como una representaciÃ³n abstracta
+   de anÃ¡lisis de datos.
+
+   MÃ¡s adelante podrÃ­a convertirse en una visualizaciÃ³n
+   procedural real, pero por ahora funciona como composiciÃ³n
+   grÃ¡fica de fondo.
+*/
+
+.page-hero--projects
+.container::after {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  right: 2%;
+
+  width:
+    min(
+      35vw,
+      440px
+    );
+
+  aspect-ratio:
+    1.4;
+
+  z-index:
+    -2;
+
+  transform:
+    translateY(-50%);
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    var(--radius-xl);
+
+  background:
+    radial-gradient(
+      circle at 70% 25%,
+      var(--hero-glow-secondary),
+      transparent 35%
+    ),
+
+    linear-gradient(
+      145deg,
+      var(--explore-card-gradient),
+      var(--surface-glass)
+    );
+
+  box-shadow:
+    var(--shadow-card);
+
+  opacity:
+    0.84;
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   07. GRÃFICO ABSTRACTO â€” PROYECTOS
+   ========================================================= */
+
+/*
+   Esta lÃ­nea quebrada simula una visualizaciÃ³n estadÃ­stica.
+
+   Es decorativa:
+   NO estamos mostrando resultados ni mÃ©tricas inventadas.
+*/
+
+.page-hero--projects
+.container::before {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  right: 6%;
+
+  width:
+    min(
+      28vw,
+      350px
+    );
+
+  height:
+    150px;
+
+  z-index:
+    -1;
+
+  transform:
+    translateY(-50%)
+    skewY(-7deg);
+
+  opacity:
+    0.50;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      135deg,
+
+      transparent 0%,
+      transparent 12%,
+
+      var(--color-primary-light)
+      12.4%,
+
+      transparent 13%,
+
+      transparent 26%,
+
+      var(--color-blue)
+      26.4%,
+
+      transparent 27%,
+
+      transparent 44%,
+
+      var(--color-primary-light)
+      44.4%,
+
+      transparent 45%,
+
+      transparent 61%,
+
+      var(--color-blue)
+      61.4%,
+
+      transparent 62%,
+
+      transparent 77%,
+
+      var(--color-primary-light)
+      77.4%,
+
+      transparent 78%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 12px
+      var(--brain-glow-soft)
+    );
+}
+
+
+/* =========================================================
+   08. NAVEGADOR DE PROYECTOS
+   ========================================================= */
+
+/*
+   Esta es la secciÃ³n que contendrÃ¡ filtros y tarjetas
+   de proyectos.
+*/
+
+.projects-browser {
+  position: relative;
+
+  border-top:
+    1px solid
+    var(--color-border);
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      var(--explore-glow),
+      transparent 25%
+    ),
+
+    var(--color-bg);
+}
+
+
+/* =========================================================
+   09. GRID DE PROYECTOS
+   ========================================================= */
+
+/*
+   Escritorio:
+   dos proyectos por fila.
+
+   responsive.css lo convierte despuÃ©s en una sola columna
+   para tablets y telÃ©fonos.
+*/
+
+.projects-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    var(--space-6);
+}
+
+
+/*
+   Mientras projects.js todavÃ­a no haya insertado tarjetas,
+   dejamos una altura mÃ­nima.
+
+   AsÃ­ la pÃ¡gina no colapsa visualmente durante el desarrollo.
+*/
+
+.projects-grid:empty {
+  min-height:
+    240px;
+
+  border:
+    1px dashed
+    var(--color-border);
+
+  border-radius:
+    var(--radius-lg);
+
+  background:
+    var(--surface-glass);
+}
+
+
+/* =========================================================
+   10. SOBRE MÃ â€” HERO
+   ========================================================= */
+
+/*
+   Esta pÃ¡gina necesita algo mÃ¡s de altura porque combina:
+
+   - presentaciÃ³n
+   - botones
+   - etiquetas
+   - avatar 3D
+   - grÃ¡ficos decorativos
+*/
+
+.page-hero--about {
+  min-height:
+    94svh;
+}
+
+
+/* =========================================================
+   11. SOBRE MÃ â€” GRID PRINCIPAL
+   ========================================================= */
+
+/*
+   Escritorio:
+
+   izquierda  â†’ informaciÃ³n
+   derecha    â†’ avatar 3D
+
+   Le entregamos ligeramente mÃ¡s espacio a la escena.
+*/
+
+.about-showcase__grid {
+  position: relative;
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.92fr)
+    minmax(420px, 1.08fr);
+
+  align-items:
+    center;
+
+  gap:
+    clamp(
+      var(--space-12),
+      7vw,
+      var(--space-24)
+    );
+}
+
+
+/* =========================================================
+   12. SOBRE MÃ â€” PRESENTACIÃ“N
+   ========================================================= */
+
+.about-showcase__content {
+  position: relative;
+
+  z-index:
+    var(--z-content);
+
+  max-width:
+    620px;
+}
+
+
+/*
+   Mantenemos el tÃ­tulo estrecho para que tenga una
+   composiciÃ³n vertical fuerte.
+*/
+
+.about-showcase__content h1 {
+  max-width:
+    7ch;
+
+  margin-bottom:
+    var(--space-6);
+}
+
+
+/*
+   Podemos resaltar una palabra utilizando un <span>.
+   Por ejemplo:
+
+   Datos.
+   EstadÃ­stica.
+   Ciencia.
+*/
+
+.about-showcase__content h1 span {
+  color:
+    var(--color-primary-light);
+}
+
+
+/* =========================================================
+   13. SOBRE MÃ â€” TEXTO PRINCIPAL
+   ========================================================= */
+
+.about-showcase__lead {
+  max-width:
+    540px;
+
+  color:
+    var(--color-text);
+
+  font-size:
+    clamp(
+      1.15rem,
+      1.8vw,
+      1.45rem
+    );
+
+  font-weight:
+    var(--weight-medium);
+
+  line-height:
+    1.45;
+}
+
+
+.about-showcase__description {
+  max-width:
+    590px;
+
+  margin-top:
+    var(--space-5);
+
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    var(--text-base);
+
+  line-height:
+    var(--leading-relaxed);
+}
+
+
+/* =========================================================
+   14. SOBRE MÃ â€” ETIQUETAS
+   ========================================================= */
+
+/*
+   El diseÃ±o individual de cada tag puede vivir en
+   components.css.
+
+   AquÃ­ solamente controlamos su ubicaciÃ³n.
+*/
+
+.about-showcase__tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap:
+    var(--space-2);
+
+  margin-top:
+    var(--space-8);
+}
+
+
+/* =========================================================
+   15. SOBRE MÃ â€” BOTONES
+   ========================================================= */
+
+.about-showcase__actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap:
+    var(--space-3);
+
+  margin-top:
+    var(--space-8);
+}
+
+
+/* =========================================================
+   16. ESCENA DEL AVATAR 3D
+   ========================================================= */
+
+/*
+   Este contenedor NO dibuja el personaje.
+
+   Solamente crea el espacio visual en el que avatar.js
+   renderiza Three.js.
+*/
+
+.about-showcase__scene {
+  position: relative;
+
+  min-height:
+    620px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  isolation: isolate;
+
+  overflow:
+    visible;
+}
+
+
+/* =========================================================
+   17. GLOW DETRÃS DEL AVATAR
+   ========================================================= */
+
+/*
+   Esta luz ayuda a separar el personaje del fondo.
+
+   Es CSS y no depende de las luces internas de Three.js.
+*/
+
+.about-showcase__glow {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width:
+    78%;
+
+  aspect-ratio:
+    1;
+
+  z-index:
+    -2;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  border-radius:
+    50%;
+
+  background:
+    radial-gradient(
+      circle,
+
+      var(--brain-ambient-primary),
+
+      var(--brain-ambient-secondary)
+      42%,
+
+      transparent
+      72%
+    );
+
+  filter:
+    blur(24px);
+
+  opacity:
+    0.95;
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   18. GRID DETRÃS DEL AVATAR
+   ========================================================= */
+
+/*
+   Este grid genera una sensaciÃ³n de espacio digital.
+
+   Es deliberadamente tenue para no convertir la escena
+   en una interfaz de videojuego.
+*/
+
+.about-showcase__grid-lines {
+  position: absolute;
+
+  inset:
+    7% 2%;
+
+  z-index:
+    -1;
+
+  opacity:
+    0.20;
+
+  pointer-events:
+    none;
+
+  background-image:
+    linear-gradient(
+      var(--grid-line) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      var(--grid-line) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    42px 42px;
+
+  mask-image:
+    radial-gradient(
+      ellipse,
+      black 15%,
+      transparent 72%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse,
+      black 15%,
+      transparent 72%
+    );
+}
+
+
+/* =========================================================
+   19. WRAPPER DEL AVATAR
+   ========================================================= */
+
+/*
+   avatar.js inserta el canvas Three.js dentro de:
+
+   #avatar-container
+
+   Este wrapper simplemente lo centra.
+*/
+
+.about-showcase__avatar-wrap {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   20. THREE.JS CANVAS
+   ========================================================= */
+
+#avatar-container {
+  position: relative;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    620px;
+
+  z-index:
+    2;
+
+  overflow:
+    visible;
+
+  pointer-events:
+    auto;
+}
+
+
+/*
+   Three.js asigna dimensiones propias al canvas.
+
+   Forzamos Ãºnicamente el tamaÃ±o visual para que siempre
+   ocupe correctamente su contenedor.
+*/
+
+#avatar-container canvas {
+  width:
+    100% !important;
+
+  height:
+    100% !important;
+
+  display:
+    block;
+
+  outline:
+    none;
+}
+
+
+/* =========================================================
+   21. TARJETAS FLOTANTES DEL AVATAR
+   ========================================================= */
+
+/*
+   Son pequeÃ±os conceptos asociados al perfil.
+
+   Ejemplos:
+   - Inferencia
+   - Machine Learning
+   - VisualizaciÃ³n
+
+   Deben sentirse como anotaciones, no como botones.
+*/
+
+.tech-card {
+  position: absolute;
+
+  z-index:
+    5;
+
+  padding:
+    0.72rem
+    0.95rem;
+
+  border:
+    1px solid
+    var(--color-border-hover);
+
+  border-radius:
+    var(--radius-md);
+
+  color:
+    var(--color-text-soft);
+
+  background:
+    var(--surface-glass);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  box-shadow:
+    var(--shadow-card);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    var(--text-sm);
+
+  line-height:
+    1;
+
+  white-space:
+    nowrap;
+
+  pointer-events:
+    none;
+}
+
+
+/*
+   PosiciÃ³n individual de cada tarjeta.
+
+   Los nombres de clase son tÃ©cnicos.
+   El texto visible puede ser diferente.
+*/
+
+.tech-card--python {
+  left:
+    2%;
+
+  top:
+    30%;
+}
+
+
+.tech-card--ds {
+  right:
+    1%;
+
+  top:
+    19%;
+}
+
+
+.tech-card--ml {
+  right:
+    2%;
+
+  bottom:
+    25%;
+}
+
+
+/* =========================================================
+   22. MINI GRÃFICOS DEL AVATAR
+   ========================================================= */
+
+/*
+   Estos grÃ¡ficos NO representan resultados reales.
+
+   Son elementos visuales que refuerzan la identidad
+   estadÃ­stica del portafolio.
+*/
+
+.about-chart {
+  position: absolute;
+
+  z-index:
+    4;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    var(--radius-md);
+
+  background:
+    var(--surface-glass);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  box-shadow:
+    var(--shadow-card);
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   23. MINI HISTOGRAMA
+   ========================================================= */
+
+.about-chart--bars {
+  left:
+    4%;
+
+  bottom:
+    15%;
+
+  width:
+    150px;
+
+  height:
+    95px;
+
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    center;
+
+  gap:
+    7px;
+
+  padding:
+    20px
+    18px;
+}
+
+
+.about-chart--bars span {
+  width:
+    13px;
+
+  border-radius:
+    3px
+    3px
+    0
+    0;
+
+  background:
+    var(--gradient-neural);
+
+  box-shadow:
+    0 0 12px
+    var(--brain-glow-soft);
+}
+
+
+/*
+   Diferentes alturas producen la silueta del grÃ¡fico.
+*/
+
+.about-chart--bars
+span:nth-child(1) {
+  height:
+    30%;
+}
+
+
+.about-chart--bars
+span:nth-child(2) {
+  height:
+    55%;
+}
+
+
+.about-chart--bars
+span:nth-child(3) {
+  height:
+    78%;
+}
+
+
+.about-chart--bars
+span:nth-child(4) {
+  height:
+    48%;
+}
+
+
+.about-chart--bars
+span:nth-child(5) {
+  height:
+    92%;
+}
+
+
+/* =========================================================
+   24. MINI SERIE / LINE CHART
+   ========================================================= */
+
+.about-chart--line {
+  right:
+    3%;
+
+  bottom:
+    7%;
+
+  width:
+    190px;
+
+  height:
+    110px;
+
+  padding:
+    var(--space-3);
+}
+
+
+.about-chart--line svg {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  display:
+    block;
+}
+
+
+/* =========================================================
+   25. ENFOQUE PROFESIONAL
+   ========================================================= */
+
+/*
+   Esta secciÃ³n resume los pilares del perfil.
+
+   En escritorio se muestran tres bloques por fila.
+*/
+
+.about-focus {
+  position: relative;
+
+  border-top:
+    1px solid
+    var(--color-border);
+
+  background:
+    radial-gradient(
+      circle at 70% 30%,
+      var(--explore-glow),
+      transparent 29%
+    ),
+
+    var(--color-bg);
+}
+
+
+.about-focus__content {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    var(--space-6);
+}
+
+
+/* =========================================================
+   26. SKILLS
+   ========================================================= */
+
+/*
+   Separamos conocimientos y herramientas en un grid
+   suficientemente amplio para evitar listas interminables.
+*/
+
+.skills {
+  position: relative;
+
+  border-top:
+    1px solid
+    var(--color-border);
+
+  background:
+    var(--color-bg);
+}
+
+
+.skills-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    var(--space-6);
+}
+
+
+/* =========================================================
+   27. FORMACIÃ“N ACADÃ‰MICA
+   ========================================================= */
+
+/*
+   La secciÃ³n de formaciÃ³n tiene una pequeÃ±a luz azul para
+   diferenciarla visualmente sin cambiar la identidad general.
+*/
+
+.education {
+  position: relative;
+
+  border-top:
+    1px solid
+    var(--color-border);
+
+  background:
+    radial-gradient(
+      circle at 15% 50%,
+      var(--hero-glow-secondary),
+      transparent 30%
+    ),
+
+    var(--color-bg);
+}
+
+
+/* =========================================================
+   28. TIMELINE
+   ========================================================= */
+
+/*
+   La lÃ­nea vertical permite presentar formaciÃ³n y etapas
+   acadÃ©micas de manera secuencial.
+*/
+
+.timeline {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap:
+    var(--space-5);
+
+  max-width:
+    900px;
+
+  margin-left:
+    auto;
+
+  padding-left:
+    var(--space-10);
+}
+
+
+/* LÃ­nea principal */
+
+.timeline::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width:
+    1px;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      var(--color-primary-light),
+
+      var(--color-border),
+
+      transparent
+    );
+}
+
+
+.timeline-item {
+  position: relative;
+}
+
+
+/* Punto que marca cada etapa */
+
+.timeline-item__marker {
+  position: absolute;
+
+  left:
+    calc(
+      (
+        var(--space-10) * -1
+      )
+      - 5px
+    );
+
+  top:
+    1.65rem;
+
+  width:
+    11px;
+
+  height:
+    11px;
+
+  border-radius:
+    50%;
+
+  border:
+    2px solid
+    var(--color-bg);
+
+  background:
+    var(--color-primary-light);
+
+  box-shadow:
+    var(--shadow-primary);
+}
+
+
+/* =========================================================
+   29. PERFIL DE INVESTIGACIÃ“N
+   ========================================================= */
+
+/*
+   Esta secciÃ³n comunica el vÃ­nculo con investigaciÃ³n
+   estadÃ­stica aplicada.
+
+   El grÃ¡fico circular de la derecha es puramente decorativo.
+*/
+
+.research-profile {
+  position: relative;
+
+  border-top:
+    1px solid
+    var(--color-border);
+
+  overflow:
+    hidden;
+
+  background:
+    var(--color-bg);
+}
+
+
+.research-profile::after {
+  content: "";
+
+  position: absolute;
+
+  right:
+    -100px;
+
+  top:
+    50%;
+
+  width:
+    460px;
+
+  height:
+    460px;
+
+  transform:
+    translateY(-50%);
+
+  opacity:
+    0.42;
+
+  pointer-events:
+    none;
+
+  background:
+    radial-gradient(
+      circle,
+
+      transparent
+      0 10%,
+
+      var(--brain-outline)
+      10.5% 10.8%,
+
+      transparent
+      11.2% 22%,
+
+      var(--brain-fold-blue)
+      22.5% 22.8%,
+
+      transparent
+      23.2% 36%,
+
+      var(--brain-fold-purple)
+      36.5% 36.8%,
+
+      transparent
+      37.2%
+    );
+}
+
+
+.research-profile__content {
+  position: relative;
+
+  z-index:
+    2;
+
+  max-width:
+    900px;
+}
+
+
+/* =========================================================
+   30. CURRÃCULUM / CV
+   ========================================================= */
+
+/*
+   Esta secciÃ³n funciona como llamada a la acciÃ³n antes
+   del contacto.
+
+   El gran "CV" del fondo es solamente tipogrÃ¡fico.
+*/
+
+.cv-section {
+  position: relative;
+
+  border-top:
+    1px solid
+    var(--color-border);
+
+  overflow:
+    hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+
+      var(--hero-glow-primary),
+
+      var(--hero-glow-secondary),
+
+      transparent 65%
+    ),
+
+    var(--color-bg);
+}
+
+
+.cv-section .container {
+  position: relative;
+
+  z-index:
+    2;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items:
+    flex-start;
+
+  gap:
+    var(--space-5);
+}
+
+
+.cv-section h2 {
+  max-width:
+    10ch;
+}
+
+
+.cv-section
+p:not(.eyebrow) {
+  max-width:
+    580px;
+
+  color:
+    var(--color-text-muted);
+
+  line-height:
+    var(--leading-relaxed);
+}
+
+
+.cv-section .button {
+  margin-top:
+    var(--space-4);
+}
+
+
+/* Gran texto decorativo */
+
+.cv-section::after {
+  content:
+    "CV";
+
+  position: absolute;
+
+  right:
+    5%;
+
+  top:
+    50%;
+
+  transform:
+    translateY(-50%);
+
+  color:
+    var(--color-text);
+
+  opacity:
+    0.022;
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      12rem,
+      25vw,
+      28rem
+    );
+
+  font-weight:
+    var(--weight-bold);
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.08em;
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   31. CONTACTO
+   ========================================================= */
+
+/*
+   La Ãºltima secciÃ³n de Sobre mÃ­.
+
+   Tiene bastante espacio porque queremos que el contacto
+   se sienta como un cierre claro y no como un footer mÃ¡s.
+*/
+
+.contact {
+  position: relative;
+
+  min-height:
+    65vh;
+
+  display: flex;
+
+  align-items:
+    center;
+
+  border-top:
+    1px solid
+    var(--color-border);
+
+  background:
+    radial-gradient(
+      circle at 80% 50%,
+      var(--explore-glow),
+      transparent 30%
+    ),
+
+    var(--color-bg);
+}
+
+
+.contact h2 {
+  margin-top:
+    var(--space-4);
+
+  font-size:
+    clamp(
+      3.5rem,
+      8vw,
+      7rem
+    );
+
+  line-height:
+    0.95;
+
+  letter-spacing:
+    -0.065em;
+}
+
+
+.contact
+> .container
+> p:not(.eyebrow) {
+  max-width:
+    620px;
+
+  margin-top:
+    var(--space-5);
+
+  color:
+    var(--color-text-muted);
+
+  line-height:
+    var(--leading-relaxed);
+}
+
+
+.contact__links {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap:
+    var(--space-6);
+
+  margin-top:
+    var(--space-10);
+}
+
+
+/* =========================================================
+   32. CASOS DE ESTUDIO â€” BASE
+   ========================================================= */
+
+/*
+   Las siguientes reglas sirven para:
+
+   incendios.html
+   nutricion.html
+   pets.html
+
+   Cada proyecto podrÃ¡ tener identidad visual propia mÃ¡s
+   adelante, pero todos compartirÃ¡n esta estructura.
+*/
+
+.project-detail {
+  position: relative;
+
+  background:
+    var(--color-bg);
+}
+
+
+/* =========================================================
+   33. HERO DEL CASO DE ESTUDIO
+   ========================================================= */
+
+.project-detail__hero {
+  position: relative;
+
+  min-height:
+    78svh;
+
+  display: flex;
+
+  align-items:
+    flex-end;
+
+  padding:
+    calc(
+      var(--navbar-height) +
+      var(--space-16)
+    )
+    0
+    var(--space-20);
+
+  overflow:
+    hidden;
+
+  background:
+    radial-gradient(
+      circle at 75% 35%,
+      var(--hero-glow-primary),
+      transparent 34%
+    ),
+
+    radial-gradient(
+      circle at 88% 70%,
+      var(--hero-glow-secondary),
+      transparent 27%
+    ),
+
+    var(--color-bg);
+}
+
+
+.project-detail__header {
+  position: relative;
+
+  z-index:
+    2;
+
+  max-width:
+    950px;
+}
+
+
+.project-detail__title {
+  margin-top:
+    var(--space-4);
+
+  max-width:
+    12ch;
+
+  font-size:
+    clamp(
+      3.5rem,
+      7vw,
+      7rem
+    );
+
+  line-height:
+    0.98;
+
+  letter-spacing:
+    -0.065em;
+
+  text-wrap:
+    balance;
+}
+
+
+.project-detail__summary {
+  max-width:
+    650px;
+
+  margin-top:
+    var(--space-8);
+
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    var(--text-md);
+
+  line-height:
+    var(--leading-relaxed);
+}
+
+
+/* =========================================================
+   34. CONTENIDO DEL CASO DE ESTUDIO
+   ========================================================= */
+
+/*
+   Escritorio:
+
+   izquierda  â†’ Ã­ndice
+   derecha    â†’ contenido
+
+   En mÃ³vil responsive.css transforma esto en una columna.
+*/
+
+.project-detail__content {
+  display: grid;
+
+  grid-template-columns:
+    minmax(180px, 0.30fr)
+    minmax(0, 1fr);
+
+  gap:
+    clamp(
+      var(--space-10),
+      8vw,
+      var(--space-24)
+    );
+
+  align-items:
+    start;
+}
+
+
+/* =========================================================
+   35. ÃNDICE STICKY
+   ========================================================= */
+
+.project-detail__index {
+  position: sticky;
+
+  top:
+    calc(
+      var(--navbar-height) +
+      var(--space-8)
+    );
+
+  align-self:
+    start;
+}
+
+
+/*
+   min-width: 0 es importante en CSS Grid.
+
+   Evita que grÃ¡ficos, cÃ³digo o imÃ¡genes anchas obliguen
+   a toda la pÃ¡gina a desbordarse horizontalmente.
+*/
+
+.project-detail__body {
+  min-width:
+    0;
+}
+
+
+/* =========================================================
+   36. SECCIONES DEL CASO DE ESTUDIO
+   ========================================================= */
+
+.project-section {
+  position: relative;
+
+  padding-bottom:
+    var(--section-spacing);
+}
+
+
+.project-section
++
+.project-section {
+  padding-top:
+    var(--section-spacing);
+
+  border-top:
+    1px solid
+    var(--color-border);
+}
+
+
+/* NÃºmero editorial: 01, 02, 03... */
+
+.project-section__number {
+  display:
+    block;
+
+  margin-bottom:
+    var(--space-4);
+
+  color:
+    var(--color-primary-light);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    var(--text-sm);
+
+  font-weight:
+    var(--weight-medium);
+
+  letter-spacing:
+    var(--tracking-wide);
+}
+
+
+.project-section h2 {
+  max-width:
+    13ch;
+
+  margin-bottom:
+    var(--space-8);
+}
+
+
+/* =========================================================
+   37. CONTENEDOR PARA VISUALIZACIONES DE DATOS
+   ========================================================= */
+
+/*
+   AquÃ­ podemos colocar:
+
+   - grÃ¡ficos
+   - mapas
+   - capturas
+   - dashboards
+   - figuras cientÃ­ficas
+
+   sin tener que redefinir el marco en cada proyecto.
+*/
+
+.data-visual {
+  position: relative;
+
+  width:
+    100%;
+
+  min-height:
+    380px;
+
+  margin-block:
+    var(--space-10);
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    var(--radius-lg);
+
+  overflow:
+    hidden;
+
+  background:
+    radial-gradient(
+      circle at 60% 35%,
+      var(--hero-glow-secondary),
+      transparent 34%
+    ),
+
+    var(--surface-glass);
+
+  box-shadow:
+    var(--shadow-card);
+}
+
+
+.data-visual img {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  display:
+    block;
+
+  object-fit:
+    cover;
+}
+
+
+/*
+   Si usamos SVG directamente dentro del contenedor.
+*/
+
+.data-visual svg {
+  display:
+    block;
+
+  max-width:
+    100%;
+}
+
+
+/* =========================================================
+   38. PLACEHOLDER DE DESARROLLO
+   ========================================================= */
+
+/*
+   Solo sirve mientras construimos alguna secciÃ³n.
+
+   Cuando la pÃ¡gina estÃ© terminada probablemente podremos
+   eliminar estos placeholders.
+*/
+
+.placeholder-block {
+  display: flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    220px;
+
+  padding:
+    var(--space-6);
+
+  border:
+    1px dashed
+    var(--color-border);
+
+  border-radius:
+    var(--radius-lg);
+
+  color:
+    var(--color-text-muted);
+
+  background:
+    var(--surface-glass);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    var(--text-xs);
+
+  line-height:
+    var(--leading-normal);
+
+  text-align:
+    center;
+
+  letter-spacing:
+    var(--tracking-wide);
+}
+
+
+/* =========================================================
+   39. FALLBACK PARA NAVEGADORES SIN BACKDROP FILTER
+   ========================================================= */
+
+/*
+   Si el navegador no soporta desenfoque de fondo,
+   simplemente utilizamos una superficie mÃ¡s sÃ³lida.
+
+   El contenido sigue siendo completamente funcional.
+*/
+
+@supports not (
+  backdrop-filter: blur(1px)
+) {
+
+  .tech-card,
+  .about-chart {
+    background:
+      var(--color-surface-elevated);
+  }
+}
+
+
+/* =========================================================
+   40. REDUCED MOTION
+   ========================================================= */
+
+/*
+   Si el usuario tiene activada la opciÃ³n de reducir
+   movimiento en su sistema operativo:
+
+   - quitamos perspectiva del grid
+   - eliminamos transformaciones decorativas
+   - mantenemos intacta la informaciÃ³n
+*/
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .page-hero::after {
+    transform:
+      translateY(-50%)
+      !important;
+  }
+
+
+  .tech-card,
+  .about-chart {
+    transform:
+      none !important;
+  }
+}
+
+/* =========================================================
+   AVATAR ILUSTRADO â€” SOBRE MÃ
+   ========================================================= */
+
+/*
+   Reemplaza el antiguo canvas Three.js.
+
+   El personaje es ahora una ilustraciÃ³n PNG transparente.
+   Seguimos utilizando la escena existente para conservar:
+
+   - tarjetas flotantes
+   - mini grÃ¡ficos
+   - grid tecnolÃ³gico
+   - glow ambiental
+*/
+
+
+.about-showcase__avatar-wrap {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   CONTENEDOR DEL PERSONAJE
+   --------------------------------------------------------- */
+
+.about-avatar {
+  position: relative;
+
+  width:
+    min(
+      100%,
+      520px
+    );
+
+  height:
+    100%;
+
+  min-height:
+    620px;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  isolation: isolate;
+}
+
+
+/* ---------------------------------------------------------
+   LUZ DETRÃS DEL AVATAR
+   --------------------------------------------------------- */
+
+.about-avatar__glow {
+  position: absolute;
+
+  left: 50%;
+  top: 46%;
+
+  width: 78%;
+
+  aspect-ratio: 1;
+
+  z-index: -3;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+
+      var(--brain-glow-strong)
+      0%,
+
+      var(--brain-glow-soft)
+      42%,
+
+      transparent
+      72%
+    );
+
+  filter:
+    blur(26px);
+
+  opacity:
+    0.80;
+
+  pointer-events:
+    none;
+}
+
+
+/* ---------------------------------------------------------
+   ANILLOS DECORATIVOS
+   --------------------------------------------------------- */
+
+.about-avatar__ring {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  z-index: -2;
+
+  border-radius: 50%;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  pointer-events:
+    none;
+}
+
+
+/*
+   Anillo exterior.
+*/
+
+.about-avatar__ring--outer {
+  width:
+    92%;
+
+  aspect-ratio:
+    1;
+
+  border:
+    1px solid
+    var(--brain-module-border);
+
+  opacity:
+    0.45;
+
+  animation:
+    avatar-ring-pulse
+    7s
+    ease-in-out
+    infinite;
+}
+
+
+/*
+   Anillo interior.
+*/
+
+.about-avatar__ring--inner {
+  width:
+    76%;
+
+  aspect-ratio:
+    1;
+
+  border:
+    1px solid
+    var(--brain-network-line);
+
+  opacity:
+    0.35;
+
+  animation:
+    avatar-ring-pulse
+    8.5s
+    ease-in-out
+    infinite
+    reverse;
+}
+
+
+/* ---------------------------------------------------------
+   IMAGEN DEL AVATAR
+   --------------------------------------------------------- */
+
+.about-avatar__image {
+  position: relative;
+
+  z-index: 3;
+
+  width:
+    min(
+      92%,
+      430px
+    );
+
+  height:
+    auto;
+
+  max-height:
+    610px;
+
+  object-fit:
+    contain;
+
+  object-position:
+    center bottom;
+
+  transform-origin:
+    center bottom;
+
+  filter:
+    drop-shadow(
+      0 28px 40px
+      rgba(0, 0, 0, 0.28)
+    )
+
+    drop-shadow(
+      0 0 26px
+      var(--brain-glow-soft)
+    );
+
+  animation:
+    avatar-illustration-float
+    5.2s
+    ease-in-out
+    infinite;
+
+  user-select:
+    none;
+
+  -webkit-user-drag:
+    none;
+}
+
+
+/* ---------------------------------------------------------
+   MOVIMIENTO DEL PERSONAJE
+   --------------------------------------------------------- */
+
+/*
+   Movimiento extremadamente pequeÃ±o.
+
+   El objetivo es que el personaje no parezca una imagen
+   completamente estÃ¡tica, pero tampoco una caricatura
+   flotando.
+*/
+
+@keyframes avatar-illustration-float {
+
+  0%,
+  100% {
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+
+
+  50% {
+    transform:
+      translate3d(
+        0,
+        -7px,
+        0
+      );
+  }
+}
+
+
+/* ---------------------------------------------------------
+   RESPIRACIÃ“N DE LOS ANILLOS
+   --------------------------------------------------------- */
+
+@keyframes avatar-ring-pulse {
+
+  0%,
+  100% {
+    transform:
+      translate(
+        -50%,
+        -50%
+      )
+      scale(0.98);
+
+    opacity:
+      0.28;
+  }
+
+
+  50% {
+    transform:
+      translate(
+        -50%,
+        -50%
+      )
+      scale(1.025);
+
+    opacity:
+      0.52;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TEMA CLARO
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.about-avatar__image {
+  filter:
+    drop-shadow(
+      0 24px 38px
+      rgba(40, 32, 65, 0.15)
+    )
+
+    drop-shadow(
+      0 0 24px
+      var(--brain-glow-soft)
+    );
+}
+
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+   --------------------------------------------------------- */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .about-avatar__image,
+  .about-avatar__ring {
+    animation:
+      none !important;
+  }
+}
+
+/* === BEGIN ABOUT HERO FINAL POLISH === */
+/* =========================================================
+   SOBRE MÃ â€” COMPOSICIÃ“N FINAL
+   ========================================================= */
+
+/*
+   Corregimos el problema visible en el Hero:
+
+   antes:
+   texto muy pegado al borde
+   avatar demasiado pequeÃ±o
+   demasiado vacÃ­o entre ambos
+
+   ahora:
+   texto y avatar comparten la misma cuadrÃ­cula central.
+*/
+
+
+/* ---------------------------------------------------------
+   CONTENEDOR
+   --------------------------------------------------------- */
+
+.page-hero > .container {
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--container-padding) * 2
+        )
+      ),
+      var(--container-width)
+    );
+
+  margin-inline:
+    auto;
+}
+
+
+/* ---------------------------------------------------------
+   HERO
+   --------------------------------------------------------- */
+
+.page-hero--about {
+  min-height:
+    calc(
+      100svh -
+      1px
+    );
+
+  padding-top:
+    calc(
+      var(--navbar-height)
+      +
+      var(--space-8)
+    );
+
+  padding-bottom:
+    var(--space-8);
+}
+
+
+/* ---------------------------------------------------------
+   GRID TEXTO / ESCENA
+   --------------------------------------------------------- */
+
+.about-showcase__grid {
+  grid-template-columns:
+    minmax(0, 0.94fr)
+    minmax(460px, 1.06fr);
+
+  align-items:
+    center;
+
+  gap:
+    clamp(
+      2.5rem,
+      4.5vw,
+      5rem
+    );
+}
+
+
+/* ---------------------------------------------------------
+   BLOQUE DE TEXTO
+   --------------------------------------------------------- */
+
+.about-showcase__content {
+  width:
+    100%;
+
+  max-width:
+    590px;
+}
+
+
+.about-showcase__content h1 {
+  margin-bottom:
+    var(--space-5);
+}
+
+
+.about-showcase__lead {
+  margin-top:
+    0;
+}
+
+
+.about-showcase__description {
+  max-width:
+    545px;
+
+  margin-top:
+    var(--space-5);
+}
+
+
+.about-showcase__tags {
+  margin-top:
+    var(--space-6);
+}
+
+
+.about-showcase__actions {
+  margin-top:
+    var(--space-6);
+}
+
+
+/* ---------------------------------------------------------
+   ESCENA DERECHA
+   --------------------------------------------------------- */
+
+.about-showcase__scene {
+  width:
+    100%;
+
+  max-width:
+    660px;
+
+  min-height:
+    650px;
+
+  justify-self:
+    end;
+}
+
+
+/* ---------------------------------------------------------
+   AVATAR
+   --------------------------------------------------------- */
+
+.about-avatar {
+  width:
+    min(
+      100%,
+      600px
+    );
+
+  min-height:
+    650px;
+}
+
+
+/*
+   El avatar estaba demasiado pequeÃ±o para la escena.
+
+   Aumentamos su tamaÃ±o, pero conservamos aire alrededor.
+*/
+
+.about-avatar__image {
+  width:
+    min(
+      96%,
+      510px
+    );
+
+  max-height:
+    635px;
+
+  object-position:
+    center bottom;
+}
+
+
+/* ---------------------------------------------------------
+   GLOW
+   --------------------------------------------------------- */
+
+.about-avatar__glow {
+  top:
+    48%;
+
+  width:
+    82%;
+
+  opacity:
+    0.70;
+}
+
+
+/* ---------------------------------------------------------
+   ANILLOS
+   --------------------------------------------------------- */
+
+.about-avatar__ring--outer {
+  width:
+    91%;
+}
+
+
+.about-avatar__ring--inner {
+  width:
+    76%;
+}
+
+
+/* ---------------------------------------------------------
+   TARJETAS FLOTANTES
+   --------------------------------------------------------- */
+
+/*
+   Acercamos las etiquetas al avatar.
+
+   AsÃ­ dejan de parecer elementos aislados en los extremos.
+*/
+
+.tech-card--python {
+  left:
+    3%;
+
+  top:
+    35%;
+}
+
+
+.tech-card--ds {
+  right:
+    1%;
+
+  top:
+    20%;
+}
+
+
+.tech-card--ml {
+  right:
+    1%;
+
+  bottom:
+    23%;
+}
+
+
+/* ---------------------------------------------------------
+   GRÃFICOS DECORATIVOS
+   --------------------------------------------------------- */
+
+.about-chart--bars {
+  left:
+    4%;
+
+  bottom:
+    9%;
+}
+
+
+.about-chart--line {
+  right:
+    1%;
+
+  bottom:
+    6%;
+}
+/* === END ABOUT HERO FINAL POLISH === */
+
+
+/* === BEGIN ABOUT LIGHT HOVER EMPHASIS === */
+
+
+/* =========================================================
+   SOBRE MÃ â€” HOVER MÃS VISIBLE EN LIGHT MODE
+   ========================================================= */
+
+/*
+   Dark ya tiene suficiente contraste.
+
+   Esta secciÃ³n modifica Ãºnicamente Light para que etiquetas
+   como:
+
+   Inferencia
+   Machine Learning
+   VisualizaciÃ³n
+
+   reaccionen de manera mucho mÃ¡s clara.
+*/
+
+
+/* ---------------------------------------------------------
+   ESTADO BASE EN LIGHT
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.tech-card {
+  color:
+    #4f4167;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.78
+    );
+
+  border-color:
+    rgba(
+      114,
+      62,
+      195,
+      0.20
+    );
+
+  box-shadow:
+    0 8px 22px
+    rgba(
+      64,
+      43,
+      100,
+      0.06
+    );
+
+  transition:
+    color
+      220ms ease,
+
+    background
+      220ms ease,
+
+    border-color
+      220ms ease,
+
+    transform
+      220ms
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      ),
+
+    box-shadow
+      220ms ease;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER LIGHT
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.tech-card:hover {
+  color:
+    #522095;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(
+        114,
+        62,
+        195,
+        0.15
+      ),
+      rgba(
+        155,
+        109,
+        255,
+        0.08
+      )
+    ),
+
+    rgba(
+      255,
+      255,
+      255,
+      0.94
+    );
+
+  border-color:
+    rgba(
+      114,
+      62,
+      195,
+      0.62
+    );
+
+  transform:
+    translateY(-4px)
+    scale(1.045);
+
+  box-shadow:
+    0 14px 32px
+    rgba(
+      114,
+      62,
+      195,
+      0.16
+    ),
+
+    0 0 0 1px
+    rgba(
+      114,
+      62,
+      195,
+      0.14
+    ),
+
+    0 0 24px
+    rgba(
+      155,
+      109,
+      255,
+      0.14
+    );
+}
+
+
+/* ---------------------------------------------------------
+   PEQUEÃ‘O GLOW ALREDEDOR
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.tech-card::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  inset:
+    -5px;
+
+  z-index:
+    -1;
+
+  border-radius:
+    inherit;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(
+        155,
+        109,
+        255,
+        0.18
+      ),
+      transparent
+      72%
+    );
+
+  opacity:
+    0;
+
+  filter:
+    blur(8px);
+
+  pointer-events:
+    none;
+
+  transition:
+    opacity
+      220ms ease;
+}
+
+
+:root[data-theme="light"]
+.tech-card:hover::after {
+  opacity:
+    1;
+}
+
+
+/* ---------------------------------------------------------
+   MINI GRÃFICOS DEL SHOWCASE
+   --------------------------------------------------------- */
+
+/*
+   Al pasar por los paneles de grÃ¡ficos hacemos que tambiÃ©n
+   se note que son elementos interactivos de la composiciÃ³n.
+*/
+
+:root[data-theme="light"]
+.about-chart {
+  transition:
+    transform
+      240ms
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      ),
+
+    border-color
+      220ms ease,
+
+    background
+      220ms ease,
+
+    box-shadow
+      220ms ease;
+}
+
+
+:root[data-theme="light"]
+.about-chart:hover {
+  transform:
+    translateY(-5px)
+    scale(1.025);
+
+  border-color:
+    rgba(
+      114,
+      62,
+      195,
+      0.42
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.94
+    );
+
+  box-shadow:
+    0 18px 38px
+    rgba(
+      114,
+      62,
+      195,
+      0.13
+    ),
+
+    0 0 0 1px
+    rgba(
+      114,
+      62,
+      195,
+      0.10
+    );
+}
+
+
+/* === END ABOUT LIGHT HOVER EMPHASIS === */
+
+
+/* === BEGIN AVATAR PREMIUM INTERACTION V1 === */
+
+
+/* =========================================================
+   AVATAR INTERACTIVO PREMIUM
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   ESCENA
+   --------------------------------------------------------- */
+
+.about-showcase__scene.is-avatar-interactive {
+  perspective:
+    1200px;
+
+  perspective-origin:
+    50% 46%;
+}
+
+
+/* ---------------------------------------------------------
+   AVATAR
+   --------------------------------------------------------- */
+
+.about-showcase__scene.is-avatar-interactive
+.about-avatar {
+  position:
+    relative;
+
+  transform-style:
+    preserve-3d;
+}
+
+
+/* ---------------------------------------------------------
+   IMAGEN
+   --------------------------------------------------------- */
+
+/*
+   IMPORTANTE:
+
+   Eliminamos cualquier animation CSS anterior del avatar.
+
+   A partir de ahora:
+   - flotaciÃ³n
+   - tilt
+   - parallax
+   - scale
+
+   los controla avatar-interaction.js dentro de un Ãºnico
+   transform, evitando tirones y conflictos.
+*/
+
+.about-showcase__scene.is-avatar-interactive
+.about-avatar__image {
+  animation:
+    none !important;
+
+  transform-origin:
+    50% 72%;
+
+  transform-style:
+    preserve-3d;
+
+  will-change:
+    transform,
+    filter;
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+
+  transition:
+    filter
+      350ms ease;
+}
+
+
+/* ---------------------------------------------------------
+   SOMBRA NORMAL
+   --------------------------------------------------------- */
+
+.about-showcase__scene.is-avatar-interactive
+.about-avatar__image {
+  filter:
+    drop-shadow(
+      0 24px 34px
+      rgba(
+        0,
+        0,
+        0,
+        0.22
+      )
+    )
+
+    drop-shadow(
+      0 0 18px
+      var(--brain-glow-soft)
+    );
+}
+
+
+/* ---------------------------------------------------------
+   SOMBRA HOVER
+   --------------------------------------------------------- */
+
+.about-showcase__scene.is-avatar-hovered
+.about-avatar__image {
+  filter:
+    drop-shadow(
+      0 32px 42px
+      rgba(
+        0,
+        0,
+        0,
+        0.28
+      )
+    )
+
+    drop-shadow(
+      0 0 30px
+      rgba(
+        155,
+        109,
+        255,
+        0.28
+      )
+    )
+
+    drop-shadow(
+      0 0 52px
+      rgba(
+        94,
+        140,
+        255,
+        0.10
+      )
+    );
+}
+
+
+/* =========================================================
+   GLOW
+   ========================================================= */
+
+.about-showcase__scene.is-avatar-interactive
+.about-avatar__glow {
+  --avatar-glow-x:
+    0px;
+
+  --avatar-glow-y:
+    0px;
+
+  --avatar-glow-scale:
+    1;
+
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    48%;
+
+  width:
+    84%;
+
+  aspect-ratio:
+    1;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+
+    translate3d(
+      var(--avatar-glow-x),
+      var(--avatar-glow-y),
+      0
+    )
+
+    scale(
+      var(--avatar-glow-scale)
+    );
+
+  opacity:
+    0.72;
+
+  filter:
+    blur(27px);
+
+  background:
+    radial-gradient(
+      circle,
+
+      rgba(
+        155,
+        109,
+        255,
+        0.28
+      )
+      0%,
+
+      rgba(
+        114,
+        62,
+        195,
+        0.15
+      )
+      34%,
+
+      rgba(
+        94,
+        140,
+        255,
+        0.08
+      )
+      54%,
+
+      transparent
+      74%
+    );
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+
+  transition:
+    opacity
+      400ms ease,
+
+    filter
+      400ms ease;
+}
+
+
+/* Glow cuando el mouse entra */
+
+.about-showcase__scene.is-avatar-hovered
+.about-avatar__glow {
+  opacity:
+    1;
+
+  filter:
+    blur(34px);
+}
+
+
+/* =========================================================
+   ANILLOS
+   ========================================================= */
+
+/*
+   Los dos anillos tienen rotaciones diferentes.
+   Visualmente parecen capas independientes.
+*/
+
+.about-showcase__scene.is-avatar-interactive
+.about-avatar__ring {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    48%;
+
+  aspect-ratio:
+    1;
+
+  border-radius:
+    50%;
+
+  pointer-events:
+    none;
+
+  transform-origin:
+    center;
+
+  will-change:
+    transform,
+    opacity,
+    border-color;
+
+  animation-timing-function:
+    linear;
+
+  animation-iteration-count:
+    infinite;
+}
+
+
+/* ---------------------------------------------------------
+   ANILLO EXTERIOR
+   --------------------------------------------------------- */
+
+.about-showcase__scene.is-avatar-interactive
+.about-avatar__ring--outer {
+  width:
+    94%;
+
+  border:
+    1px solid
+    rgba(
+      155,
+      109,
+      255,
+      0.18
+    );
+
+  opacity:
+    0.60;
+
+  animation-name:
+    avatar-ring-spin-outer;
+
+  animation-duration:
+    28s;
+}
+
+
+/* ---------------------------------------------------------
+   ANILLO INTERIOR
+   --------------------------------------------------------- */
+
+.about-showcase__scene.is-avatar-interactive
+.about-avatar__ring--inner {
+  width:
+    78%;
+
+  border:
+    1px solid
+    rgba(
+      94,
+      140,
+      255,
+      0.18
+    );
+
+  opacity:
+    0.50;
+
+  animation-name:
+    avatar-ring-spin-inner;
+
+  animation-duration:
+    36s;
+}
+
+
+/* =========================================================
+   ROTACIÃ“N CONTINUA
+   ========================================================= */
+
+/*
+   0deg y 360deg son exactamente la misma posiciÃ³n.
+
+   Por eso el loop es visualmente continuo y no genera
+   ningÃºn salto al reiniciar.
+*/
+
+@keyframes avatar-ring-spin-outer {
+
+  from {
+    transform:
+      translate(
+        -50%,
+        -50%
+      )
+      rotate(
+        0deg
+      );
+  }
+
+
+  to {
+    transform:
+      translate(
+        -50%,
+        -50%
+      )
+      rotate(
+        360deg
+      );
+  }
+}
+
+
+@keyframes avatar-ring-spin-inner {
+
+  from {
+    transform:
+      translate(
+        -50%,
+        -50%
+      )
+      rotate(
+        360deg
+      );
+  }
+
+
+  to {
+    transform:
+      translate(
+        -50%,
+        -50%
+      )
+      rotate(
+        0deg
+      );
+  }
+}
+
+
+/* =========================================================
+   ANILLOS DURANTE HOVER
+   ========================================================= */
+
+.about-showcase__scene.is-avatar-hovered
+.about-avatar__ring--outer {
+  border-color:
+    rgba(
+      155,
+      109,
+      255,
+      0.40
+    );
+
+  opacity:
+    0.90;
+
+  animation-duration:
+    21s;
+}
+
+
+.about-showcase__scene.is-avatar-hovered
+.about-avatar__ring--inner {
+  border-color:
+    rgba(
+      94,
+      140,
+      255,
+      0.34
+    );
+
+  opacity:
+    0.78;
+
+  animation-duration:
+    27s;
+}
+
+
+/* =========================================================
+   TECH CARDS
+   ========================================================= */
+
+/*
+   animations.css les daba float-soft.
+
+   Lo desactivamos Ãºnicamente dentro de esta escena porque
+   ahora JavaScript combina:
+
+   - float individual
+   - parallax
+   - escala
+
+   sin sobreescribir animaciones separadas.
+*/
+
+.about-showcase__scene.is-avatar-interactive
+.tech-card {
+  animation:
+    none !important;
+
+  will-change:
+    transform;
+
+  transition:
+    color
+      220ms ease,
+
+    background
+      220ms ease,
+
+    border-color
+      220ms ease,
+
+    box-shadow
+      220ms ease,
+
+    opacity
+      220ms ease;
+}
+
+
+/* ---------------------------------------------------------
+   LAS TARJETAS GANAN PRESENCIA AL ENTRAR A LA ESCENA
+   --------------------------------------------------------- */
+
+.about-showcase__scene.is-avatar-hovered
+.tech-card {
+  border-color:
+    rgba(
+      155,
+      109,
+      255,
+      0.38
+    );
+
+  box-shadow:
+    0 14px 32px
+    rgba(
+      114,
+      62,
+      195,
+      0.12
+    );
+}
+
+
+/* =========================================================
+   LIGHT MODE
+   ========================================================= */
+
+:root[data-theme="light"]
+.about-showcase__scene.is-avatar-interactive
+.about-avatar__image {
+  filter:
+    drop-shadow(
+      0 24px 34px
+      rgba(
+        38,
+        33,
+        60,
+        0.14
+      )
+    )
+
+    drop-shadow(
+      0 0 18px
+      rgba(
+        114,
+        62,
+        195,
+        0.11
+      )
+    );
+}
+
+
+:root[data-theme="light"]
+.about-showcase__scene.is-avatar-hovered
+.about-avatar__image {
+  filter:
+    drop-shadow(
+      0 30px 42px
+      rgba(
+        38,
+        33,
+        60,
+        0.19
+      )
+    )
+
+    drop-shadow(
+      0 0 30px
+      rgba(
+        114,
+        62,
+        195,
+        0.20
+      )
+    );
+}
+
+
+:root[data-theme="light"]
+.about-showcase__scene.is-avatar-interactive
+.about-avatar__glow {
+  background:
+    radial-gradient(
+      circle,
+
+      rgba(
+        155,
+        109,
+        255,
+        0.22
+      )
+      0%,
+
+      rgba(
+        114,
+        62,
+        195,
+        0.10
+      )
+      36%,
+
+      rgba(
+        94,
+        140,
+        255,
+        0.07
+      )
+      56%,
+
+      transparent
+      75%
+    );
+}
+
+
+/* =========================================================
+   MOBILE / TOUCH
+   ========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .about-showcase__scene.is-avatar-interactive
+  .about-avatar__ring--outer {
+    width:
+      86%;
+  }
+
+
+  .about-showcase__scene.is-avatar-interactive
+  .about-avatar__ring--inner {
+    width:
+      70%;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .about-showcase__scene.is-avatar-interactive
+  .about-avatar__image,
+
+  .about-showcase__scene.is-avatar-interactive
+  .about-avatar__ring,
+
+  .about-showcase__scene.is-avatar-interactive
+  .tech-card {
+    animation:
+      none !important;
+
+    transition:
+      none !important;
+
+    transform:
+      none !important;
+  }
+
+
+  .about-showcase__scene.is-avatar-interactive
+  .about-avatar__glow {
+    transform:
+      translate(
+        -50%,
+        -50%
+      ) !important;
+  }
+}
+
+
+/* === END AVATAR PREMIUM INTERACTION V1 === */
+
+
+/* === BEGIN ABOUT HERO COMPACT V1 === */
+
+
+/* =========================================================
+   SOBRE MÃ â€” HERO MÃS COMPACTO EN DESKTOP
+   ========================================================= */
+
+@media (min-width: 1101px) {
+
+  /* -------------------------------------------------------
+     SECCIÃ“N COMPLETA
+     ------------------------------------------------------- */
+
+  .page-hero--about {
+
+    /*
+       Antes:
+       min-height: 94svh
+
+       Eso hacÃ­a que la composiciÃ³n quedara demasiado
+       centrada verticalmente y dejara mucho aire arriba.
+    */
+
+    min-height:
+      86svh;
+
+
+    /*
+       La navbar sticky ya ocupa su propio espacio.
+
+       Por eso aquÃ­ NO repetimos:
+       var(--navbar-height) + var(--space-16)
+    */
+
+    padding:
+      clamp(
+        3rem,
+        5vh,
+        4rem
+      )
+      0
+      clamp(
+        2rem,
+        3.5vh,
+        3rem
+      );
+  }
+
+
+  /* -------------------------------------------------------
+     GRID
+     ------------------------------------------------------- */
+
+  .page-hero--about
+  .about-showcase__grid {
+    align-items:
+      center;
+  }
+
+
+  /* -------------------------------------------------------
+     ESCENA DEL AVATAR
+     ------------------------------------------------------- */
+
+  /*
+     620px tambiÃ©n estaba obligando al hero
+     a conservar bastante altura.
+
+     Bajamos solo un poco.
+  */
+
+  .page-hero--about
+  .about-showcase__scene {
+    min-height:
+      580px;
+  }
+
+
+  /* -------------------------------------------------------
+     CONTENIDO IZQUIERDO
+     ------------------------------------------------------- */
+
+  /*
+     Subimos apenas toda la columna para que el punto
+     focal quede mejor alineado con el personaje.
+  */
+
+  .page-hero--about
+  .about-showcase__content {
+    transform:
+      translateY(-4px);
+  }
+
+}
+
+
+/* === END ABOUT HERO COMPACT V1 === */

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Explorador canino Pets: 137 razas, 89 fichas estructuradas, comparación, mapa por origen y alimentos.">
+  <meta name="author" content="Matías Cortés">
+  <meta name="theme-color" id="theme-color-meta" content="#050507">
+  <title>Pets · Explorador canino | Matías Cortés</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="../js/theme.js"></script>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/proyecto-pets.css">
+  <link rel="stylesheet" href="../css/pets-tarjetas-graficos.css">
+  <link rel="stylesheet" href="../css/pets-ficha-alimentos-visual.css">
+  <link rel="stylesheet" href="../css/pets-ficha-metricas-visuales.css">
+</head>
+<body>
+<header
+    class="site-header"
+    id="site-header"
+  >
+
+    <nav
+      class="navbar container"
+      aria-label="Navegación principal"
+    >
+
+      <!-- Identidad -->
+
+      <a
+        class="navbar__brand"
+        href="../index.html"
+        aria-label="Volver al inicio"
+      >
+        MC<span>.</span>
+      </a>
+
+
+      <!-- Enlaces principales -->
+
+      <ul class="navbar__links">
+
+        <li>
+          <a href="../index.html">
+            Inicio
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="../pages/proyectos.html"
+
+          >
+            Proyectos
+          </a>
+        </li>
+
+        <li>
+          <a href="../pages/sobre-mi.html">
+            Sobre mí
+          </a>
+        </li>
+
+      </ul>
+
+
+      <!-- Acciones -->
+
+      <div class="navbar__actions">
+
+        <!-- Cambio de tema -->
+
+        <button
+          class="navbar__theme"
+          id="theme-toggle"
+          type="button"
+          aria-label="Cambiar a modo claro"
+          aria-pressed="false"
+          title="Cambiar tema"
+        >
+
+          <!-- Sol -->
+
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--sun"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <circle cx="12" cy="12" r="3.5"></circle>
+
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+
+            <path d="M4.93 4.93l1.42 1.42"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+
+            <path d="M4.93 19.07l1.42-1.42"></path>
+            <path d="M17.66 6.34l1.41-1.41"></path>
+
+          </svg>
+
+
+          <!-- Luna -->
+
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--moon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <path
+              d="
+                M20.5 14.5
+                A8.5 8.5 0 0 1
+                9.5 3.5
+                A8.5 8.5 0 1 0
+                20.5 14.5
+              "
+            ></path>
+
+          </svg>
+
+        </button>
+
+
+        <!-- Currículum -->
+
+        <a
+          href="../assets/cv/CV_Matias_Cortes.pdf"
+          class="navbar__cv"
+          download
+        >
+          CV
+        </a>
+
+
+        <!-- Menú móvil -->
+
+        <button
+          class="navbar__menu"
+          id="menu-button"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+        >
+
+          <span></span>
+          <span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+<main id="pets-app" class="pets-app">
+  <div class="pets-wrap">
+    <div class="pets-crumb"><a href="../pages/proyectos.html">← Volver a proyectos</a> <span> / Pets</span></div>
+    <section class="pets-hero" aria-labelledby="pets-title">
+      <p class="pets-eyebrow">PROYECTO / CIENCIA DE DATOS Y MEDICINA VETERINARIA</p>
+      <h1 id="pets-title">Atlas de <em>razas caninas.</em></h1>
+      <p>Catálogo documental de razas, características morfológicas y conductuales, distribución por origen y consulta de alimentos.</p>
+      <div class="pets-kpis" id="pets-kpis">
+        <div><strong>137</strong><span>razas documentadas</span></div>
+        <div><strong>89</strong><span>fichas estructuradas</span></div>
+        <div><strong>123</strong><span>variables en el conjunto original</span></div>
+        <div><strong>23</strong><span>alimentos registrados</span></div>
+      </div>
+    </section>
+    <nav class="pets-tabs" aria-label="Secciones de Pets">
+      <button type="button" class="pets-tab active" data-tab="catalogo" aria-current="page">Catálogo de razas</button>
+      <button type="button" class="pets-tab" data-tab="comparar">Comparador</button>
+      <button type="button" class="pets-tab" data-tab="origen">Mapa y estadísticas</button>
+      <button type="button" class="pets-tab" data-tab="alimentos">Alimentos</button>
+    </nav>
+    <section class="pets-panel" id="pets-panel-catalogo" aria-labelledby="pets-heading-catalogo">
+      <div class="pets-section-head"><div><p class="pets-eyebrow">EXPLORADOR</p><h2 id="pets-heading-catalogo">137 razas, una búsqueda</h2></div><span class="pets-counter" id="pets-result-count">Cargando razas…</span></div>
+      <div class="pets-controls">
+        <label class="pets-search-wrap"><span>Buscar raza</span><input id="pets-search" type="search" placeholder="Ej.: Beagle, Retriever, Shepherd" autocomplete="off"></label>
+        <label><span>Grupo FCI</span><select id="pets-group"><option value="">Todos los grupos</option></select></label>
+        <label><span>Tamaño</span><select id="pets-size"><option value="">Todos los tamaños</option></select></label>
+        <label><span>País</span><select id="pets-country"><option value="">Todos los países</option></select></label>
+        <label><span>Tipo de ficha</span><select id="pets-type"><option value="">Todas</option><option value="estructurada">Estructurada</option><option value="documental">Documental</option></select></label>
+      </div>
+      <div id="pets-cards" class="pets-cards" aria-live="polite"><p class="pets-status">Preparando catálogo…</p></div>
+      <div class="pets-more-wrap"><button type="button" id="pets-more" class="pets-primary" hidden>Mostrar más razas</button></div>
+    </section>
+    <section class="pets-panel" id="pets-panel-comparar" hidden aria-labelledby="pets-heading-comparar">
+      <div class="pets-section-head"><div><p class="pets-eyebrow">ANÁLISIS COMPARATIVO</p><h2 id="pets-heading-comparar">Compara dos razas</h2></div></div>
+      <p class="pets-muted">Las comparaciones utilizan únicamente variables presentes en las fichas estructuradas; los espacios vacíos indican datos no disponibles.</p>
+      <div class="pets-controls pets-controls--compare">
+        <label><span>Primera raza</span><select id="pets-compare-a"></select></label>
+        <label><span>Segunda raza</span><select id="pets-compare-b"></select></label>
+      </div>
+      <div id="pets-comparison"></div>
+    </section>
+    <section class="pets-panel" id="pets-panel-origen" hidden aria-labelledby="pets-heading-origen">
+      <div class="pets-section-head"><div><p class="pets-eyebrow">DISTRIBUCIÓN EN EL CONJUNTO DE DATOS</p><h2 id="pets-heading-origen">Origen geográfico</h2></div></div>
+      <p class="pets-muted">El mapa representa <strong>países de origen de las 89 fichas estructuradas</strong>; no representa distribución de perros ni prevalencia actual. Los nombres históricos o ambiguos pueden carecer de ubicación.</p>
+      <div class="pets-map-legend"><span class="pets-map-dot"></span> Países con razas registradas (selecciona un país para filtrar)</div>
+      <div class="pets-map" id="pets-map"><p class="pets-status">Cargando mapa…</p></div>
+      <div id="pets-country-stats" class="pets-country-stats"></div>
+    </section>
+    <section class="pets-panel" id="pets-panel-alimentos" hidden aria-labelledby="pets-heading-alimentos">
+      <div class="pets-section-head"><div><p class="pets-eyebrow">BASE DE ALIMENTOS</p><h2 id="pets-heading-alimentos">Alimentos y riesgos para perros</h2></div></div>
+      <p class="pets-caution">Los datos de origen no incluyen referencias clínicas verificables para todas sus categorías. Esta sección reproduce el registro original y no reemplaza una indicación veterinaria, especialmente ante ingestión potencialmente tóxica.</p>
+      <label class="pets-search-wrap pets-food-search"><span>Buscar alimento</span><input id="pets-food-search" type="search" placeholder="Ej.: chocolate, uva"></label>
+      <div id="pets-foods" class="pets-foods"></div>
+    </section>
+    <p class="pets-disclaimer">Base original adaptada desde un proyecto R Shiny. Los estándares documentales y fotografías se incorporan como material de origen pendiente de revisión de derechos, atribuciones y validación técnica. Los puntajes conductuales o de riesgos de salud no constituyen estimaciones clínicas validadas.</p>
+  </div>
+</main>
+<dialog class="pets-dialog" id="pets-dialog" aria-label="Ficha de raza"><div class="pets-dialog-content"><button type="button" class="pets-dialog-close" id="pets-dialog-close" aria-label="Cerrar ficha">×</button><div id="pets-ficha"></div></div></dialog>
+
+<footer class="footer">
+
+    <div class="container footer__container">
+
+      <p>
+        Matías Cortés
+      </p>
+
+      <p>
+        Estadística & Ciencia de Datos
+      </p>
+
+      <p>
+        © <span id="current-year"></span>
+      </p>
+
+    </div>
+
+  </footer>
+<script src="../js/navigation.js" defer></script>
+<script src="../js/main.js" defer></script>
+<script src="../js/pets.js" defer></script>
+<script src="../js/pets-comparador-estadisticas.js" defer></script>
+
+
+</body>
+</html>

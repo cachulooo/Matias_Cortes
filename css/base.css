@@ -1,0 +1,2311 @@
+/* =========================================================
+   MATÍAS CORTÉS — PORTFOLIO
+   BASE STYLES
+
+   Este archivo contiene las reglas más fundamentales
+   de todo el portafolio.
+
+   Su trabajo es definir:
+
+   - reset básico del navegador
+   - comportamiento general del documento
+   - tipografía
+   - links
+   - formularios básicos
+   - selección de texto
+   - scrollbar
+   - foco accesible
+   - containers
+   - secciones
+   - utilidades tipográficas
+   - elementos ocultos para lectores de pantalla
+   - preferencias de movimiento reducido
+
+   IMPORTANTE:
+
+   base.css se carga DESPUÉS de variables.css.
+
+   Por eso aquí usamos variables como:
+
+   --color-bg
+   --color-text
+   --focus-ring
+   --scrollbar-thumb
+   --selection-bg
+
+   y evitamos definir colores visuales directamente.
+
+   De esa forma todo responde automáticamente a:
+
+   data-theme="dark"
+
+   o
+
+   data-theme="light"
+   ========================================================= */
+
+
+/* =========================================================
+   01. RESET — BOX MODEL
+   ========================================================= */
+
+/*
+   Por defecto CSS calcula el ancho de una caja sumando:
+
+   width + padding + border
+
+   Con border-box hacemos que padding y border queden
+   incluidos dentro del tamaño declarado.
+
+   Esto vuelve mucho más predecible todo el layout.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing:
+    border-box;
+}
+
+
+/* =========================================================
+   02. DOCUMENTO HTML
+   ========================================================= */
+
+/*
+   scroll-behavior permite desplazamiento suave cuando
+   usamos links internos como:
+
+   href="#contacto"
+
+   scroll-padding-top evita que una sección quede escondida
+   debajo de la navbar fija.
+*/
+
+html {
+  min-width:
+    100%;
+
+  min-height:
+    100%;
+
+  scroll-behavior:
+    smooth;
+
+  scroll-padding-top:
+    calc(
+      var(--navbar-height)
+      +
+      var(--space-4)
+    );
+
+  background:
+    var(--color-bg);
+}
+
+
+/* =========================================================
+   03. RESET DE MÁRGENES
+   ========================================================= */
+
+/*
+   Los navegadores agregan márgenes diferentes por defecto
+   a títulos, párrafos y otros elementos.
+
+   Los eliminamos para controlar el espacio exclusivamente
+   mediante nuestro sistema de spacing.
+*/
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin:
+    0;
+}
+
+
+/* =========================================================
+   04. LISTAS
+   ========================================================= */
+
+/*
+   Eliminamos bullets y espacios automáticos.
+
+   Cada componente que necesite una lista visual podrá
+   definir su propio estilo después.
+*/
+
+ul,
+ol {
+  margin:
+    0;
+
+  padding:
+    0;
+
+  list-style:
+    none;
+}
+
+
+/* =========================================================
+   05. ELEMENTOS DE FORMULARIO
+   ========================================================= */
+
+/*
+   Inputs, botones y selects suelen utilizar una tipografía
+   propia del navegador.
+
+   Con inherit utilizamos la misma tipografía del sitio.
+*/
+
+button,
+input,
+textarea,
+select {
+  font:
+    inherit;
+}
+
+
+/*
+   Quitamos estilos visuales predeterminados del navegador.
+
+   Los componentes específicos pueden agregar sus propios
+   bordes después.
+*/
+
+button {
+  padding:
+    0;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    inherit;
+
+  cursor:
+    pointer;
+}
+
+
+/*
+   Placeholder de formularios futuros.
+*/
+
+input::placeholder,
+textarea::placeholder {
+  color:
+    var(--color-text-muted);
+
+  opacity:
+    0.75;
+}
+
+
+/* =========================================================
+   06. ELEMENTOS MULTIMEDIA
+   ========================================================= */
+
+/*
+   Evitamos el pequeño espacio inferior que aparece cuando
+   imágenes o SVG se comportan como elementos inline.
+
+   También impedimos que excedan el ancho disponible.
+*/
+
+img,
+picture,
+svg,
+canvas,
+video {
+  display:
+    block;
+
+  max-width:
+    100%;
+}
+
+
+/*
+   Una imagen normalmente debe mantener su proporción.
+*/
+
+img {
+  height:
+    auto;
+}
+
+
+/* =========================================================
+   07. BODY
+   ========================================================= */
+
+/*
+   Esta es la superficie general de todo el portafolio.
+
+   Usamos variables.css para que el mismo body funcione
+   correctamente en Dark y Light.
+*/
+
+body {
+  min-width:
+    320px;
+
+  min-height:
+    100vh;
+
+  min-height:
+    100svh;
+
+  color:
+    var(--color-text);
+
+  background:
+    var(--gradient-background);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    var(--text-base);
+
+  font-weight:
+    var(--weight-regular);
+
+  line-height:
+    var(--leading-normal);
+
+  overflow-x:
+    hidden;
+
+  /*
+     Mejora la apariencia de las fuentes en algunos sistemas.
+  */
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  -moz-osx-font-smoothing:
+    grayscale;
+
+  text-rendering:
+    optimizeLegibility;
+}
+
+
+/* =========================================================
+   08. BACKGROUND FIXED — SOLO ESCRITORIO
+   ========================================================= */
+
+/*
+   background-attachment: fixed puede verse bien en desktop,
+   pero algunos navegadores móviles lo procesan mal o generan
+   saltos durante el scroll.
+
+   Por eso lo activamos solamente en dispositivos donde
+   normalmente no genera ese problema.
+*/
+
+@media (
+  min-width: 769px
+) and (
+  hover: hover
+) {
+
+  body {
+    background-attachment:
+      fixed;
+  }
+}
+
+
+/* =========================================================
+   09. SELECCIÓN DE TEXTO
+   ========================================================= */
+
+/*
+   Cuando alguien selecciona texto utilizamos las variables
+   específicas de selección definidas en variables.css.
+
+   Esto también cambia entre dark y light.
+*/
+
+::selection {
+  color:
+    var(--selection-text);
+
+  background:
+    var(--selection-bg);
+}
+
+
+/*
+   Firefox puede utilizar esta variante.
+*/
+
+::-moz-selection {
+  color:
+    var(--selection-text);
+
+  background:
+    var(--selection-bg);
+}
+
+
+/* =========================================================
+   10. SCROLLBAR — FIREFOX
+   ========================================================= */
+
+/*
+   Firefox utiliza scrollbar-color en lugar de los
+   pseudo-elementos WebKit.
+*/
+
+html {
+  scrollbar-width:
+    thin;
+
+  scrollbar-color:
+    var(--scrollbar-thumb)
+    var(--scrollbar-track);
+}
+
+
+/* =========================================================
+   11. SCROLLBAR — CHROME / EDGE / SAFARI
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width:
+    8px;
+
+  height:
+    8px;
+}
+
+
+::-webkit-scrollbar-track {
+  background:
+    var(--scrollbar-track);
+}
+
+
+::-webkit-scrollbar-thumb {
+  border-radius:
+    var(--radius-full);
+
+  background:
+    var(--scrollbar-thumb);
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    var(--scrollbar-thumb-hover);
+}
+
+
+/* =========================================================
+   12. TIPOGRAFÍA — TÍTULOS
+   ========================================================= */
+
+/*
+   Todos los títulos comparten:
+
+   - Space Grotesk
+   - peso semibold
+   - menor separación entre letras
+
+   Esto crea la identidad tipográfica principal del sitio.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color:
+    var(--color-text);
+
+  font-family:
+    var(--font-display);
+
+  font-weight:
+    var(--weight-semibold);
+
+  line-height:
+    var(--leading-heading);
+
+  letter-spacing:
+    var(--tracking-tight);
+}
+
+
+/* =========================================================
+   13. ESCALA DE TÍTULOS
+   ========================================================= */
+
+h1 {
+  font-size:
+    var(--text-display);
+}
+
+
+h2 {
+  font-size:
+    var(--text-section-title);
+}
+
+
+h3 {
+  font-size:
+    var(--text-2xl);
+}
+
+
+h4 {
+  font-size:
+    var(--text-xl);
+}
+
+
+h5 {
+  font-size:
+    var(--text-lg);
+}
+
+
+h6 {
+  font-size:
+    var(--text-md);
+}
+
+
+/* =========================================================
+   14. TEXTO NORMAL
+   ========================================================= */
+
+p {
+  color:
+    var(--color-text-soft);
+}
+
+
+/*
+   Evitamos que líneas de texto demasiado largas reduzcan
+   la legibilidad cuando aparecen fuera de componentes.
+*/
+
+p,
+li {
+  overflow-wrap:
+    break-word;
+}
+
+
+/* =========================================================
+   15. TEXTO DESTACADO
+   ========================================================= */
+
+strong,
+b {
+  color:
+    var(--color-text);
+
+  font-weight:
+    var(--weight-semibold);
+}
+
+
+/* =========================================================
+   16. CURSIVA
+   ========================================================= */
+
+em,
+i {
+  font-style:
+    italic;
+}
+
+
+/* =========================================================
+   17. LINKS
+   ========================================================= */
+
+/*
+   Quitamos el subrayado predeterminado.
+
+   Cada componente decide después cómo representar
+   visualmente sus links.
+*/
+
+a {
+  color:
+    inherit;
+
+  text-decoration:
+    none;
+}
+
+
+/*
+   Evita el rectángulo azul que algunos navegadores móviles
+   muestran al tocar botones o enlaces.
+*/
+
+a,
+button {
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+
+/* =========================================================
+   18. BOTONES DESHABILITADOS
+   ========================================================= */
+
+button:disabled {
+  cursor:
+    not-allowed;
+}
+
+
+/* =========================================================
+   19. CODE / PRE
+   ========================================================= */
+
+/*
+   Dejamos preparada una base para mostrar código,
+   fórmulas o fragmentos técnicos dentro de los case studies.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family:
+    var(--font-mono);
+}
+
+
+/*
+   Código pequeño dentro de un párrafo.
+*/
+
+code {
+  font-size:
+    0.92em;
+}
+
+
+/*
+   Los bloques largos de código pueden desplazarse
+   horizontalmente sin romper toda la página.
+*/
+
+pre {
+  max-width:
+    100%;
+
+  overflow-x:
+    auto;
+
+  tab-size:
+    2;
+}
+
+
+/* =========================================================
+   20. TABLAS
+   ========================================================= */
+
+/*
+   Dejamos preparado el comportamiento básico para tablas
+   estadísticas o comparativas futuras.
+*/
+
+table {
+  width:
+    100%;
+
+  border-collapse:
+    collapse;
+
+  border-spacing:
+    0;
+}
+
+
+/* =========================================================
+   21. LÍNEA HORIZONTAL
+   ========================================================= */
+
+hr {
+  height:
+    1px;
+
+  margin:
+    var(--space-8)
+    0;
+
+  border:
+    0;
+
+  background:
+    var(--color-border);
+}
+
+
+/* =========================================================
+   22. ACCESIBILIDAD — FOCUS
+   ========================================================= */
+
+/*
+   :focus-visible aparece principalmente cuando navegamos
+   usando teclado.
+
+   No queremos eliminar el outline porque sería un problema
+   serio de accesibilidad.
+*/
+
+:focus-visible {
+  outline:
+    2px solid
+    var(--focus-ring);
+
+  outline-offset:
+    4px;
+}
+
+
+/*
+   Los elementos que no tienen focus visible no necesitan
+   mostrar un outline artificial.
+*/
+
+:focus:not(:focus-visible) {
+  outline:
+    none;
+}
+
+
+/* =========================================================
+   23. MAIN
+   ========================================================= */
+
+/*
+   main actúa como contenedor general de todas las páginas.
+
+   overflow: clip evita que glows, grids o elementos
+   decorativos generen scroll horizontal.
+*/
+
+main {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  overflow:
+    clip;
+}
+
+
+/* =========================================================
+   24. SECCIONES
+   ========================================================= */
+
+section {
+  position:
+    relative;
+}
+
+
+/* =========================================================
+   25. CONTAINER GLOBAL
+   ========================================================= */
+
+/*
+   Esta es una de las reglas más importantes del sitio.
+
+   El container:
+
+   - centra el contenido
+   - establece ancho máximo
+   - conserva margen lateral en pantallas pequeñas
+
+   Ejemplo:
+
+   pantalla muy grande
+        ↓
+   máximo 1240px
+
+   pantalla pequeña
+        ↓
+   ancho disponible menos padding lateral
+*/
+
+.container {
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--container-padding) * 2
+        )
+      ),
+      var(--container-width)
+    );
+
+  margin-inline:
+    auto;
+}
+
+
+/* =========================================================
+   26. SECCIÓN GENÉRICA
+   ========================================================= */
+
+/*
+   Utilizamos .section cuando una sección necesita el
+   espaciado vertical estándar del portafolio.
+*/
+
+.section {
+  padding-block:
+    var(--section-spacing);
+}
+
+
+/* =========================================================
+   27. EYEBROW
+   ========================================================= */
+
+/*
+   Pequeño texto superior utilizado para categorías como:
+
+   MATÍAS CORTÉS
+   EXPLORAR
+   FORMACIÓN
+   INVESTIGACIÓN
+   PROYECTOS
+
+   Tiene menos protagonismo que un título, pero ayuda
+   muchísimo a ordenar visualmente las páginas.
+*/
+
+.eyebrow {
+  color:
+    var(--color-primary-light);
+
+  font-size:
+    var(--text-sm);
+
+  font-weight:
+    var(--weight-medium);
+
+  line-height:
+    1.2;
+
+  letter-spacing:
+    var(--tracking-wider);
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   28. TEXTO SECUNDARIO
+   ========================================================= */
+
+.text-muted {
+  color:
+    var(--color-text-muted);
+}
+
+
+/* =========================================================
+   29. TEXTO CON GRADIENTE
+   ========================================================= */
+
+/*
+   Permite escribir:
+
+   <span class="text-gradient">
+     Ciencia de datos
+   </span>
+
+   y aplicar el gradiente violeta/azul de la identidad.
+*/
+
+.text-gradient {
+  color:
+    var(--color-primary-light);
+
+  background:
+    var(--gradient-neural);
+
+  background-clip:
+    text;
+
+  -webkit-background-clip:
+    text;
+
+  -webkit-text-fill-color:
+    transparent;
+}
+
+
+/* =========================================================
+   30. NO WRAP
+   ========================================================= */
+
+/*
+   Utilidad pequeña para contenido que no queremos cortar,
+   por ejemplo alguna etiqueta corta o una métrica.
+*/
+
+.no-wrap {
+  white-space:
+    nowrap;
+}
+
+
+/* =========================================================
+   31. SCREEN READER ONLY
+   ========================================================= */
+
+/*
+   Oculta visualmente un texto SIN ocultarlo para tecnologías
+   de asistencia.
+
+   Sirve para etiquetas adicionales que necesita un lector
+   de pantalla pero que no deben aparecer visualmente.
+*/
+
+.sr-only {
+  position:
+    absolute !important;
+
+  width:
+    1px !important;
+
+  height:
+    1px !important;
+
+  padding:
+    0 !important;
+
+  margin:
+    -1px !important;
+
+  overflow:
+    hidden !important;
+
+  clip:
+    rect(
+      0,
+      0,
+      0,
+      0
+    ) !important;
+
+  white-space:
+    nowrap !important;
+
+  border:
+    0 !important;
+}
+
+
+/* =========================================================
+   32. HIDDEN
+   ========================================================= */
+
+/*
+   Utilidad explícita para elementos que realmente queremos
+   sacar completamente del layout y del flujo visual.
+*/
+
+[hidden] {
+  display:
+    none !important;
+}
+
+
+/* =========================================================
+   33. REDUCED MOTION
+   ========================================================= */
+
+/*
+   Algunas personas activan "Reducir movimiento" en su
+   sistema operativo por comodidad o accesibilidad.
+
+   En ese caso:
+
+   - eliminamos smooth scroll
+   - prácticamente detenemos animaciones
+   - prácticamente eliminamos transiciones
+
+   Las animaciones complejas como brain.js y formulas.js
+   también tienen sus propios controles.
+*/
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  html {
+    scroll-behavior:
+      auto;
+  }
+
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+
+    scroll-behavior:
+      auto !important;
+  }
+}
+
+
+/* =========================================================
+   34. CONTRASTE FORZADO
+   ========================================================= */
+
+/*
+   Windows puede utilizar un modo de alto contraste.
+
+   En ese caso dejamos que el sistema operativo controle
+   colores críticos en lugar de forzar nuestros efectos.
+*/
+
+@media (
+  forced-colors: active
+) {
+
+  .text-gradient {
+    background:
+      none;
+
+    color:
+      CanvasText;
+
+    -webkit-text-fill-color:
+      currentColor;
+  }
+
+
+  :focus-visible {
+    outline-color:
+      Highlight;
+  }
+}
+
+
+/* === BEGIN FLOATING FORMULAS V3 === */
+
+
+/* =========================================================
+   MATHEMATICAL BACKGROUND V3
+   ========================================================= */
+
+
+/* =========================================================
+   01. SUPERFICIE NORMAL
+   ========================================================= */
+
+.formula-surface {
+  position:
+    relative;
+
+  isolation:
+    isolate;
+}
+
+
+/* =========================================================
+   02. CAPA DE FÓRMULAS
+   ========================================================= */
+
+.floating-formulas {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    1;
+
+  overflow:
+    hidden;
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+}
+
+
+/* =========================================================
+   03. PROTECCIÓN DEL CONTENIDO
+   ========================================================= */
+
+/*
+   SOLO los elementos que eran static reciben relative.
+
+   Esto evita el bug anterior donde modificábamos elementos
+   absolute del Home.
+*/
+
+.formula-content-static {
+  position:
+    relative;
+
+  z-index:
+    2;
+}
+
+
+/*
+   Los elementos que ya tenían:
+   absolute
+   relative
+   sticky
+   fixed
+
+   conservan su propiedad position original.
+*/
+
+.formula-content-positioned {
+  z-index:
+    2;
+}
+
+
+/* =========================================================
+   04. HOME — CAPA ESPECIAL
+   ========================================================= */
+
+/*
+   Esta regla tiene alta especificidad a propósito.
+
+   sections.css originalmente colocaba hero__formulas
+   más atrás.
+
+   Ahora queremos fórmulas visibles sobre el cerebro y
+   efectos ambientales, pero SIEMPRE detrás del contenido.
+*/
+
+section.hero
+> #hero-formulas.hero__formulas {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    1;
+
+  overflow:
+    hidden;
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+}
+
+
+/*
+   El texto real del Home ya utiliza un z-index superior,
+   así que no se mueve ni queda tapado.
+*/
+
+.hero__container {
+  z-index:
+    5;
+}
+
+
+/* =========================================================
+   05. FÓRMULA BASE
+   ========================================================= */
+
+.floating-formula {
+  --formula-angle:
+    0deg;
+
+  position:
+    absolute;
+
+  display:
+    block;
+
+  white-space:
+    nowrap;
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    1rem;
+
+  font-weight:
+    var(--weight-medium);
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.02em;
+
+  /*
+     Más visibles que en V2.
+  */
+
+  opacity:
+    0.29;
+
+  color:
+    #ad82ff;
+
+  text-shadow:
+    0 0 16px
+    rgba(
+      155,
+      109,
+      255,
+      0.32
+    );
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    )
+    rotate(
+      var(--formula-angle)
+    );
+
+  transition:
+    opacity
+    380ms
+    ease;
+
+  animation:
+    formula-v3-drift
+    36s
+    linear
+    infinite;
+}
+
+
+/* =========================================================
+   06. HOME
+   ========================================================= */
+
+/*
+   Un poco más grandes y visibles en la portada.
+*/
+
+.floating-formula--hero {
+  opacity:
+    0.31;
+
+  text-shadow:
+    0 0 18px
+    rgba(
+      155,
+      109,
+      255,
+      0.35
+    );
+}
+
+
+/* =========================================================
+   07. COLORES
+   ========================================================= */
+
+.floating-formula--purple {
+  color:
+    #ad82ff;
+}
+
+
+.floating-formula--blue {
+  color:
+    #82a9ff;
+}
+
+
+.floating-formula--cream {
+  color:
+    #ffd6a5;
+}
+
+
+/* =========================================================
+   08. INTENSIDADES
+   ========================================================= */
+
+.floating-formula--soft {
+  opacity:
+    0.16;
+}
+
+
+.floating-formula--strong {
+  opacity:
+    0.45;
+}
+
+
+.floating-formula--hero.floating-formula--strong {
+  opacity:
+    0.49;
+}
+
+
+.floating-formula.is-changing {
+  opacity:
+    0 !important;
+}
+
+
+/* =========================================================
+   09. MOVIMIENTO
+   ========================================================= */
+
+/*
+   Desplazamiento lento:
+   izquierda / derecha + pequeño movimiento vertical.
+*/
+
+@keyframes formula-v3-drift {
+
+  0% {
+    transform:
+      translate3d(
+        64px,
+        -4px,
+        0
+      )
+      rotate(
+        var(--formula-angle)
+      );
+  }
+
+
+  20% {
+    transform:
+      translate3d(
+        34px,
+        7px,
+        0
+      )
+      rotate(
+        var(--formula-angle)
+      );
+  }
+
+
+  40% {
+    transform:
+      translate3d(
+        10px,
+        -6px,
+        0
+      )
+      rotate(
+        var(--formula-angle)
+      );
+  }
+
+
+  60% {
+    transform:
+      translate3d(
+        -18px,
+        6px,
+        0
+      )
+      rotate(
+        var(--formula-angle)
+      );
+  }
+
+
+  80% {
+    transform:
+      translate3d(
+        -46px,
+        -5px,
+        0
+      )
+      rotate(
+        var(--formula-angle)
+      );
+  }
+
+
+  100% {
+    transform:
+      translate3d(
+        -78px,
+        4px,
+        0
+      )
+      rotate(
+        var(--formula-angle)
+      );
+  }
+}
+
+
+/* =========================================================
+   10. LIGHT MODE
+   ========================================================= */
+
+:root[data-theme="light"]
+.floating-formula {
+  color:
+    #6334a8;
+
+  opacity:
+    0.23;
+
+  text-shadow:
+    0 0 12px
+    rgba(
+      114,
+      62,
+      195,
+      0.12
+    );
+}
+
+
+:root[data-theme="light"]
+.floating-formula--purple {
+  color:
+    #6637aa;
+}
+
+
+:root[data-theme="light"]
+.floating-formula--blue {
+  color:
+    #365fae;
+}
+
+
+:root[data-theme="light"]
+.floating-formula--cream {
+  color:
+    #a46b2d;
+}
+
+
+:root[data-theme="light"]
+.floating-formula--soft {
+  opacity:
+    0.12;
+}
+
+
+:root[data-theme="light"]
+.floating-formula--strong {
+  opacity:
+    0.34;
+}
+
+
+/* =========================================================
+   11. FOOTER
+   ========================================================= */
+
+.formula-surface--footer
+.floating-formulas {
+  opacity:
+    0.55;
+}
+
+
+/* =========================================================
+   12. TABLET
+   ========================================================= */
+
+@media (
+  max-width: 1000px
+) {
+
+  .floating-formula {
+    opacity:
+      0.24;
+  }
+
+
+  .floating-formula--strong {
+    opacity:
+      0.38;
+  }
+}
+
+
+/* =========================================================
+   13. MOBILE
+   ========================================================= */
+
+@media (
+  max-width: 600px
+) {
+
+  .floating-formula {
+    opacity:
+      0.18;
+
+    text-shadow:
+      0 0 10px
+      rgba(
+        155,
+        109,
+        255,
+        0.20
+      );
+  }
+
+
+  .floating-formula--soft {
+    opacity:
+      0.10;
+  }
+
+
+  .floating-formula--strong {
+    opacity:
+      0.29;
+  }
+}
+
+
+/* =========================================================
+   14. REDUCED MOTION
+   ========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .floating-formula {
+    animation:
+      none !important;
+
+    transform:
+      rotate(
+        var(--formula-angle)
+      ) !important;
+
+    transition:
+      none !important;
+  }
+}
+
+/* =========================================================
+   FORMULAS — PARCHE VIVO / REBOTE CONTINUO
+   Pegar al final de base.css
+   ========================================================= */
+
+/* Capa general de fórmulas */
+.floating-formulas,
+.hero__formulas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Las fórmulas ahora NO usan keyframes CSS.
+   El movimiento lo controla formulas.js */
+.floating-formula {
+  position: absolute;
+  display: block;
+  white-space: nowrap;
+
+  animation: none !important;
+  transition: opacity 220ms ease;
+  will-change: transform, opacity;
+
+  font-family: var(--font-mono);
+  line-height: 1;
+  letter-spacing: 0.02em;
+
+  color: #ad82ff;
+  text-shadow: 0 0 14px rgba(155, 109, 255, 0.25);
+  opacity: 0.2;
+
+  pointer-events: none;
+}
+
+/* Variantes de color */
+.floating-formula--purple {
+  color: #ad82ff;
+}
+
+.floating-formula--blue {
+  color: #82a9ff;
+}
+
+.floating-formula--cream {
+  color: #ffd6a5;
+}
+
+/* Intensidad */
+.floating-formula--soft {
+  opacity: 0.12;
+}
+
+.floating-formula--strong {
+  opacity: 0.34;
+}
+
+.floating-formula--hero {
+  opacity: 0.24;
+}
+
+/* En light mode */
+:root[data-theme="light"] .floating-formula {
+  text-shadow: 0 0 10px rgba(114, 62, 195, 0.1);
+}
+
+:root[data-theme="light"] .floating-formula--purple {
+  color: #6637aa;
+}
+
+:root[data-theme="light"] .floating-formula--blue {
+  color: #365fae;
+}
+
+:root[data-theme="light"] .floating-formula--cream {
+  color: #a46b2d;
+}
+
+/* Superficies seguras */
+.formula-surface {
+  position: relative;
+  isolation: isolate;
+}
+
+.formula-content-static {
+  position: relative;
+  z-index: 2;
+}
+
+.formula-content-positioned {
+  z-index: 2;
+}
+
+/* Home */
+section.hero > .hero__formulas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 5;
+}
+
+/* Contorno visual del área del cerebro.
+   No es el cerebro real; es una guía visual sutil
+   para que se entienda mejor el límite */
+#hero-brain-guard {
+  position: absolute;
+  top: 50%;
+  right: clamp(1rem, 4vw, 3rem);
+  transform: translateY(-50%);
+
+  width: min(49vw, 760px);
+  height: min(38vw, 560px);
+
+  border-radius: 50% 49% 47% 51% / 44% 45% 55% 56%;
+  pointer-events: none;
+  z-index: 2;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(130, 169, 255, 0.07),
+    0 0 50px rgba(114, 62, 195, 0.06);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  #hero-brain-guard {
+    width: min(52vw, 620px);
+    height: min(42vw, 470px);
+  }
+}
+
+@media (max-width: 640px) {
+  #hero-brain-guard {
+    display: none;
+  }
+}
+
+/* Respeto por accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .floating-formula {
+    transition: none !important;
+  }
+}
+/* === END FLOATING FORMULAS V3 === */
+
+
+/* === BEGIN FORMULA LIGHT CONTRAST V2 === */
+
+
+/* =========================================================
+   FÓRMULAS — LIGHT MODE
+   CONTRASTE REFORZADO
+   ========================================================= */
+
+/*
+   En Dark usamos colores luminosos.
+
+   En Light necesitamos hacer lo contrario:
+   versiones más profundas de violeta, azul y dorado.
+
+   Así conservamos la misma identidad visual sin perder
+   legibilidad sobre fondos claros.
+*/
+
+
+/* ---------------------------------------------------------
+   BASE
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.floating-formula {
+  color:
+    #54208f;
+
+  text-shadow:
+    0 1px 0
+    rgba(
+      255,
+      255,
+      255,
+      0.78
+    ),
+
+    0 0 10px
+    rgba(
+      84,
+      32,
+      143,
+      0.10
+    );
+}
+
+
+/* ---------------------------------------------------------
+   VIOLETA
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.floating-formula--purple {
+  color:
+    #54208f;
+}
+
+
+/* ---------------------------------------------------------
+   AZUL
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.floating-formula--blue {
+  color:
+    #2452a4;
+}
+
+
+/* ---------------------------------------------------------
+   CÁLIDO / CREMA
+   --------------------------------------------------------- */
+
+/*
+   En Dark el crema puede ser claro.
+
+   Sobre blanco necesitamos llevarlo hacia un ocre profundo.
+*/
+
+:root[data-theme="light"]
+.floating-formula--cream {
+  color:
+    #87500d;
+}
+
+
+/* ---------------------------------------------------------
+   HERO
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.floating-formula--hero {
+  text-shadow:
+    0 1px 0
+    rgba(
+      255,
+      255,
+      255,
+      0.80
+    ),
+
+    0 0 12px
+    rgba(
+      84,
+      32,
+      143,
+      0.11
+    );
+}
+
+
+/* ---------------------------------------------------------
+   MÁS CONTRASTE EN FÓRMULAS FUERTES
+   --------------------------------------------------------- */
+
+:root[data-theme="light"]
+.floating-formula--strong {
+  font-weight:
+    600;
+}
+
+
+/* ---------------------------------------------------------
+   FÓRMULAS SUAVES
+   --------------------------------------------------------- */
+
+/*
+   Incluso las fórmulas secundarias deben seguir siendo
+   perceptibles en Light.
+*/
+
+:root[data-theme="light"]
+.floating-formula--soft {
+  filter:
+    saturate(0.95);
+}
+
+
+/* === END FORMULA LIGHT CONTRAST V2 === */
+
+
+/* === BEGIN BRAIN GUARD V2 === */
+
+/* =========================================================
+   BRAIN GUARD V2
+   Contorno visual más definido
+   ========================================================= */
+
+/*
+   El guard anterior era demasiado genérico.
+   Este override genera una silueta más marcada y mejor
+   alineada con la máscara lógica de formulas.js.
+*/
+
+#hero-brain-guard {
+  position: absolute;
+  top: 50%;
+  right: clamp(1rem, 4vw, 3rem);
+  transform: translateY(-50%);
+
+  width: min(50vw, 760px);
+  height: min(38vw, 560px);
+
+  pointer-events: none;
+  z-index: 2;
+
+  filter:
+    drop-shadow(0 0 28px rgba(114, 62, 195, 0.10))
+    drop-shadow(0 0 52px rgba(94, 140, 255, 0.07));
+}
+
+
+/*
+   Capa de forma principal.
+   Usamos clip-path para una silueta más orgánica.
+*/
+
+#hero-brain-guard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  clip-path: polygon(
+    9% 50%,
+    11% 39%,
+    17% 31%,
+    25% 26%,
+    33% 18%,
+    43% 12%,
+    54% 11%,
+    63% 8%,
+    75% 10%,
+    85% 15%,
+    93% 25%,
+    97% 37%,
+    98% 49%,
+    96% 60%,
+    98% 69%,
+    94% 79%,
+    86% 86%,
+    75% 89%,
+    65% 87%,
+    56% 92%,
+    45% 90%,
+    35% 86%,
+    25% 84%,
+    16% 76%,
+    11% 65%
+  );
+
+  border: 2px solid rgba(128, 108, 220, 0.34);
+
+  background:
+    radial-gradient(
+      circle at 55% 45%,
+      rgba(140, 110, 235, 0.10),
+      rgba(94, 140, 255, 0.04) 42%,
+      transparent 72%
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(150, 125, 240, 0.10),
+    0 0 34px rgba(114, 62, 195, 0.10);
+
+  border-radius: 20px;
+}
+
+
+/*
+   Líneas internas suaves para reforzar visualmente
+   la idea de un cerebro más definido.
+*/
+
+#hero-brain-guard::after {
+  content: "";
+  position: absolute;
+  inset: 7% 8% 8% 8%;
+
+  clip-path: polygon(
+    8% 49%,
+    11% 38%,
+    18% 29%,
+    27% 24%,
+    36% 18%,
+    46% 12%,
+    57% 12%,
+    66% 10%,
+    76% 12%,
+    85% 18%,
+    92% 28%,
+    95% 39%,
+    95% 50%,
+    93% 61%,
+    95% 69%,
+    90% 78%,
+    83% 84%,
+    74% 86%,
+    64% 84%,
+    56% 89%,
+    46% 88%,
+    36% 83%,
+    27% 80%,
+    18% 73%,
+    12% 63%
+  );
+
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(150, 125, 240, 0.00) 0 18px,
+      rgba(150, 125, 240, 0.05) 18px 20px
+    );
+
+  opacity: 0.55;
+}
+
+
+/* Light mode */
+
+:root[data-theme="light"] #hero-brain-guard::before {
+  border: 2px solid rgba(120, 92, 214, 0.20);
+
+  background:
+    radial-gradient(
+      circle at 55% 45%,
+      rgba(135, 105, 225, 0.08),
+      rgba(94, 140, 255, 0.03) 44%,
+      transparent 74%
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(120, 92, 214, 0.07),
+    0 0 24px rgba(120, 92, 214, 0.06);
+}
+
+:root[data-theme="light"] #hero-brain-guard::after {
+  opacity: 0.35;
+}
+
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  #hero-brain-guard {
+    width: min(53vw, 640px);
+    height: min(42vw, 480px);
+  }
+}
+
+@media (max-width: 640px) {
+  #hero-brain-guard {
+    display: none;
+  }
+}
+
+/* === END BRAIN GUARD V2 === */
+
+
+/* === BEGIN KATEX FLOATING FORMULAS === */
+
+
+/* =========================================================
+   KATEX — FÓRMULAS FLOTANTES
+   ========================================================= */
+
+/*
+   El contenedor sigue siendo controlado por formulas.js.
+
+   KaTeX controla únicamente la composición matemática.
+*/
+
+
+.floating-formula.is-katex-rendered {
+  display:
+    inline-block;
+
+  width:
+    max-content;
+
+  max-width:
+    none;
+
+  white-space:
+    nowrap;
+
+  line-height:
+    1;
+
+  /*
+   * No aplicamos font-family del portfolio:
+   * dejamos que KaTeX utilice su familia matemática.
+   */
+
+  font-family:
+    initial;
+
+  text-rendering:
+    geometricPrecision;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  font-synthesis:
+    none;
+}
+
+
+/* =========================================================
+   KATEX ROOT
+   ========================================================= */
+
+.floating-formula
+.katex {
+  display:
+    inline-block;
+
+  color:
+    inherit;
+
+  font-size:
+    1em;
+
+  font-weight:
+    400;
+
+  line-height:
+    1;
+
+  white-space:
+    nowrap;
+
+  /*
+   * Pequeña mejora para pantallas HiDPI.
+   */
+
+  text-rendering:
+    geometricPrecision;
+}
+
+
+/* =========================================================
+   HTML MATEMÁTICO
+   ========================================================= */
+
+.floating-formula
+.katex-html {
+  display:
+    inline-block;
+
+  color:
+    inherit;
+
+  white-space:
+    nowrap;
+}
+
+
+/* =========================================================
+   FRACCIONES
+   ========================================================= */
+
+/*
+   Las fracciones de KaTeX ya poseen la geometría correcta.
+   Solo reforzamos ligeramente su legibilidad mediante
+   el color heredado.
+*/
+
+.floating-formula
+.katex
+.frac-line {
+  border-color:
+    currentColor;
+}
+
+
+/* =========================================================
+   FÓRMULAS FUERTES
+   ========================================================= */
+
+.floating-formula--strong
+.katex {
+  filter:
+    drop-shadow(
+      0 0 6px
+      currentColor
+    );
+}
+
+
+/* =========================================================
+   FÓRMULAS SUAVES
+   ========================================================= */
+
+.floating-formula--soft
+.katex {
+  filter:
+    none;
+}
+
+
+/* =========================================================
+   DARK
+   ========================================================= */
+
+:root[data-theme="dark"]
+.floating-formula--purple
+.katex {
+  color:
+    #b98dff;
+}
+
+
+:root[data-theme="dark"]
+.floating-formula--blue
+.katex {
+  color:
+    #89aeff;
+}
+
+
+:root[data-theme="dark"]
+.floating-formula--cream
+.katex {
+  color:
+    #ffd5a0;
+}
+
+
+/* =========================================================
+   LIGHT
+   ========================================================= */
+
+/*
+   Sobre blanco utilizamos versiones profundas de la paleta
+   para que LaTeX conserve contraste real.
+*/
+
+:root[data-theme="light"]
+.floating-formula--purple
+.katex {
+  color:
+    #51238f;
+}
+
+
+:root[data-theme="light"]
+.floating-formula--blue
+.katex {
+  color:
+    #244f9e;
+}
+
+
+:root[data-theme="light"]
+.floating-formula--cream
+.katex {
+  color:
+    #85500f;
+}
+
+
+/* =========================================================
+   SHADOW DARK
+   ========================================================= */
+
+:root[data-theme="dark"]
+.floating-formula
+.katex {
+  text-shadow:
+    0 0 12px
+    rgba(
+      155,
+      109,
+      255,
+      0.11
+    );
+}
+
+
+/* =========================================================
+   SHADOW LIGHT
+   ========================================================= */
+
+:root[data-theme="light"]
+.floating-formula
+.katex {
+  text-shadow:
+    0 1px 0
+    rgba(
+      255,
+      255,
+      255,
+      0.88
+    );
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+.hero
+.floating-formula
+.katex {
+  /*
+   * El tamaño real sigue siendo controlado dinámicamente
+   * mediante font-size del elemento padre.
+   */
+
+  letter-spacing:
+    0;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (
+  max-width: 640px
+) {
+
+  .floating-formula
+  .katex {
+    /*
+     * Las fracciones pueden ser algo altas.
+     * Esta escala mantiene legibilidad sin ocupar
+     * demasiado espacio en teléfonos.
+     */
+
+    font-size:
+      0.95em;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .floating-formula
+  .katex {
+    filter:
+      none !important;
+  }
+}
+
+
+/* === END KATEX FLOATING FORMULAS === */

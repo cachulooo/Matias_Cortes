@@ -1,0 +1,1341 @@
+﻿<!doctype html>
+<html lang="es" data-theme="dark">
+
+<head>
+
+  <!-- =====================================================
+       01. CONFIGURACIÓN GENERAL
+       ===================================================== -->
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta name="color-scheme" content="dark light" />
+
+  <meta
+    name="description"
+    content="Perfil profesional de Matías Cortés, Ingeniería en Estadística y Ciencia de Datos. Estadística, modelamiento, ciencia de datos e investigación aplicada."
+  />
+
+  <meta name="author" content="Matías Cortés" />
+
+  <meta
+    name="theme-color"
+    id="theme-color-meta"
+    content="#050507"
+  />
+
+  <title>Sobre mí | Matías Cortés</title>
+
+  <!-- =====================================================
+       02. TIPOGRAFÍAS
+       ===================================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- =====================================================
+       03. TEMA OSCURO / CLARO
+       ===================================================== -->
+
+  <script src="../js/theme.js"></script>
+
+  <!-- =====================================================
+       04. ESTILOS GENERALES
+       ===================================================== -->
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+
+  <!-- =====================================================
+       05. GALERÍA Y VISOR DE FOTOGRAFÍAS
+       ===================================================== -->
+
+  <link rel="stylesheet" href="../css/galeria.css" />
+
+  <!-- =====================================================
+       06. KATEX / FÓRMULAS MATEMÁTICAS
+       ===================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.css"
+    integrity="sha384-u1zONI5gPXUx0UKI62c75/zww972y0v2rSK5ZYlVdS6xEuWDeZWUI66v6t1gvlXJ"
+    crossorigin="anonymous"
+  />
+
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.js"
+    integrity="sha384-ykMNcWQhhTUb0YV9SPpPUFURHZ+tWmubkakGBP+OgNK/UXdO2gtzglWx0Rj9hnO3"
+    crossorigin="anonymous"
+  ></script>
+
+</head>
+
+<body>
+
+  <!-- =====================================================
+       07. NAVEGACIÓN PRINCIPAL
+       ===================================================== -->
+
+  <header class="site-header" id="site-header">
+
+    <nav
+      class="navbar container"
+      aria-label="Navegación principal"
+    >
+
+      <a
+        class="navbar__brand"
+        href="../index.html"
+        aria-label="Ir al inicio"
+      >
+        MC<span>.</span>
+      </a>
+
+      <ul class="navbar__links">
+
+        <li>
+          <a href="../index.html">
+            Inicio
+          </a>
+        </li>
+
+        <li>
+          <a href="./proyectos.html">
+            Proyectos
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./sobre-mi.html"
+            aria-current="page"
+          >
+            Sobre mí
+          </a>
+        </li>
+
+      </ul>
+
+      <div class="navbar__actions">
+
+        <!-- Cambio de tema -->
+
+        <button
+          class="navbar__theme"
+          id="theme-toggle"
+          type="button"
+          aria-label="Cambiar a modo claro"
+          aria-pressed="false"
+          title="Cambiar tema"
+        >
+
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--sun"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="M4.93 4.93l1.42 1.42"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="M4.93 19.07l1.42-1.42"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="M4.93 19.07l1.42-1.42"></path>
+            <path d="M17.66 6.34l1.41-1.41"></path>
+          </svg>
+
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--moon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.5 14.5 A8.5 8.5 0 0 1 9.5 3.5 A8.5 8.5 0 1 0 20.5 14.5"
+            ></path>
+          </svg>
+
+        </button>
+
+        <!-- Currículum -->
+
+        <a
+          href="../assets/cv/CV_Matias_Cortes.pdf"
+          class="navbar__cv"
+          download
+        >
+          CV
+        </a>
+
+        <!-- Menú móvil -->
+
+        <button
+          class="navbar__menu"
+          id="menu-button"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+       ===================================================== -->
+
+  <main>
+
+    <!-- =====================================================
+         08. PRESENTACIÓN PERSONAL / HERO
+         ===================================================== -->
+
+    <section
+      class="page-hero page-hero--about about-showcase"
+      aria-labelledby="about-title"
+    >
+
+      <div class="container about-showcase__grid">
+
+        <!-- ===============================================
+             COLUMNA IZQUIERDA: INFORMACIÓN PERSONAL
+             =============================================== -->
+
+        <div class="about-showcase__content">
+
+          <p class="eyebrow">
+            Sobre mí
+          </p>
+
+          <h1 id="about-title">
+            Matías
+            <br />
+            Cortés<span>.</span>
+          </h1>
+
+          <p class="about-showcase__lead">
+            Ingeniería en Estadística y Ciencia de Datos.
+          </p>
+
+          <p class="about-showcase__description">
+            Mi formación combina estadística, modelamiento,
+            computación y ciencia de datos para estudiar
+            problemas complejos, cuantificar incertidumbre
+            y transformar información en evidencia útil.
+          </p>
+
+          <!-- Áreas de especialización -->
+
+          <div
+            class="about-showcase__tags tags"
+            aria-label="Áreas principales"
+          >
+
+            <span class="tag">Estadística</span>
+            <span class="tag">Ciencia de Datos</span>
+            <span class="tag">Modelamiento</span>
+            <span class="tag">Investigación</span>
+
+          </div>
+
+          <!-- Botones -->
+
+          <div class="about-showcase__actions">
+
+            <a
+              href="./proyectos.html"
+              class="button button--primary"
+            >
+              Ver mis proyectos
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              href="../assets/cv/CV_Matias_Cortes.pdf"
+              class="button button--secondary"
+              download
+            >
+              Descargar CV
+              <span aria-hidden="true">↓</span>
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- ===============================================
+             COLUMNA DERECHA: ESCENA VISUAL
+             =============================================== -->
+
+        <div
+          class="about-showcase__scene"
+          aria-label="Galería visual de Matías Cortés"
+        >
+
+          <!-- Iluminación de fondo -->
+
+          <div
+            class="about-showcase__glow"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Cuadrícula técnica -->
+
+          <div
+            class="about-showcase__grid-lines"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Tarjetas flotantes -->
+
+          <div
+            class="tech-card tech-card--python"
+            aria-hidden="true"
+          >
+            Inferencia
+          </div>
+
+          <div
+            class="tech-card tech-card--ds"
+            aria-hidden="true"
+          >
+            Machine Learning
+          </div>
+
+          <div
+            class="tech-card tech-card--ml"
+            aria-hidden="true"
+          >
+            Visualización
+          </div>
+
+          <!-- Gráfico de barras decorativo -->
+
+          <div
+            class="about-chart about-chart--bars"
+            aria-hidden="true"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <!-- Gráfico de línea decorativo -->
+
+          <div
+            class="about-chart about-chart--line"
+            aria-hidden="true"
+          >
+
+            <svg
+              viewBox="0 0 300 160"
+              role="presentation"
+            >
+
+              <defs>
+
+                <linearGradient
+                  id="aboutLineGradient"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="0"
+                >
+
+                  <stop
+                    offset="0%"
+                    stop-color="#9B6DFF"
+                  />
+
+                  <stop
+                    offset="100%"
+                    stop-color="#5E8CFF"
+                  />
+
+                </linearGradient>
+
+              </defs>
+
+              <path
+                d="M10 120 C60 45, 100 140, 150 80 S230 38, 290 90"
+                fill="none"
+                stroke="url(#aboutLineGradient)"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+
+            </svg>
+
+          </div>
+
+          <!-- =================================================
+               09. GALERÍA INTERACTIVA DE PERFIL
+
+               DIAPOSITIVAS:
+               01. Avatar ilustrado original
+               02. SURA Advisory Forum
+               03. Jornadas Nacionales de Estadística
+
+               INTERACCIONES:
+               - Flechas de navegación
+               - Indicadores inferiores
+               - Avance automático
+               - Deslizamiento táctil
+               - Zoom en fotografías reales
+
+               ARCHIVOS:
+               css/galeria.css
+               js/galeria.js
+               ================================================= -->
+
+          <div
+            class="about-gallery"
+            id="about-gallery"
+            role="region"
+            aria-roledescription="carrusel"
+            aria-label="Galería de Matías Cortés"
+          >
+
+            <!-- Ventana del carrusel -->
+
+            <div
+              class="about-gallery__viewport"
+              id="about-gallery-viewport"
+            >
+
+              <!-- Contenedor de diapositivas -->
+
+              <div
+                class="about-gallery__track"
+                id="about-gallery-track"
+              >
+
+                <!-- =========================================
+                     IMAGEN 01: AVATAR ORIGINAL
+                     ========================================= -->
+
+                <div
+                  class="about-gallery__slide about-gallery__slide--avatar"
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label="1 de 3: Avatar ilustrado"
+                >
+
+                  <div class="about-showcase__avatar-wrap">
+
+                    <div
+                      class="about-avatar"
+                      aria-label="Avatar ilustrado de Matías Cortés"
+                    >
+
+                      <!-- Efectos originales -->
+
+                      <div
+                        class="about-avatar__glow"
+                        aria-hidden="true"
+                      ></div>
+
+                      <div
+                        class="about-avatar__ring about-avatar__ring--outer"
+                        aria-hidden="true"
+                      ></div>
+
+                      <div
+                        class="about-avatar__ring about-avatar__ring--inner"
+                        aria-hidden="true"
+                      ></div>
+
+                      <!-- Avatar ilustrado -->
+
+                      <img
+                        src="../assets/images/profile/avatar-matias-full.png"
+                        alt="Avatar ilustrado de cuerpo completo de Matías Cortés"
+                        class="about-avatar__image"
+                      />
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!-- =========================================
+                     IMAGEN 02: SURA ADVISORY FORUM
+                     ========================================= -->
+
+                <figure
+                  class="about-gallery__slide about-gallery__slide--photo"
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label="2 de 3: SURA Advisory Forum"
+                  aria-hidden="true"
+                >
+
+                  <!--
+                    Botón para ampliar la fotografía.
+
+                    El visor mostrará la imagen original,
+                    conservando sus proporciones.
+                  -->
+
+                  <button
+                    type="button"
+                    class="about-gallery__zoom-trigger"
+                    data-zoom-image
+                    aria-haspopup="dialog"
+                    aria-label="Ampliar fotografía de SURA Advisory Forum"
+                    tabindex="-1"
+                  >
+
+                    <img
+                      src="../assets/images/profile/image.png"
+                      alt="Matías Cortés en el SURA Advisory Forum"
+                      decoding="async"
+                    />
+
+                  </button>
+
+                  <!-- Descripción corregida -->
+
+                  <figcaption class="about-gallery__caption">
+                    SURA Advisory Forum · 3.ª edición
+                  </figcaption>
+
+                </figure>
+
+                <!-- =========================================
+                     IMAGEN 03: CONGRESO SOCHE
+                     ========================================= -->
+
+                <figure
+                  class="about-gallery__slide about-gallery__slide--photo"
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label="3 de 3: Jornadas Nacionales de Estadística"
+                  aria-hidden="true"
+                >
+
+                  <!--
+                    Botón de ampliación de la fotografía
+                    grupal de las Jornadas Nacionales
+                    de Estadística.
+                  -->
+
+                  <button
+                    type="button"
+                    class="about-gallery__zoom-trigger"
+                    data-zoom-image
+                    aria-haspopup="dialog"
+                    aria-label="Ampliar fotografía de las Jornadas Nacionales de Estadística"
+                    tabindex="-1"
+                  >
+
+                    <img
+                      src="../assets/images/profile/soche.png"
+                      alt="Fotografía grupal en las XLVIII Jornadas Nacionales de Estadística, Valparaíso, 2026"
+                      decoding="async"
+                    />
+
+                  </button>
+
+                  <figcaption class="about-gallery__caption">
+                    XLVIII Jornadas Nacionales de Estadística · 2026
+                  </figcaption>
+
+                </figure>
+
+              </div>
+
+            </div>
+
+            <!-- ===========================================
+                 FLECHAS DE NAVEGACIÓN
+                 =========================================== -->
+
+            <button
+              class="about-gallery__arrow about-gallery__arrow--prev"
+              type="button"
+              data-gallery-prev
+              aria-label="Ver fotografía anterior"
+              aria-controls="about-gallery-track"
+            >
+              &#10094;
+            </button>
+
+            <button
+              class="about-gallery__arrow about-gallery__arrow--next"
+              type="button"
+              data-gallery-next
+              aria-label="Ver fotografía siguiente"
+              aria-controls="about-gallery-track"
+            >
+              &#10095;
+            </button>
+
+            <!-- ===========================================
+                 INDICADORES INFERIORES
+                 =========================================== -->
+
+            <div
+              class="about-gallery__dots"
+              role="group"
+              aria-label="Elegir imagen"
+            >
+
+              <!-- Avatar -->
+
+              <button
+                class="about-gallery__dot is-active"
+                type="button"
+                data-gallery-dot="0"
+                aria-label="Mostrar avatar"
+                aria-current="true"
+                aria-controls="about-gallery-track"
+              ></button>
+
+              <!-- SURA -->
+
+              <button
+                class="about-gallery__dot"
+                type="button"
+                data-gallery-dot="1"
+                aria-label="Mostrar fotografía de SURA"
+                aria-controls="about-gallery-track"
+              ></button>
+
+              <!-- SOCHE -->
+
+              <button
+                class="about-gallery__dot"
+                type="button"
+                data-gallery-dot="2"
+                aria-label="Mostrar fotografía del congreso"
+                aria-controls="about-gallery-track"
+              ></button>
+
+            </div>
+
+            <!-- Estado accesible del carrusel -->
+
+            <span
+              class="about-gallery__sr"
+              id="about-gallery-status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></span>
+
+          </div>
+
+          <!-- FIN DEL CARRUSEL -->
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         10. MI ENFOQUE PROFESIONAL
+         ===================================================== -->
+
+    <section
+      class="section about-focus"
+      id="perfil"
+      aria-labelledby="focus-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            01 / Mi enfoque
+          </p>
+
+          <h2 id="focus-title">
+            Estadística, datos
+            e investigación.
+          </h2>
+
+        </header>
+
+        <div class="about-focus__content">
+
+          <!-- Estadística -->
+
+          <article class="info-card">
+
+            <p class="eyebrow">
+              Estadística
+            </p>
+
+            <h3>
+              Modelamiento e inferencia
+            </h3>
+
+            <p>
+              Formación orientada a comprender relaciones,
+              variabilidad e incertidumbre mediante modelos
+              estadísticos y herramientas de inferencia.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Inferencia</span>
+              <span class="tag">Regresión</span>
+              <span class="tag">Modelos lineales</span>
+              <span class="tag">Modelos generalizados</span>
+              <span class="tag">Estadística bayesiana</span>
+
+            </div>
+
+          </article>
+
+          <!-- Ciencia de datos -->
+
+          <article class="info-card">
+
+            <p class="eyebrow">
+              Datos
+            </p>
+
+            <h3>
+              Ciencia de datos
+            </h3>
+
+            <p>
+              Preparación, exploración y modelamiento de
+              datos utilizando herramientas estadísticas
+              y computacionales.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Minería de datos</span>
+              <span class="tag">Visualización</span>
+              <span class="tag">Bases de datos</span>
+              <span class="tag">Simulación</span>
+
+            </div>
+
+          </article>
+
+          <!-- Investigación -->
+
+          <article class="info-card">
+
+            <p class="eyebrow">
+              Investigación
+            </p>
+
+            <h3>
+              Evidencia para problemas reales
+            </h3>
+
+            <p>
+              Me interesa aplicar métodos estadísticos,
+              programación y visualización para estudiar
+              preguntas reales y comunicar resultados de
+              forma clara y reproducible.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Muestreo</span>
+              <span class="tag">Diseño de estudios</span>
+              <span class="tag">Experimentación</span>
+              <span class="tag">Comunicación</span>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         11. COMPETENCIAS
+         ===================================================== -->
+
+    <section
+      class="section skills"
+      id="habilidades"
+      aria-labelledby="skills-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            02 / Competencias
+          </p>
+
+          <h2 id="skills-title">
+            Una formación estadística
+            con herramientas computacionales.
+          </h2>
+
+        </header>
+
+        <div class="skills-grid">
+
+          <!-- Modelamiento estadístico -->
+
+          <article class="info-card">
+
+            <p class="eyebrow">
+              Estadística
+            </p>
+
+            <h3>
+              Modelamiento
+            </h3>
+
+            <div class="tags">
+
+              <span class="tag">Probabilidad</span>
+              <span class="tag">Inferencia</span>
+              <span class="tag">Regresión</span>
+              <span class="tag">Modelos lineales</span>
+              <span class="tag">Modelos lineales generalizados</span>
+              <span class="tag">Estadística bayesiana</span>
+              <span class="tag">Estadística no paramétrica</span>
+              <span class="tag">Datos categóricos</span>
+
+            </div>
+
+          </article>
+
+          <!-- Métodos avanzados -->
+
+          <article class="info-card">
+
+            <p class="eyebrow">
+              Análisis
+            </p>
+
+            <h3>
+              Métodos avanzados
+            </h3>
+
+            <div class="tags">
+
+              <span class="tag">Series de tiempo</span>
+              <span class="tag">Métodos multivariados</span>
+              <span class="tag">Diseño de experimentos</span>
+              <span class="tag">Simulación estadística</span>
+              <span class="tag">Muestreo</span>
+
+            </div>
+
+          </article>
+
+          <!-- Ciencia de datos -->
+
+          <article class="info-card">
+
+            <p class="eyebrow">
+              Data Science
+            </p>
+
+            <h3>
+              Datos y aprendizaje
+            </h3>
+
+            <div class="tags">
+
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Minería de datos</span>
+              <span class="tag">Visualización de datos</span>
+              <span class="tag">Administración de datos</span>
+              <span class="tag">Bases de datos</span>
+
+            </div>
+
+          </article>
+
+          <!-- Herramientas -->
+
+          <article class="info-card">
+
+            <p class="eyebrow">
+              Herramientas
+            </p>
+
+            <h3>
+              Entorno de trabajo
+            </h3>
+
+            <div class="tags">
+
+              <span class="tag">Python</span>
+              <span class="tag">R</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Jupyter</span>
+              <span class="tag">RStudio</span>
+              <span class="tag">VS Code</span>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         12. FORMACIÓN ACADÉMICA
+         ===================================================== -->
+
+    <section
+      class="section education"
+      id="formacion"
+      aria-labelledby="education-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            03 / Formación
+          </p>
+
+          <h2 id="education-title">
+            De los fundamentos
+            al modelamiento.
+          </h2>
+
+        </header>
+
+        <div
+          class="timeline"
+          id="education-timeline"
+        >
+
+          <!-- Primera etapa -->
+
+          <article class="timeline-item info-card">
+
+            <span
+              class="timeline-item__marker"
+              aria-hidden="true"
+            ></span>
+
+            <p class="eyebrow">
+              Base matemática y computacional
+            </p>
+
+            <h3>
+              Fundamentos
+            </h3>
+
+            <p>
+              Matemática, cálculo, álgebra, álgebra lineal,
+              descripción de datos, computación,
+              administración de datos y análisis numérico.
+            </p>
+
+          </article>
+
+          <!-- Segunda etapa -->
+
+          <article class="timeline-item info-card">
+
+            <span
+              class="timeline-item__marker"
+              aria-hidden="true"
+            ></span>
+
+            <p class="eyebrow">
+              Núcleo estadístico
+            </p>
+
+            <h3>
+              Probabilidad e inferencia
+            </h3>
+
+            <p>
+              Probabilidad, inferencia, métodos estadísticos,
+              simulación, muestreo, estadística bayesiana y
+              diseño y análisis de encuestas.
+            </p>
+
+          </article>
+
+          <!-- Tercera etapa -->
+
+          <article class="timeline-item info-card">
+
+            <span
+              class="timeline-item__marker"
+              aria-hidden="true"
+            ></span>
+
+            <p class="eyebrow">
+              Modelamiento y Data Science
+            </p>
+
+            <h3>
+              Métodos avanzados
+            </h3>
+
+            <p>
+              Modelos lineales, diseño de experimentos,
+              machine learning, series de tiempo,
+              métodos multivariados, datos categóricos,
+              estadística no paramétrica y modelos
+              lineales generalizados.
+            </p>
+
+          </article>
+
+          <!-- Cuarta etapa -->
+
+          <article class="timeline-item info-card">
+
+            <span
+              class="timeline-item__marker"
+              aria-hidden="true"
+            ></span>
+
+            <p class="eyebrow">
+              Integración profesional
+            </p>
+
+            <h3>
+              Investigación y aplicación
+            </h3>
+
+            <p>
+              Visualización de datos, seminarios de
+              especialización, talleres de estadística y
+              trabajo de titulación orientados a integrar
+              metodología, análisis y comunicación.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         13. INVESTIGACIÓN
+         ===================================================== -->
+
+    <section
+      class="section research-profile"
+      id="investigacion"
+      aria-labelledby="research-title"
+    >
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <p class="eyebrow">
+            04 / Investigación
+          </p>
+
+          <h2 id="research-title">
+            Preguntas, modelos
+            y evidencia.
+          </h2>
+
+        </header>
+
+        <div class="research-profile__content">
+
+          <article class="info-card">
+
+            <p class="eyebrow">
+              Investigación aplicada
+            </p>
+
+            <h3>
+              Aprender haciendo.
+            </h3>
+
+            <p>
+              Mi formación incorpora seminarios de
+              especialización, talleres de estadística y
+              trabajo de titulación, permitiendo integrar
+              teoría estadística, programación, análisis y
+              comunicación en problemas de investigación.
+            </p>
+
+            <div class="tags">
+
+              <span class="tag">Investigación</span>
+              <span class="tag">Modelamiento</span>
+              <span class="tag">Reproducibilidad</span>
+              <span class="tag">Comunicación de resultados</span>
+
+            </div>
+
+            <a
+              href="./proyectos.html"
+              class="button button--secondary"
+            >
+              Explorar proyectos
+              <span aria-hidden="true">→</span>
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         14. CURRÍCULUM
+         ===================================================== -->
+
+    <section
+      class="section cv-section"
+      id="cv"
+      aria-labelledby="cv-title"
+    >
+
+      <div class="container">
+
+        <p class="eyebrow">
+          05 / Curriculum vitae
+        </p>
+
+        <h2 id="cv-title">
+          Conoce mi trayectoria completa.
+        </h2>
+
+        <p>
+          Formación académica, proyectos, herramientas,
+          investigación y antecedentes profesionales
+          disponibles en un único documento.
+        </p>
+
+        <a
+          href="../assets/cv/CV_Matias_Cortes.pdf"
+          class="button button--primary"
+          download
+        >
+          Descargar CV
+          <span aria-hidden="true">↓</span>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         15. CONTACTO
+         ===================================================== -->
+
+    <section
+      class="section contact"
+      id="contacto"
+      aria-labelledby="contact-title"
+    >
+
+      <div class="container">
+
+        <p class="eyebrow">
+          06 / Contacto
+        </p>
+
+        <h2 id="contact-title">
+          Conectemos.
+        </h2>
+
+        <p>
+          Si quieres conversar sobre datos, estadística,
+          investigación o algún proyecto, puedes encontrarme
+          en los siguientes canales.
+        </p>
+
+        <!--
+          Pendiente:
+          GitHub
+          LinkedIn
+          Correo electrónico
+        -->
+
+        <div class="contact__links"></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+       16. PIE DE PÁGINA
+       ===================================================== -->
+
+  <footer class="footer">
+
+    <div class="container footer__container">
+
+      <p>
+        Matías Cortés
+      </p>
+
+      <p>
+        Estadística & Ciencia de Datos
+      </p>
+
+      <p>
+        © <span id="current-year"></span>
+      </p>
+
+    </div>
+
+  </footer>
+
+  <!-- =====================================================
+       17. VISOR AMPLIADO DE FOTOGRAFÍAS
+
+       Esta ventana se abre al seleccionar una foto
+       de SURA o de las Jornadas Nacionales de Estadística.
+
+       El navegador controla su apertura como modal.
+
+       La interacción se programará en galeria.js.
+       ===================================================== -->
+
+  <dialog
+    class="photo-lightbox"
+    id="photo-lightbox"
+    aria-label="Fotografía ampliada"
+  >
+
+    <!-- Botón para cerrar -->
+
+    <button
+      class="photo-lightbox__close"
+      type="button"
+      data-zoom-close
+      aria-label="Cerrar fotografía ampliada"
+    >
+      &times;
+    </button>
+
+    <!-- Imagen original ampliada -->
+
+    <img
+      class="photo-lightbox__image"
+      data-zoom-full
+      alt=""
+    />
+
+  </dialog>
+
+  <!-- =====================================================
+       18. JAVASCRIPT ORIGINAL
+       ===================================================== -->
+
+  <!-- Navegación -->
+
+  <script
+    src="../js/navigation.js"
+    defer
+  ></script>
+
+  <!-- Animaciones -->
+
+  <script
+    src="../js/animations.js"
+    defer
+  ></script>
+
+  <!-- Interacción del avatar -->
+
+  <script
+    src="../js/avatar-interaction.js"
+    defer
+  ></script>
+
+  <!-- Funciones generales -->
+
+  <script
+    src="../js/main.js"
+    defer
+  ></script>
+
+  <!-- Fórmulas matemáticas -->
+
+  <script
+    src="../js/formulas.js"
+    defer
+  ></script>
+
+  <!-- =====================================================
+       19. JAVASCRIPT DEL CARRUSEL Y VISOR
+
+       Funcionalidades:
+       - Navegación con flechas
+       - Cambio automático
+       - Indicadores inferiores
+       - Deslizamiento táctil
+       - Ampliación de fotografías
+       - Cierre del visor
+       - Pausa automática mientras el visor esté abierto
+       - Accesibilidad de los controles
+       ===================================================== -->
+
+  <script
+    src="../js/galeria.js"
+    defer
+  ></script>
+
+</body>
+</html>

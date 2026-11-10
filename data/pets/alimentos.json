@@ -1,0 +1,186 @@
+[
+  {
+    "alimento": "chocolate",
+    "categoria": "prohibido",
+    "toxicidad": "neurotoxico;cardiotoxico",
+    "sistema_afectado": "sistema nervioso;corazón",
+    "comentario": "Contiene teobromina; produce convulsiones y arritmias.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "cacao puro",
+    "categoria": "prohibido",
+    "toxicidad": "neurotoxico;cardiotoxico",
+    "sistema_afectado": "corazón;sistema nervioso",
+    "comentario": "Extremadamente rico en teobromina.",
+    "recomendacion": "prohibido absoluto"
+  },
+  {
+    "alimento": "xilitol",
+    "categoria": "prohibido",
+    "toxicidad": "hepatotoxico;hipoglucemia severa",
+    "sistema_afectado": "hígado;metabolismo",
+    "comentario": "Desencadena liberación masiva de insulina y falla hepática.",
+    "recomendacion": "prohibido absoluto"
+  },
+  {
+    "alimento": "alcohol",
+    "categoria": "prohibido",
+    "toxicidad": "neurodepresor;hepatotoxico",
+    "sistema_afectado": "hígado;SNC",
+    "comentario": "Pequeñas cantidades pueden ser letales.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "cafeína",
+    "categoria": "prohibido",
+    "toxicidad": "cardiotoxico;neurotoxico",
+    "sistema_afectado": "corazón;SNC",
+    "comentario": "Provoca taquicardia y convulsiones.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "bebidas energéticas",
+    "categoria": "prohibido",
+    "toxicidad": "cardiotoxico;neurotoxico",
+    "sistema_afectado": "corazón;SNC",
+    "comentario": "Altas dosis de cafeína y estimulantes.",
+    "recomendacion": "prohibido absoluto"
+  },
+  {
+    "alimento": "tabaco/nicotina",
+    "categoria": "prohibido",
+    "toxicidad": "neurotoxico",
+    "sistema_afectado": "SNC",
+    "comentario": "Causa tremores, convulsiones y muerte.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "cebolla",
+    "categoria": "prohibido",
+    "toxicidad": "hemolitico",
+    "sistema_afectado": "glóbulos rojos",
+    "comentario": "Produce anemia hemolítica oxidativa.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "ajo",
+    "categoria": "prohibido",
+    "toxicidad": "hemolitico",
+    "sistema_afectado": "glóbulos rojos",
+    "comentario": "Daño oxidativo severo.",
+    "recomendacion": "prohibido absoluto"
+  },
+  {
+    "alimento": "puerro",
+    "categoria": "prohibido",
+    "toxicidad": "hemolitico",
+    "sistema_afectado": "sangre",
+    "comentario": "Misma familia de tóxicos que cebolla/ajo.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "cebollín",
+    "categoria": "prohibido",
+    "toxicidad": "hemolitico",
+    "sistema_afectado": "sangre",
+    "comentario": "Incluso en pequeñas cantidades es peligroso.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "nuez de macadamia",
+    "categoria": "prohibido",
+    "toxicidad": "neurotoxico",
+    "sistema_afectado": "SNC",
+    "comentario": "Causa debilidad, temblores, fiebre.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "nuez moscada",
+    "categoria": "prohibido",
+    "toxicidad": "neurotoxico",
+    "sistema_afectado": "SNC",
+    "comentario": "Contiene miristicina; induce alucinaciones y convulsiones.",
+    "recomendacion": "evitar totalmente"
+  },
+  {
+    "alimento": "uva",
+    "categoria": "prohibido",
+    "toxicidad": "nefrotoxico",
+    "sistema_afectado": "riñones",
+    "comentario": "Insuficiencia renal aguda.",
+    "recomendacion": "prohibido absoluto"
+  },
+  {
+    "alimento": "uvas pasas",
+    "categoria": "prohibido",
+    "toxicidad": "nefrotoxico",
+    "sistema_afectado": "riñones",
+    "comentario": "Pequeñas cantidades pueden ser fatales.",
+    "recomendacion": "prohibido absoluto"
+  },
+  {
+    "alimento": "huesos cocidos",
+    "categoria": "prohibido",
+    "toxicidad": "obstructivo;riesgo perforación",
+    "sistema_afectado": "GI",
+    "comentario": "Se astillan y perforan intestino.",
+    "recomendacion": "evitar completamente"
+  },
+  {
+    "alimento": "carozos/frutas con semillas",
+    "categoria": "prohibido",
+    "toxicidad": "obstructivo;cianuro",
+    "sistema_afectado": "GI;metabolismo",
+    "comentario": "Riesgo de obstrucción y toxicidad.",
+    "recomendacion": "prohibido absoluto"
+  },
+  {
+    "alimento": "aguacate (pulpa)",
+    "categoria": "moderado",
+    "toxicidad": "alto en grasa",
+    "sistema_afectado": "páncreas",
+    "comentario": "Riesgo de pancreatitis si se abusa.",
+    "recomendacion": "muy pequeñas cantidades"
+  },
+  {
+    "alimento": "plátano",
+    "categoria": "moderado",
+    "toxicidad": "alto en azúcar",
+    "sistema_afectado": "metabolismo",
+    "comentario": "Aporta potasio; no exceder.",
+    "recomendacion": "2–3 rodajas"
+  },
+  {
+    "alimento": "queso bajo en grasa",
+    "categoria": "moderado",
+    "toxicidad": "intolerancia lactosa",
+    "sistema_afectado": "GI",
+    "comentario": "Puede producir diarrea.",
+    "recomendacion": "pequeñas porciones"
+  },
+  {
+    "alimento": "zanahoria",
+    "categoria": "permitido",
+    "toxicidad": "ninguno",
+    "sistema_afectado": "ninguno",
+    "comentario": "Fibra saludable.",
+    "recomendacion": "libre en moderación"
+  },
+  {
+    "alimento": "pollo cocido",
+    "categoria": "permitido",
+    "toxicidad": "ninguno",
+    "sistema_afectado": "ninguno",
+    "comentario": "Fuente magra de proteína.",
+    "recomendacion": "seguro diariamente"
+  },
+  {
+    "alimento": "arándanos",
+    "categoria": "permitido",
+    "toxicidad": "ninguno",
+    "sistema_afectado": "ninguno",
+    "comentario": "Antioxidante natural.",
+    "recomendacion": "snack saludable"
+  }
+]

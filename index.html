@@ -1,0 +1,604 @@
+<!doctype html>
+
+<html lang="es" data-theme="dark">
+  <head>
+    <!-- =====================================================
+         META
+         ===================================================== -->
+
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="description"
+      content="Portafolio de Matías Cortés, Ingeniería en Estadística y Ciencia de Datos en la Universidad de Valparaíso. Modelamiento estadístico, ciencia de datos, análisis espacial, visualización e investigación aplicada."
+    />
+
+    <meta
+      name="author"
+      content="Matías Cortés"
+    />
+
+    <meta
+      name="theme-color"
+      content="#050507"
+      id="theme-color-meta"
+    />
+
+    <meta
+      name="color-scheme"
+      content="dark light"
+    />
+
+    <title>
+      Matías Cortés | Estadística & Ciencia de Datos
+    </title>
+
+    <!-- =====================================================
+         THEME
+
+         Se carga antes del CSS para evitar
+         flash del tema incorrecto.
+         ===================================================== -->
+
+    <script src="js/theme.js"></script>
+
+    <!-- =====================================================
+         FONTS
+         ===================================================== -->
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =====================================================
+         CSS
+         ===================================================== -->
+
+    <link
+      rel="stylesheet"
+      href="css/variables.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="css/base.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="css/components.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="css/sections.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="css/animations.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="css/responsive.css"
+    />
+
+    <!-- BEGIN KATEX
+         Render matemático profesional para las fórmulas
+         flotantes del portfolio.
+    -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.css"
+      integrity="sha384-u1zONI5gPXUx0UKI62c75/zww972y0v2rSK5ZYlVdS6xEuWDeZWUI66v6t1gvlXJ"
+      crossorigin="anonymous"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.js"
+      integrity="sha384-ykMNcWQhhTUb0YV9SPpPUFURHZ+tWmubkakGBP+OgNK/UXdO2gtzglWx0Rj9hnO3"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- END KATEX -->
+  </head>
+
+  <body>
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
+
+    <header
+      class="site-header"
+      id="site-header"
+    >
+      <nav
+        class="navbar container"
+        aria-label="Navegación principal"
+      >
+        <!-- Brand -->
+
+        <a
+          class="navbar__brand"
+          href="./index.html"
+          aria-label="Matías Cortés — Inicio"
+        >
+          MC<span>.</span>
+        </a>
+
+        <!-- Navigation -->
+
+        <ul class="navbar__links">
+          <li>
+            <a
+              href="./index.html"
+              aria-current="page"
+            >
+              Inicio
+            </a>
+          </li>
+
+          <li>
+            <a href="./pages/proyectos.html">
+              Proyectos
+            </a>
+          </li>
+
+          <li>
+            <a href="./pages/sobre-mi.html">
+              Sobre mí
+            </a>
+          </li>
+        </ul>
+
+        <!-- Actions -->
+
+        <div class="navbar__actions">
+          <!-- =============================================
+               THEME TOGGLE
+               ============================================= -->
+
+          <button
+            class="navbar__theme"
+            id="theme-toggle"
+            type="button"
+            aria-label="Cambiar a tema claro"
+            aria-pressed="false"
+          >
+            <!-- Sun -->
+
+            <svg
+              class="theme-toggle__icon theme-toggle__icon--sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+              ></circle>
+
+              <path
+                d="
+                  M12 2v2
+                  M12 20v2
+                  M4.93 4.93l1.41 1.41
+                  M17.66 17.66l1.41 1.41
+                  M2 12h2
+                  M20 12h2
+                  M4.93 19.07l1.41-1.41
+                  M17.66 6.34l1.41-1.41
+                "
+              ></path>
+            </svg>
+
+            <!-- Moon -->
+
+            <svg
+              class="theme-toggle__icon theme-toggle__icon--moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="
+                  M21 12.79
+                  A9 9 0 1 1
+                  11.21 3
+                  A7 7 0 0 0
+                  21 12.79
+                "
+              ></path>
+            </svg>
+          </button>
+
+          <!-- CV -->
+
+          <a
+            href="./assets/cv/CV_Matias_Cortes.pdf"
+            class="navbar__cv"
+            download
+          >
+            CV
+          </a>
+
+          <!-- Mobile -->
+
+          <button
+            class="navbar__menu"
+            id="menu-button"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main>
+      <!-- ===================================================
+           01. HERO
+           =================================================== -->
+
+      <section
+        class="hero"
+        id="inicio"
+        aria-labelledby="hero-title"
+      >
+        <!-- ===============================================
+             MATHEMATICAL BACKGROUND
+
+             formulas.js crea aquí fórmulas de:
+             - probabilidad
+             - inferencia
+             - regresión
+             - álgebra matricial
+             - modelos espaciales
+             - machine learning
+
+             Siempre decorativo.
+             =============================================== -->
+
+        <div
+          class="hero__formulas"
+          id="hero-formulas"
+          aria-hidden="true"
+        ></div>
+
+        <!-- ===============================================
+             STATISTICAL BRAIN
+
+             brain.js controla completamente este canvas.
+             =============================================== -->
+
+        <div
+          class="hero__visual"
+          aria-hidden="true"
+        >
+          <canvas id="brain-canvas"></canvas>
+        </div>
+
+        <!-- ===============================================
+             HERO CONTENT
+             =============================================== -->
+
+        <div class="hero__container">
+          <div class="hero__content">
+            <!-- Identity -->
+
+            <p class="eyebrow">
+              Matías Cortés
+            </p>
+
+            <!-- Main title -->
+
+            <h1 id="hero-title">
+              Estadística.
+              <br />
+              Ciencia de datos.
+            </h1>
+
+            <!-- Value proposition -->
+
+            <p class="hero__description">
+              Transformo datos complejos en modelos,
+              evidencia y decisiones informadas.
+            </p>
+
+            <!-- Professional areas -->
+
+            <p class="hero__subdescription">
+              Modelamiento estadístico, análisis espacial,
+              ciencia de datos e investigación aplicada.
+            </p>
+
+            <!-- ===========================================
+                 UNIVERSITY
+                 =========================================== -->
+
+            <div
+              class="hero__affiliation"
+              aria-label="Formación académica en la Universidad de Valparaíso"
+            >
+              <div
+                class="hero__affiliation-mark"
+                aria-hidden="true"
+              >
+                UV
+              </div>
+
+              <div class="hero__affiliation-text">
+                <span class="hero__affiliation-label">
+                  Formación académica
+                </span>
+
+                <strong>
+                  Universidad de Valparaíso
+                </strong>
+
+                <small>
+                  Ingeniería en Estadística y Ciencia de Datos
+                </small>
+              </div>
+            </div>
+
+            <!-- ===========================================
+                 ACTIONS
+                 =========================================== -->
+
+            <div class="hero__actions">
+              <a
+                href="./pages/proyectos.html"
+                class="button button--primary"
+              >
+                Ver proyectos
+
+                <span aria-hidden="true">
+                  →
+                </span>
+              </a>
+
+              <a
+                href="./pages/sobre-mi.html"
+                class="button button--secondary"
+              >
+                Sobre mí
+
+                <span aria-hidden="true">
+                  →
+                </span>
+              </a>
+
+              <a
+                href="./assets/cv/CV_Matias_Cortes.pdf"
+                class="button button--secondary"
+                download
+              >
+                Descargar CV
+
+                <span aria-hidden="true">
+                  ↓
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           02. EXPLORE
+           =================================================== -->
+
+      <section
+        class="section home-explore"
+        id="explorar"
+        aria-labelledby="explore-title"
+      >
+        <div class="container">
+          <!-- Header -->
+
+          <header class="section-header">
+            <p class="eyebrow">
+              Explorar
+            </p>
+
+            <h2 id="explore-title">
+              Conoce mi trabajo.
+            </h2>
+
+            <p>
+              Proyectos y formación que muestran cómo conecto
+              estadística, programación, visualización e
+              investigación para trabajar con problemas reales.
+            </p>
+          </header>
+
+          <!-- Main routes -->
+
+          <div class="home-explore__grid">
+            <!-- =============================================
+                 PROJECTS
+                 ============================================= -->
+
+            <a
+              href="./pages/proyectos.html"
+              class="home-explore__item"
+            >
+              <span class="home-explore__number">
+                01
+              </span>
+
+              <div>
+                <p class="eyebrow">
+                  Trabajo
+                </p>
+
+                <h3>
+                  Proyectos
+                </h3>
+
+                <p>
+                  Modelos, análisis, visualizaciones,
+                  investigación y productos construidos
+                  a partir de datos.
+                </p>
+              </div>
+
+              <span
+                class="home-explore__arrow"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
+
+            <!-- =============================================
+                 ABOUT
+                 ============================================= -->
+
+            <a
+              href="./pages/sobre-mi.html"
+              class="home-explore__item"
+            >
+              <span class="home-explore__number">
+                02
+              </span>
+
+              <div>
+                <p class="eyebrow">
+                  Perfil
+                </p>
+
+                <h3>
+                  Sobre mí
+                </h3>
+
+                <p>
+                  Formación en la Universidad de Valparaíso,
+                  competencias estadísticas, ciencia de datos,
+                  investigación y trayectoria académica.
+                </p>
+              </div>
+
+              <span
+                class="home-explore__arrow"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+      <div class="container footer__container">
+        <p>
+          Matías Cortés
+        </p>
+
+        <p>
+          Universidad de Valparaíso
+          · Estadística & Ciencia de Datos
+        </p>
+
+        <p>
+          © <span id="current-year"></span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+         JAVASCRIPT
+
+         theme.js
+         → ya fue cargado en HEAD
+
+         formulas.js
+         → fórmulas estadísticas ambientales
+
+         brain.js
+         → cerebro estadístico procedural
+
+         navigation.js
+         → navbar
+
+         animations.js
+         → reveal / transitions
+
+         main.js
+         → aplicación global
+         ===================================================== -->
+
+    <!-- Mathematical background -->
+
+    <!-- Statistical brain -->
+
+    <script
+      src="js/brain.js"
+      defer
+    ></script>
+
+    <!-- Navigation -->
+
+    <script
+      src="js/navigation.js"
+      defer
+    ></script>
+
+    <!-- Animations -->
+
+    <script
+      src="js/animations.js"
+      defer
+    ></script>
+
+    <!-- Global -->
+
+    <script
+      src="js/main.js"
+      defer
+    ></script>
+
+    <!-- =====================================================
+         MATHEMATICAL BACKGROUND
+         KaTeX + física de movimiento continuo
+         ===================================================== -->
+
+    <script
+      src="js/formulas.js"
+      defer
+    ></script>
+  </body>
+</html>

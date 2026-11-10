@@ -1,0 +1,34 @@
+[
+    {
+        "id":  "incendios-lgcp",
+        "titulo":  "Igniciones forestales en Chile",
+        "subtitulo":  "Procesos de Cox log-gaussianos (LGCP)",
+        "descripcion":  "Análisis espacio-temporal de 109.884 igniciones administrativas normalizadas, con exploración regional y modelamiento estadístico.",
+        "categoria":  "Investigación",
+        "estado":  "En desarrollo",
+        "imagen":  "../assets/images/projects/incendios/Valparaiso.png",
+        "enlace":  "../projects/incendios.html",
+        "etiquetas":  [
+                          "LGCP",
+                          "INLA–SPDE",
+                          "Geodatos"
+                      ],
+        "detalle":  "2002–2025 · 6 regiones"
+    },
+    {
+        "id":  "pets-catalogo",
+        "titulo":  "Pets · Explorador de razas caninas",
+        "subtitulo":  "Catálogo documental y análisis de características caninas",
+        "descripcion":  "137 razas documentadas, 89 fichas con 123 variables, comparación, mapa por país de origen y consulta de alimentos.",
+        "categoria":  "Desarrollo",
+        "estado":  "Versión inicial",
+        "imagen":  "../assets/images/projects/pets/affenpinscher/1.webp",
+        "enlace":  "../projects/pets.html",
+        "etiquetas":  [
+                          "JavaScript",
+                          "Datos estructurados",
+                          "Visualización"
+                      ],
+        "detalle":  "137 razas · 89 fichas estructuradas"
+    }
+]

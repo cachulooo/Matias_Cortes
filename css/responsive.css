@@ -1,0 +1,2268 @@
+/* =========================================================
+   MATÍAS CORTÉS — PORTFOLIO
+   RESPONSIVE SYSTEM
+
+   Este archivo es la última capa CSS que se carga.
+
+   Su función es adaptar TODO el portafolio a:
+
+   - notebooks
+   - tablets
+   - teléfonos
+   - pantallas muy pequeñas
+   - dispositivos táctiles
+   - usuarios con movimiento reducido
+
+   IMPORTANTE:
+   responsive.css se carga después de:
+
+   variables.css
+   base.css
+   components.css
+   sections.css / pages.css
+   animations.css
+
+   Por eso las reglas de este archivo tienen la última
+   palabra cuando cambia el tamaño de pantalla.
+   ========================================================= */
+
+
+/* =========================================================
+   01. NOTEBOOKS GRANDES
+   <= 1200px
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  /* -------------------------------------------------------
+     SISTEMA GLOBAL
+
+     Reducimos ligeramente el ancho máximo del contenido
+     para mantener márgenes cómodos en notebooks.
+     ------------------------------------------------------- */
+
+  :root {
+    --container-width: 1100px;
+  }
+
+
+  /* -------------------------------------------------------
+     NAVBAR
+     ------------------------------------------------------- */
+
+  .navbar__links {
+    gap:
+      var(--space-6);
+  }
+
+
+  /* -------------------------------------------------------
+     HOME
+
+     El cerebro puede seguir ocupando buena parte de la
+     derecha, pero evitamos que invada demasiado el texto.
+     ------------------------------------------------------- */
+
+  .hero__content {
+    width:
+      min(
+        100%,
+        620px
+      );
+  }
+
+
+  .hero__visual {
+    width:
+      min(
+        61vw,
+        900px
+      );
+  }
+
+
+  /* -------------------------------------------------------
+     SOBRE MÍ
+
+     Usamos la arquitectura ACTUAL:
+     about-showcase, no about-hero.
+     ------------------------------------------------------- */
+
+  .about-showcase__grid {
+    grid-template-columns:
+      minmax(0, 0.95fr)
+      minmax(380px, 1.05fr);
+
+    gap:
+      var(--space-12);
+  }
+
+
+  .about-showcase__scene {
+    min-height:
+      560px;
+  }
+
+
+  #avatar-container {
+    min-height:
+      560px;
+  }
+
+
+  /* -------------------------------------------------------
+     CASOS DE ESTUDIO
+     ------------------------------------------------------- */
+
+  .project-detail__content {
+    gap:
+      var(--space-16);
+  }
+}
+
+
+/* =========================================================
+   02. NOTEBOOK PEQUEÑO / TABLET HORIZONTAL
+   <= 1024px
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+  /* -------------------------------------------------------
+     VARIABLES
+
+     Navbar ligeramente más baja.
+     ------------------------------------------------------- */
+
+  :root {
+    --navbar-height: 74px;
+  }
+
+
+  /* -------------------------------------------------------
+     NAVBAR
+     ------------------------------------------------------- */
+
+  .navbar {
+    gap:
+      var(--space-5);
+  }
+
+
+  .navbar__links {
+    gap:
+      var(--space-5);
+  }
+
+
+  .navbar__links a {
+    font-size:
+      var(--text-sm);
+  }
+
+
+  /* -------------------------------------------------------
+     BOTÓN DE TEMA
+     ------------------------------------------------------- */
+
+  .navbar__theme {
+    width:
+      40px;
+
+    height:
+      40px;
+  }
+
+
+  /* -------------------------------------------------------
+     HOME HERO
+
+     Todavía usamos composición horizontal.
+     ------------------------------------------------------- */
+
+  .hero__content {
+    width:
+      min(
+        100%,
+        575px
+      );
+  }
+
+
+  .hero__content h1 {
+    font-size:
+      clamp(
+        3.6rem,
+        7vw,
+        5.7rem
+      );
+  }
+
+
+  .hero__visual {
+    right:
+      -7%;
+
+    width:
+      67vw;
+
+    opacity:
+      0.86;
+  }
+
+
+  /*
+     Las fórmulas se vuelven un poco más sutiles porque
+     tenemos menos espacio disponible.
+  */
+
+  .hero__formulas {
+    opacity:
+      0.82;
+  }
+
+
+  /*
+     IMPORTANTE:
+     Antes aquí había rgba(5,5,7,...).
+
+     Eso rompía el tema claro.
+
+     Ahora utilizamos las variables del sistema de temas.
+  */
+
+  .hero::after {
+    background:
+      linear-gradient(
+        90deg,
+
+        var(--hero-overlay-strong)
+        0%,
+
+        var(--hero-overlay-medium)
+        34%,
+
+        var(--hero-overlay-soft)
+        60%,
+
+        transparent
+        86%
+      );
+  }
+
+
+  /* -------------------------------------------------------
+     EXPLORAR
+     ------------------------------------------------------- */
+
+  .home-explore__item {
+    gap:
+      var(--space-5);
+  }
+
+
+  /* -------------------------------------------------------
+     PROYECTOS
+     ------------------------------------------------------- */
+
+  .projects-grid {
+    gap:
+      var(--space-5);
+  }
+
+
+  /* -------------------------------------------------------
+     SOBRE MÍ
+     ------------------------------------------------------- */
+
+  .about-showcase__grid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(350px, 0.9fr);
+
+    gap:
+      var(--space-8);
+  }
+
+
+  .about-showcase__scene {
+    min-height:
+      520px;
+  }
+
+
+  #avatar-container {
+    min-height:
+      520px;
+  }
+
+
+  /*
+     Acercamos algunos elementos flotantes al avatar.
+  */
+
+  .tech-card--python {
+    left:
+      -1%;
+  }
+
+
+  .tech-card--ds {
+    right:
+      -1%;
+  }
+
+
+  .tech-card--ml {
+    right:
+      0;
+  }
+
+
+  /* -------------------------------------------------------
+     SKILLS
+     ------------------------------------------------------- */
+
+  .skills-grid {
+    gap:
+      var(--space-5);
+  }
+
+
+  /* -------------------------------------------------------
+     CASOS DE ESTUDIO
+     ------------------------------------------------------- */
+
+  .project-detail__content {
+    grid-template-columns:
+      150px
+      minmax(0, 1fr);
+
+    gap:
+      var(--space-10);
+  }
+}
+
+
+/* =========================================================
+   03. TABLET
+   <= 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  /* =======================================================
+     MENÚ MÓVIL
+     ======================================================= */
+
+  /*
+     Desde este punto dejamos de mostrar navegación horizontal
+     y activamos el botón hamburguesa.
+  */
+
+  .navbar__menu {
+    display:
+      inline-flex;
+  }
+
+
+  /*
+     Cuando el menú está cerrado permanece fuera de vista.
+
+     navigation.js agregará:
+
+     .navbar.is-open
+  */
+
+  .navbar__links {
+    position:
+      fixed;
+
+    top:
+      calc(
+        var(--navbar-height)
+        +
+        var(--space-3)
+      );
+
+    left:
+      var(--container-padding);
+
+    right:
+      var(--container-padding);
+
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+
+    gap:
+      0;
+
+    padding:
+      var(--space-3);
+
+    border:
+      1px solid
+      var(--color-border);
+
+    border-radius:
+      var(--radius-lg);
+
+    /*
+       Esta variable funciona tanto en dark como light.
+    */
+
+    background:
+      var(--surface-glass-strong);
+
+    backdrop-filter:
+      blur(24px);
+
+    -webkit-backdrop-filter:
+      blur(24px);
+
+    box-shadow:
+      var(--shadow-card-hover);
+
+    opacity:
+      0;
+
+    visibility:
+      hidden;
+
+    pointer-events:
+      none;
+
+    transform:
+      translateY(-12px)
+      scale(0.98);
+
+    transform-origin:
+      top center;
+
+    transition:
+      opacity
+        var(--transition-base),
+
+      visibility
+        var(--transition-base),
+
+      transform
+        var(--transition-base);
+  }
+
+
+  .navbar__links li {
+    width:
+      100%;
+  }
+
+
+  .navbar__links a {
+    width:
+      100%;
+
+    min-height:
+      54px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    padding-inline:
+      var(--space-4);
+
+    border-radius:
+      var(--radius-md);
+
+    font-size:
+      var(--text-base);
+  }
+
+
+  /*
+     En menú móvil eliminamos el underline animado del
+     escritorio porque ya no aporta valor.
+  */
+
+  .navbar__links a::after {
+    display:
+      none;
+  }
+
+
+  .navbar__links a:hover {
+    background:
+      var(--explore-card-gradient);
+  }
+
+
+  .navbar__links
+  a[aria-current="page"] {
+    color:
+      var(--color-primary-light);
+
+    background:
+      var(--explore-card-gradient);
+  }
+
+
+  /* =======================================================
+     MENÚ ABIERTO
+     ======================================================= */
+
+  .navbar.is-open
+  .navbar__links {
+    opacity:
+      1;
+
+    visibility:
+      visible;
+
+    pointer-events:
+      auto;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+
+  /*
+     navigation.js puede agregar body.menu-open.
+     Bloqueamos el scroll mientras el menú está abierto.
+  */
+
+  body.menu-open {
+    overflow:
+      hidden;
+  }
+
+
+  /* =======================================================
+     HAMBURGUESA → X
+     ======================================================= */
+
+  .navbar.is-open
+  .navbar__menu
+  span:first-child {
+    transform:
+      rotate(45deg);
+  }
+
+
+  .navbar.is-open
+  .navbar__menu
+  span:last-child {
+    transform:
+      rotate(-45deg);
+  }
+
+
+  /* =======================================================
+     HOME HERO
+     ======================================================= */
+
+  /*
+     En tablet el texto pasa a dominar la parte superior
+     y el cerebro empieza a desplazarse hacia abajo.
+  */
+
+  .hero {
+    min-height:
+      auto;
+
+    padding-top:
+      calc(
+        var(--navbar-height)
+        +
+        var(--space-20)
+      );
+
+    padding-bottom:
+      var(--space-24);
+  }
+
+
+  .hero__container {
+    min-height:
+      760px;
+
+    align-items:
+      flex-start;
+  }
+
+
+  .hero__content {
+    width:
+      100%;
+
+    max-width:
+      650px;
+  }
+
+
+  .hero__content h1 {
+    font-size:
+      clamp(
+        3.6rem,
+        10vw,
+        6rem
+      );
+  }
+
+
+  /* -------------------------------------------------------
+     CEREBRO
+
+     Baja hacia el fondo de la pantalla para no competir
+     con la presentación.
+     ------------------------------------------------------- */
+
+  .hero__visual {
+    top:
+      auto;
+
+    right:
+      -13%;
+
+    bottom:
+      -5%;
+
+    width:
+      82vw;
+
+    height:
+      62%;
+
+    opacity:
+      0.70;
+  }
+
+
+  /* -------------------------------------------------------
+     FÓRMULAS
+     ------------------------------------------------------- */
+
+  .hero__formulas {
+    opacity:
+      0.65;
+  }
+
+
+  /*
+     Como el cerebro queda debajo, el overlay cambia desde
+     horizontal a vertical.
+  */
+
+  .hero::after {
+    background:
+      linear-gradient(
+        180deg,
+
+        var(--hero-overlay-strong)
+        0%,
+
+        var(--hero-overlay-medium)
+        44%,
+
+        var(--hero-overlay-soft)
+        68%,
+
+        transparent
+        90%
+      );
+  }
+
+
+  /* =======================================================
+     EXPLORAR
+     ======================================================= */
+
+  .home-explore {
+    min-height:
+      auto;
+  }
+
+
+  .home-explore__grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .home-explore__item {
+    min-height:
+      185px;
+  }
+
+
+  /* =======================================================
+     HERO DE PÁGINAS INTERNAS
+     ======================================================= */
+
+  .page-hero {
+    min-height:
+      auto;
+
+    padding-top:
+      calc(
+        var(--navbar-height)
+        +
+        var(--space-20)
+      );
+
+    padding-bottom:
+      var(--space-20);
+  }
+
+
+  .page-hero h1 {
+    font-size:
+      clamp(
+        3.8rem,
+        11vw,
+        6rem
+      );
+  }
+
+
+  /*
+     El panel abstracto de Proyectos continúa visible,
+     pero con menos presencia.
+  */
+
+  .page-hero--projects
+  .container::after {
+    right:
+      -8%;
+
+    opacity:
+      0.36;
+  }
+
+
+  .page-hero--projects
+  .container::before {
+    right:
+      -5%;
+
+    opacity:
+      0.24;
+  }
+
+
+  /* =======================================================
+     PROYECTOS
+     ======================================================= */
+
+  .projects-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  /* =======================================================
+     SOBRE MÍ
+     ======================================================= */
+
+  /*
+     El avatar pasa debajo del contenido.
+  */
+
+  .about-showcase__grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      var(--space-12);
+  }
+
+
+  .about-showcase__content {
+    max-width:
+      680px;
+  }
+
+
+  .about-showcase__scene {
+    width:
+      min(
+        100%,
+        680px
+      );
+
+    min-height:
+      540px;
+
+    margin-inline:
+      auto;
+  }
+
+
+  #avatar-container {
+    min-height:
+      540px;
+  }
+
+
+  /* =======================================================
+     PILARES / SKILLS
+     ======================================================= */
+
+  .about-focus__content {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .skills-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  /* =======================================================
+     TIMELINE
+     ======================================================= */
+
+  .timeline {
+    width:
+      100%;
+
+    margin-left:
+      0;
+  }
+
+
+  /* =======================================================
+     CASOS DE ESTUDIO
+     ======================================================= */
+
+  .project-detail__content {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  /*
+     El índice lateral deja de ser útil en tablet.
+  */
+
+  .project-detail__index {
+    display:
+      none;
+
+    position:
+      relative;
+
+    top:
+      auto;
+  }
+}
+
+
+/* =========================================================
+   04. MOBILE
+   <= 768px
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* =======================================================
+     VARIABLES
+     ======================================================= */
+
+  :root {
+    --container-padding:
+      1.25rem;
+
+    --section-spacing:
+      clamp(
+        4rem,
+        14vw,
+        6rem
+      );
+  }
+
+
+  /* =======================================================
+     TIPOGRAFÍA
+     ======================================================= */
+
+  h2 {
+    font-size:
+      clamp(
+        2.2rem,
+        10vw,
+        3.6rem
+      );
+  }
+
+
+  /* =======================================================
+     NAVBAR
+     ======================================================= */
+
+  .navbar__brand {
+    font-size:
+      1.5rem;
+  }
+
+
+  .navbar__actions {
+    gap:
+      var(--space-2);
+  }
+
+
+  .navbar__theme {
+    width:
+      40px;
+
+    height:
+      40px;
+  }
+
+
+  .navbar__cv {
+    min-height:
+      40px;
+
+    padding-inline:
+      var(--space-4);
+  }
+
+
+  /* =======================================================
+     HOME HERO
+     ======================================================= */
+
+  .hero {
+    padding-top:
+      calc(
+        var(--navbar-height)
+        +
+        var(--space-16)
+      );
+
+    padding-bottom:
+      var(--space-16);
+  }
+
+
+  .hero__container {
+    min-height:
+      760px;
+  }
+
+
+  .hero__content {
+    width:
+      100%;
+
+    padding-block:
+      0;
+  }
+
+
+  .hero__content h1 {
+    max-width:
+      9ch;
+
+    font-size:
+      clamp(
+        3.35rem,
+        15vw,
+        5.2rem
+      );
+
+    line-height:
+      0.96;
+  }
+
+
+  .hero__description {
+    max-width:
+      100%;
+
+    margin-top:
+      var(--space-5);
+
+    font-size:
+      var(--text-md);
+  }
+
+
+  .hero__subdescription {
+    max-width:
+      500px;
+
+    font-size:
+      var(--text-sm);
+  }
+
+
+  /* =======================================================
+     UNIVERSIDAD DE VALPARAÍSO
+     ======================================================= */
+
+  .hero__affiliation {
+    max-width:
+      100%;
+
+    margin-top:
+      var(--space-6);
+  }
+
+
+  .hero__affiliation-mark {
+    width:
+      40px;
+
+    height:
+      40px;
+  }
+
+
+  .hero__affiliation strong {
+    font-size:
+      var(--text-sm);
+  }
+
+
+  .hero__affiliation small {
+    font-size:
+      var(--text-xs);
+  }
+
+
+  /* =======================================================
+     BOTONES DEL HERO
+     ======================================================= */
+
+  .hero__actions {
+    width:
+      100%;
+
+    align-items:
+      stretch;
+
+    margin-top:
+      var(--space-6);
+  }
+
+
+  .hero__actions .button {
+    flex:
+      1 1
+      calc(
+        50% -
+        var(--space-3)
+      );
+  }
+
+
+  .hero__actions
+  .button--primary {
+    min-width:
+      0;
+  }
+
+
+  /* =======================================================
+     CEREBRO
+     ======================================================= */
+
+  .hero__visual {
+    right:
+      -20%;
+
+    bottom:
+      -3%;
+
+    width:
+      105vw;
+
+    height:
+      52%;
+
+    opacity:
+      0.62;
+  }
+
+
+  /* =======================================================
+     FÓRMULAS
+
+     formulas.js ya reduce la cantidad de fórmulas.
+     Aquí solamente reducimos su presencia visual.
+     ======================================================= */
+
+  .hero__formulas {
+    opacity:
+      0.48;
+  }
+
+
+  .hero__formula {
+    /*
+       Mantenemos la fórmula legible pero pequeña.
+    */
+
+    font-size:
+      0.72rem;
+  }
+
+
+  /* =======================================================
+     EXPLORAR
+     ======================================================= */
+
+  .home-explore
+  .section-header {
+    margin-bottom:
+      var(--space-10);
+  }
+
+
+  .home-explore__item {
+    grid-template-columns:
+      42px
+      minmax(0, 1fr)
+      44px;
+
+    gap:
+      var(--space-4);
+
+    min-height:
+      155px;
+
+    padding:
+      var(--space-6);
+  }
+
+
+  .home-explore__item h3 {
+    font-size:
+      var(--text-xl);
+  }
+
+
+  .home-explore__item p {
+    font-size:
+      var(--text-sm);
+  }
+
+
+  .home-explore__arrow {
+    width:
+      42px;
+
+    height:
+      42px;
+  }
+
+
+  /* =======================================================
+     PAGE HERO
+     ======================================================= */
+
+  .page-hero {
+    padding-top:
+      calc(
+        var(--navbar-height)
+        +
+        var(--space-16)
+      );
+
+    padding-bottom:
+      var(--space-16);
+  }
+
+
+  .page-hero h1 {
+    font-size:
+      clamp(
+        3.4rem,
+        15vw,
+        5rem
+      );
+  }
+
+
+  .page-hero__description {
+    margin-top:
+      var(--space-6);
+
+    font-size:
+      var(--text-base);
+  }
+
+
+  /*
+     El gráfico abstracto del hero de proyectos ya ocupa
+     demasiado espacio en teléfonos.
+  */
+
+  .page-hero--projects
+  .container::after,
+
+  .page-hero--projects
+  .container::before {
+    display:
+      none;
+  }
+
+
+  /* =======================================================
+     FILTROS DE PROYECTOS
+     ======================================================= */
+
+  .project-filters {
+    flex-wrap:
+      nowrap;
+
+    width:
+      100%;
+
+    overflow-x:
+      auto;
+
+    padding-bottom:
+      var(--space-2);
+
+    scrollbar-width:
+      none;
+
+    -webkit-overflow-scrolling:
+      touch;
+  }
+
+
+  .project-filters::-webkit-scrollbar {
+    display:
+      none;
+  }
+
+
+  .project-filter {
+    flex-shrink:
+      0;
+  }
+
+
+  /* =======================================================
+     TARJETAS DE PROYECTO
+     ======================================================= */
+
+  .project-card__content {
+    padding:
+      var(--space-5);
+  }
+
+
+  /* =======================================================
+     SOBRE MÍ / AVATAR
+     ======================================================= */
+
+  .about-showcase__scene {
+    min-height:
+      470px;
+  }
+
+
+  #avatar-container {
+    min-height:
+      470px;
+  }
+
+
+  /*
+     Las tarjetas flotantes continúan apareciendo,
+     pero más cerca del avatar.
+  */
+
+  .tech-card {
+    padding:
+      0.6rem
+      0.8rem;
+
+    font-size:
+      var(--text-xs);
+  }
+
+
+  .tech-card--python {
+    left:
+      0;
+
+    top:
+      25%;
+  }
+
+
+  .tech-card--ds {
+    right:
+      0;
+
+    top:
+      16%;
+  }
+
+
+  .tech-card--ml {
+    right:
+      0;
+
+    bottom:
+      24%;
+  }
+
+
+  /*
+     Reducimos los gráficos decorativos.
+  */
+
+  .about-chart--bars {
+    width:
+      120px;
+
+    height:
+      78px;
+  }
+
+
+  .about-chart--line {
+    width:
+      150px;
+
+    height:
+      90px;
+  }
+
+
+  /* =======================================================
+     CV
+     ======================================================= */
+
+  .cv-section::after {
+    right:
+      -5%;
+
+    opacity:
+      0.45;
+  }
+
+
+  /* =======================================================
+     CONTACTO
+     ======================================================= */
+
+  .contact {
+    min-height:
+      55vh;
+  }
+
+
+  .contact h2 {
+    font-size:
+      clamp(
+        3.1rem,
+        16vw,
+        5rem
+      );
+  }
+
+
+  .contact__links {
+    gap:
+      var(--space-5);
+  }
+
+
+  /* =======================================================
+     FOOTER
+     ======================================================= */
+
+  .footer__container {
+    min-height:
+      150px;
+
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    justify-content:
+      center;
+
+    gap:
+      var(--space-2);
+  }
+
+
+  /* =======================================================
+     DATA VISUAL
+     ======================================================= */
+
+  .data-visual {
+    min-height:
+      300px;
+
+    margin-block:
+      var(--space-8);
+  }
+}
+
+
+/* =========================================================
+   05. TELÉFONOS PEQUEÑOS
+   <= 560px
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  /* =======================================================
+     NAVBAR
+     ======================================================= */
+
+  .navbar__actions {
+    gap:
+      var(--space-2);
+  }
+
+
+  /* =======================================================
+     HOME HERO
+     ======================================================= */
+
+  .hero__container {
+    min-height:
+      790px;
+  }
+
+
+  .hero__content h1 {
+    font-size:
+      clamp(
+        3rem,
+        16vw,
+        4.4rem
+      );
+  }
+
+
+  /*
+     En teléfonos pequeños los botones quedan en una columna.
+  */
+
+  .hero__actions {
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .hero__actions .button {
+    width:
+      100%;
+  }
+
+
+  /* =======================================================
+     CEREBRO
+     ======================================================= */
+
+  .hero__visual {
+    right:
+      -34%;
+
+    width:
+      132vw;
+
+    height:
+      45%;
+
+    opacity:
+      0.55;
+  }
+
+
+  /* =======================================================
+     FÓRMULAS
+     ======================================================= */
+
+  .hero__formulas {
+    opacity:
+      0.34;
+  }
+
+
+  /*
+     Dejamos todavía menos presencia a las expresiones
+     matemáticas para evitar saturación.
+  */
+
+  .hero__formula--strong {
+    opacity:
+      var(--formula-opacity-base);
+  }
+
+
+  /* =======================================================
+     UNIVERSIDAD
+     ======================================================= */
+
+  .hero__affiliation {
+    align-items:
+      flex-start;
+  }
+
+
+  /* =======================================================
+     EXPLORAR
+     ======================================================= */
+
+  .home-explore__item {
+    grid-template-columns:
+      32px
+      minmax(0, 1fr);
+
+    min-height:
+      165px;
+
+    padding:
+      var(--space-5);
+  }
+
+
+  /*
+     Quitamos la flecha porque la tarjeta completa ya es
+     clickeable.
+  */
+
+  .home-explore__arrow {
+    display:
+      none;
+  }
+
+
+  /* =======================================================
+     PROJECT CARDS
+     ======================================================= */
+
+  .project-card__visual {
+    aspect-ratio:
+      4 / 3;
+  }
+
+
+  .project-card__title {
+    font-size:
+      var(--text-lg);
+  }
+
+
+  /* =======================================================
+     SOBRE MÍ
+     ======================================================= */
+
+  .about-showcase__scene {
+    min-height:
+      400px;
+  }
+
+
+  #avatar-container {
+    min-height:
+      400px;
+  }
+
+
+  /*
+     En pantallas pequeñas eliminamos elementos decorativos
+     secundarios para que el avatar siga siendo protagonista.
+  */
+
+  .about-chart--bars {
+    display:
+      none;
+  }
+
+
+  .about-chart--line {
+    display:
+      none;
+  }
+
+
+  .tech-card--python {
+    left:
+      0;
+
+    top:
+      18%;
+  }
+
+
+  .tech-card--ds {
+    right:
+      0;
+
+    top:
+      12%;
+  }
+
+
+  .tech-card--ml {
+    right:
+      0;
+
+    bottom:
+      17%;
+  }
+
+
+  /* =======================================================
+     CASE STUDY
+     ======================================================= */
+
+  .project-detail__hero {
+    min-height:
+      70svh;
+
+    padding-bottom:
+      var(--space-12);
+  }
+
+
+  .project-detail__title {
+    font-size:
+      clamp(
+        3rem,
+        15vw,
+        4.5rem
+      );
+  }
+
+
+  .project-detail__summary {
+    font-size:
+      var(--text-base);
+  }
+
+
+  .data-visual {
+    min-height:
+      240px;
+
+    border-radius:
+      var(--radius-md);
+  }
+}
+
+
+/* =========================================================
+   06. TELÉFONOS MUY PEQUEÑOS
+   <= 390px
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+  /* -------------------------------------------------------
+     Márgenes
+     ------------------------------------------------------- */
+
+  :root {
+    --container-padding:
+      1rem;
+  }
+
+
+  /*
+     Ocultamos CV de navbar.
+
+     El CV sigue disponible dentro del contenido del sitio.
+     Esto evita saturar una barra extremadamente estrecha.
+  */
+
+  .navbar__cv {
+    display:
+      none;
+  }
+
+
+  /*
+     Mantenemos el selector dark/light porque forma parte
+     importante de la experiencia.
+  */
+
+  .navbar__theme {
+    display:
+      inline-flex;
+  }
+
+
+  /* -------------------------------------------------------
+     Hero
+     ------------------------------------------------------- */
+
+  .hero__container {
+    min-height:
+      780px;
+  }
+
+
+  .hero__content h1 {
+    font-size:
+      clamp(
+        2.8rem,
+        16vw,
+        3.8rem
+      );
+  }
+
+
+  .hero__description {
+    font-size:
+      var(--text-base);
+  }
+
+
+  .hero__subdescription {
+    font-size:
+      var(--text-sm);
+  }
+
+
+  /*
+     El cerebro se reduce un poco para no dominar toda
+     la pantalla inferior.
+  */
+
+  .hero__visual {
+    right:
+      -40%;
+
+    width:
+      142vw;
+
+    opacity:
+      0.48;
+  }
+
+
+  /* -------------------------------------------------------
+     Universidad
+     ------------------------------------------------------- */
+
+  .hero__affiliation-mark {
+    width:
+      36px;
+
+    height:
+      36px;
+
+    font-size:
+      0.72rem;
+  }
+
+
+  /* -------------------------------------------------------
+     Explore
+     ------------------------------------------------------- */
+
+  .home-explore__number {
+    font-size:
+      0.7rem;
+  }
+
+
+  /* -------------------------------------------------------
+     Internal pages
+     ------------------------------------------------------- */
+
+  .page-hero h1 {
+    font-size:
+      clamp(
+        3rem,
+        16vw,
+        4rem
+      );
+  }
+
+
+  /* -------------------------------------------------------
+     Avatar
+
+     En móviles realmente estrechos ocultamos una de las
+     tarjetas flotantes.
+     ------------------------------------------------------- */
+
+  .tech-card--ml {
+    display:
+      none;
+  }
+}
+
+
+/* =========================================================
+   07. DISPOSITIVOS TÁCTILES
+   ========================================================= */
+
+/*
+   En pantallas táctiles no existe hover real.
+
+   Eliminamos transformaciones que podrían quedar "pegadas"
+   después de tocar un elemento.
+*/
+
+@media (hover: none) {
+
+  .project-card:hover,
+  .info-card:hover,
+  .button:hover,
+  .navbar__cv:hover,
+  .navbar__theme:hover {
+    transform:
+      none;
+  }
+
+
+  .home-explore__item:hover {
+    transform:
+      none;
+  }
+
+
+  .home-explore__item:hover
+  .home-explore__arrow {
+    transform:
+      none;
+  }
+}
+
+
+/* =========================================================
+   08. REDUCED MOTION
+   ========================================================= */
+
+/*
+   Si el usuario tiene activada la opción del sistema:
+
+   "Reducir movimiento"
+
+   eliminamos transiciones secundarias.
+
+   brain.js, animations.js y formulas.js también tienen
+   sus propias comprobaciones.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  .navbar__links,
+  .navbar__menu span {
+    transition:
+      none;
+  }
+
+
+  .hero__visual {
+    transform:
+      none !important;
+  }
+
+
+  .hero__formula {
+    animation:
+      none !important;
+  }
+
+
+  .tech-card,
+  .about-chart {
+    animation:
+      none !important;
+  }
+
+
+  .project-card,
+  .home-explore__item,
+  .button {
+    transition-duration:
+      0.01ms !important;
+  }
+}
+
+/* =========================================================
+   AVATAR ILUSTRADO — RESPONSIVE
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  .about-avatar {
+    min-height:
+      520px;
+
+    width:
+      min(
+        100%,
+        500px
+      );
+  }
+
+
+  .about-avatar__image {
+    width:
+      min(
+        88%,
+        365px
+      );
+
+    max-height:
+      510px;
+  }
+
+
+  .about-avatar__ring--outer {
+    width:
+      82%;
+  }
+
+
+  .about-avatar__ring--inner {
+    width:
+      68%;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+  .about-avatar {
+    min-height:
+      460px;
+
+    width:
+      min(
+        100%,
+        430px
+      );
+  }
+
+
+  .about-avatar__image {
+    width:
+      min(
+        86%,
+        330px
+      );
+
+    max-height:
+      450px;
+  }
+
+
+  .about-avatar__glow {
+    width:
+      72%;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   SMALL MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 560px) {
+
+  .about-avatar {
+    min-height:
+      390px;
+
+    width:
+      min(
+        100%,
+        350px
+      );
+  }
+
+
+  .about-avatar__image {
+    width:
+      min(
+        84%,
+        275px
+      );
+
+    max-height:
+      380px;
+  }
+
+
+  .about-avatar__ring--outer {
+    width:
+      78%;
+  }
+
+
+  .about-avatar__ring--inner {
+    width:
+      64%;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   VERY SMALL MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 390px) {
+
+  .about-avatar {
+    min-height:
+      350px;
+  }
+
+
+  .about-avatar__image {
+    width:
+      min(
+        82%,
+        245px
+      );
+
+    max-height:
+      340px;
+  }
+}
+
+/* === BEGIN ABOUT HERO FINAL RESPONSIVE === */
+/* =========================================================
+   SOBRE MÍ — RESPONSIVE FINAL
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   NOTEBOOK
+   --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+
+  .about-showcase__grid {
+    grid-template-columns:
+      minmax(0, 0.95fr)
+      minmax(400px, 1.05fr);
+
+    gap:
+      var(--space-10);
+  }
+
+
+  .about-showcase__scene {
+    min-height:
+      590px;
+  }
+
+
+  .about-avatar {
+    min-height:
+      590px;
+  }
+
+
+  .about-avatar__image {
+    width:
+      min(
+        94%,
+        455px
+      );
+
+    max-height:
+      575px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  .page-hero--about {
+    padding-top:
+      calc(
+        var(--navbar-height)
+        +
+        var(--space-12)
+      );
+
+    padding-bottom:
+      var(--space-16);
+  }
+
+
+  .about-showcase__grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      var(--space-8);
+  }
+
+
+  .about-showcase__content {
+    max-width:
+      680px;
+  }
+
+
+  .about-showcase__scene {
+    width:
+      min(
+        100%,
+        620px
+      );
+
+    min-height:
+      535px;
+
+    justify-self:
+      center;
+
+    margin-top:
+      var(--space-4);
+  }
+
+
+  .about-avatar {
+    min-height:
+      535px;
+  }
+
+
+  .about-avatar__image {
+    width:
+      min(
+        88%,
+        395px
+      );
+
+    max-height:
+      520px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+  .about-showcase__scene {
+    min-height:
+      465px;
+  }
+
+
+  .about-avatar {
+    min-height:
+      465px;
+  }
+
+
+  .about-avatar__image {
+    width:
+      min(
+        86%,
+        335px
+      );
+
+    max-height:
+      450px;
+  }
+
+
+  .about-avatar__ring--outer {
+    width:
+      82%;
+  }
+
+
+  .about-avatar__ring--inner {
+    width:
+      68%;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TELÉFONO PEQUEÑO
+   --------------------------------------------------------- */
+
+@media (max-width: 560px) {
+
+  .about-showcase__scene {
+    min-height:
+      405px;
+  }
+
+
+  .about-avatar {
+    min-height:
+      405px;
+  }
+
+
+  .about-avatar__image {
+    width:
+      min(
+        84%,
+        285px
+      );
+
+    max-height:
+      390px;
+  }
+
+
+  /*
+     Simplificamos elementos secundarios en pantallas
+     pequeñas.
+  */
+
+  .about-chart--bars,
+  .about-chart--line {
+    display:
+      none;
+  }
+
+
+  .tech-card {
+    opacity:
+      0.70;
+  }
+}
+/* === END ABOUT HERO FINAL RESPONSIVE === */

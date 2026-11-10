@@ -1,0 +1,16 @@
+{
+  "id": "pets-catalogo",
+  "titulo": "Pets · Explorador de razas caninas",
+  "subtitulo": "Catálogo documental y análisis de características caninas",
+  "descripcion": "137 razas documentadas, 89 fichas con 123 variables, comparación, mapa por país de origen y consulta de alimentos.",
+  "categoria": "Desarrollo",
+  "estado": "Versión inicial",
+  "imagen": "../assets/images/projects/pets/affenpinscher/1.webp",
+  "enlace": "../projects/pets.html",
+  "etiquetas": [
+    "JavaScript",
+    "Datos estructurados",
+    "Visualización"
+  ],
+  "detalle": "137 razas · 89 fichas estructuradas"
+}

@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+
+<head>
+
+  <!-- =====================================================
+       MATÍAS CORTÉS | PORTAFOLIO PROFESIONAL
+
+       PÁGINA:
+       PROYECTOS E INVESTIGACIÓN
+
+       Archivo: pages/proyectos.html
+
+       Contenido:
+       01. Configuración
+       02. Tipografías
+       03. Estilos
+       04. Navegación
+       05. Presentación
+       06. Investigación destacada
+       07. Explorador de proyectos
+       08. Pie de página
+       09. JavaScript
+       ===================================================== -->
+
+
+  <!-- =====================================================
+       01. CONFIGURACIÓN GENERAL
+       ===================================================== -->
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta name="color-scheme" content="dark light" />
+
+  <meta
+    name="description"
+    content="Proyectos de Matías Cortés en estadística, ciencia de datos, modelamiento bayesiano, análisis geoespacial e investigación aplicada. Incluye investigación sobre igniciones de incendios forestales en Chile mediante procesos LGCP."
+  />
+
+  <meta name="author" content="Matías Cortés" />
+
+  <meta
+    name="theme-color"
+    id="theme-color-meta"
+    content="#050507"
+  />
+
+  <title>
+    Proyectos e investigación | Matías Cortés
+  </title>
+
+
+  <!-- =====================================================
+       02. TIPOGRAFÍAS
+       ===================================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+
+  <!-- =====================================================
+       03. TEMA OSCURO / CLARO
+       ===================================================== -->
+
+  <script src="../js/theme.js"></script>
+
+
+  <!-- =====================================================
+       04. ESTILOS DEL PORTAFOLIO
+       ===================================================== -->
+
+  <link rel="stylesheet" href="../css/variables.css" />
+
+  <link rel="stylesheet" href="../css/base.css" />
+
+  <link rel="stylesheet" href="../css/components.css" />
+
+  <link rel="stylesheet" href="../css/pages.css" />
+
+  <link rel="stylesheet" href="../css/animations.css" />
+
+  <link rel="stylesheet" href="../css/responsive.css" />
+
+
+  <!-- =====================================================
+       05. KATEX / FÓRMULAS MATEMÁTICAS
+       ===================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.css"
+  />
+
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.18.4/dist/katex.min.js"
+  ></script>
+
+  <link rel="stylesheet" href="../css/catalogo-proyectos.css">
+</head>
+
+
+<body>
+
+  <!-- =====================================================
+       06. NAVEGACIÓN PRINCIPAL
+       ===================================================== -->
+
+  <header
+    class="site-header"
+    id="site-header"
+  >
+
+    <nav
+      class="navbar container"
+      aria-label="Navegación principal"
+    >
+
+      <!-- Identidad -->
+
+      <a
+        class="navbar__brand"
+        href="../index.html"
+        aria-label="Volver al inicio"
+      >
+        MC<span>.</span>
+      </a>
+
+
+      <!-- Enlaces principales -->
+
+      <ul class="navbar__links">
+
+        <li>
+          <a href="../index.html">
+            Inicio
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./proyectos.html"
+            aria-current="page"
+          >
+            Proyectos
+          </a>
+        </li>
+
+        <li>
+          <a href="./sobre-mi.html">
+            Sobre mí
+          </a>
+        </li>
+
+      </ul>
+
+
+      <!-- Acciones -->
+
+      <div class="navbar__actions">
+
+        <!-- Cambio de tema -->
+
+        <button
+          class="navbar__theme"
+          id="theme-toggle"
+          type="button"
+          aria-label="Cambiar a modo claro"
+          aria-pressed="false"
+          title="Cambiar tema"
+        >
+
+          <!-- Sol -->
+
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--sun"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <circle cx="12" cy="12" r="3.5"></circle>
+
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+
+            <path d="M4.93 4.93l1.42 1.42"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+
+            <path d="M4.93 19.07l1.42-1.42"></path>
+            <path d="M17.66 6.34l1.41-1.41"></path>
+
+          </svg>
+
+
+          <!-- Luna -->
+
+          <svg
+            class="theme-toggle__icon theme-toggle__icon--moon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <path
+              d="
+                M20.5 14.5
+                A8.5 8.5 0 0 1
+                9.5 3.5
+                A8.5 8.5 0 1 0
+                20.5 14.5
+              "
+            ></path>
+
+          </svg>
+
+        </button>
+
+
+        <!-- Currículum -->
+
+        <a
+          href="../assets/cv/CV_Matias_Cortes.pdf"
+          class="navbar__cv"
+          download
+        >
+          CV
+        </a>
+
+
+        <!-- Menú móvil -->
+
+        <button
+          class="navbar__menu"
+          id="menu-button"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+        >
+
+          <span></span>
+          <span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+       ===================================================== -->
+
+
+<main class="mc-catalog" id="contenido-principal">
+
+  <div class="mc-catalog__wrap">
+
+    <header class="mc-catalog__heading">
+
+      <div class="mc-catalog__eyebrow">
+        <span class="mc-catalog__dot"></span>
+        PORTAFOLIO / INVESTIGACIÓN Y DESARROLLO
+      </div>
+
+      <h1>
+        Proyectos que se<br>
+        <em>pueden explorar.</em>
+      </h1>
+
+      <p>
+        Estadística, ciencia de datos y modelamiento
+        aplicados a problemas reales. Cada investigación
+        tiene su propia página, visualizaciones y metodología.
+      </p>
+
+    </header>
+
+    <section
+      class="mc-catalog__section"
+      aria-labelledby="mc-catalog-title"
+    >
+
+      <div class="mc-catalog__section-top">
+
+        <div>
+          <span class="mc-catalog__label">
+            TRABAJOS SELECCIONADOS
+          </span>
+
+          <h2 id="mc-catalog-title">
+            Explorar proyectos
+          </h2>
+        </div>
+
+        <span
+          class="mc-catalog__count"
+          id="mc-catalog-count"
+        >
+          Cargando catálogo...
+        </span>
+
+      </div>
+
+      <div
+        class="mc-catalog__filters"
+        id="mc-catalog-filters"
+        role="group"
+        aria-label="Filtrar proyectos"
+      ></div>
+
+      <div
+        class="mc-catalog__grid"
+        id="mc-catalog-grid"
+        aria-live="polite"
+      >
+        <p class="mc-catalog__status">
+          Cargando proyectos publicados...
+        </p>
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+
+
+  <!-- =====================================================
+       10. PIE DE PÁGINA
+       ===================================================== -->
+
+  <footer class="footer">
+
+    <div class="container footer__container">
+
+      <p>
+        Matías Cortés
+      </p>
+
+      <p>
+        Estadística & Ciencia de Datos
+      </p>
+
+      <p>
+        © <span id="current-year"></span>
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       11. JAVASCRIPT GENERAL
+       ===================================================== -->
+
+  <!-- Navegación -->
+
+  <script
+    src="../js/navigation.js"
+    defer
+  ></script>
+
+
+  <!-- Animaciones -->
+
+  <script
+    src="../js/animations.js"
+    defer
+  ></script>
+
+
+  <!-- Proyectos dinámicos -->
+
+  <script
+    src="../js/projects.js"
+    defer
+  ></script>
+
+
+  <!-- Comportamiento general -->
+
+  <script
+    src="../js/main.js"
+    defer
+  ></script>
+
+
+  <!-- Fórmulas matemáticas -->
+
+  <script
+    src="../js/formulas.js"
+    defer
+  ></script>
+
+  <script src="../js/catalogo-proyectos.js" defer></script>
+</body>
+
+</html>

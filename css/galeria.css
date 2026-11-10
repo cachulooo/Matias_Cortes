@@ -1,0 +1,1360 @@
+/* =========================================================
+   MATÍAS CORTÉS | PORTAFOLIO PROFESIONAL
+   GALERÍA INTERACTIVA + VISOR DE FOTOGRAFÍAS
+
+   Archivo: css/galeria.css
+
+   01. Contenedor principal
+   02. Ventana y diapositivas
+   03. Avatar ilustrado
+   04. Fotografías reales
+   05. Descripciones
+   06. Flechas de navegación
+   07. Indicadores inferiores
+   08. Integración visual
+   09. Botones de ampliación
+   10. Visor de fotografías
+   11. Controles del visor
+   12. Pantallas medianas
+   13. Tablets
+   14. Teléfonos móviles
+   15. Accesibilidad
+   ========================================================= */
+
+
+/* =========================================================
+   01. CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.about-gallery {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  z-index: 4;
+
+  isolation: isolate;
+
+}
+
+
+/* =========================================================
+   02. VENTANA DEL CARRUSEL
+   ========================================================= */
+
+.about-gallery__viewport {
+
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  touch-action: pan-y;
+
+  -webkit-user-select: none;
+  user-select: none;
+
+}
+
+
+/* ---------------------------------------------------------
+   CINTA HORIZONTAL
+
+   JavaScript controla el desplazamiento:
+
+   Imagen 1: translateX(0%)
+   Imagen 2: translateX(-100%)
+   Imagen 3: translateX(-200%)
+   --------------------------------------------------------- */
+
+.about-gallery__track {
+
+  position: relative;
+
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  transform: translateX(0);
+
+  transition:
+    transform 750ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: transform;
+
+}
+
+
+/* ---------------------------------------------------------
+   DIAPOSITIVAS
+   --------------------------------------------------------- */
+
+.about-gallery__slide {
+
+  position: relative;
+
+  flex: 0 0 100%;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+/* =========================================================
+   03. AVATAR ILUSTRADO ORIGINAL
+   ========================================================= */
+
+/*
+   Se conservan los efectos originales:
+
+   - Anillos decorativos
+   - Iluminación ambiental
+   - Movimiento del personaje
+   - Efectos interactivos
+
+   El avatar no tendrá ampliación fotográfica.
+*/
+
+.about-gallery__slide--avatar {
+
+  background: transparent;
+
+}
+
+
+/* Contenedor del avatar */
+
+.about-gallery__slide--avatar
+.about-showcase__avatar-wrap {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  pointer-events: none;
+
+}
+
+
+/* Cuerpo principal */
+
+.about-gallery__slide--avatar
+.about-avatar {
+
+  position: relative;
+
+  width: min(100%, 600px);
+
+  height: 100%;
+
+  min-height: 0;
+  max-height: 100%;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+}
+
+
+/* Imagen original */
+
+.about-gallery__slide--avatar
+.about-avatar__image {
+
+  position: relative;
+
+  display: block;
+
+  width: min(95%, 510px);
+
+  height: auto;
+
+  max-height: 96%;
+
+  object-fit: contain;
+
+  object-position: center bottom;
+
+  transform-origin: center bottom;
+
+  -webkit-user-drag: none;
+
+  user-select: none;
+
+}
+
+
+/* =========================================================
+   04. FOTOGRAFÍAS REALES
+   ========================================================= */
+
+/*
+   Fotografía 02:
+   SURA Advisory Forum
+
+   Fotografía 03:
+   XLVIII Jornadas Nacionales de Estadística
+
+   Las imágenes utilizan object-fit: contain
+   para conservar su composición original.
+*/
+
+.about-gallery__slide--photo {
+
+  position: relative;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 38%,
+      rgba(129, 93, 230, 0.18) 0%,
+      rgba(52, 41, 91, 0.18) 42%,
+      rgba(9, 10, 19, 0.92) 100%
+    );
+
+  border-radius: 24px;
+
+}
+
+
+/* Marco interno */
+
+.about-gallery__slide--photo::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  border: 1px solid
+    rgba(165, 139, 240, 0.25);
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+}
+
+
+/* Imágenes originales */
+
+.about-gallery__slide--photo img {
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position: center center;
+
+  border-radius: inherit;
+
+  -webkit-user-drag: none;
+
+  user-select: none;
+
+}
+
+
+/* =========================================================
+   05. DESCRIPCIONES DE LAS FOTOGRAFÍAS
+   ========================================================= */
+
+/*
+   Los textos vienen definidos desde el HTML.
+
+   SURA Advisory Forum · 3.ª edición
+
+   XLVIII Jornadas Nacionales de Estadística · 2026
+*/
+
+.about-gallery__caption {
+
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 4;
+
+  margin: 0;
+
+  padding:
+    48px
+    58px
+    66px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(6, 7, 15, 0.93) 0%,
+      rgba(6, 7, 15, 0.67) 42%,
+      transparent 100%
+    );
+
+  color: #ffffff;
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size: 0.84rem;
+
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.02em;
+
+  text-align: center;
+
+  pointer-events: none;
+
+}
+
+
+/* =========================================================
+   06. FLECHAS DE NAVEGACIÓN
+   ========================================================= */
+
+.about-gallery__arrow {
+
+  position: absolute;
+
+  top: 50%;
+
+  z-index: 10;
+
+  transform: translateY(-50%);
+
+  width: 46px;
+  height: 46px;
+
+  padding: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.27);
+
+  border-radius: 50%;
+
+  background:
+    rgba(20, 17, 36, 0.72);
+
+  color: #ffffff;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 28px
+    rgba(0, 0, 0, 0.22);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    scale 250ms ease;
+
+}
+
+
+/* Flecha anterior */
+
+.about-gallery__arrow--prev {
+
+  left: 12px;
+
+}
+
+
+/* Flecha siguiente */
+
+.about-gallery__arrow--next {
+
+  right: 12px;
+
+}
+
+
+/* Efecto de interacción */
+
+.about-gallery__arrow:hover {
+
+  background:
+    rgba(126, 88, 232, 0.94);
+
+  border-color:
+    rgba(205, 188, 255, 0.8);
+
+  box-shadow:
+    0 0 24px
+    rgba(145, 108, 255, 0.38);
+
+  scale: 1.07;
+
+}
+
+
+/* Estado presionado */
+
+.about-gallery__arrow:active {
+
+  scale: 0.95;
+
+}
+
+
+/* Navegación con teclado */
+
+.about-gallery__arrow:focus-visible {
+
+  outline: 3px solid #b9a1ff;
+
+  outline-offset: 4px;
+
+}
+
+
+/* =========================================================
+   07. INDICADORES INFERIORES
+   ========================================================= */
+
+/*
+   Indicador 1: Avatar
+   Indicador 2: SURA
+   Indicador 3: SOCHE
+
+   El indicador activo se alarga.
+*/
+
+.about-gallery__dots {
+
+  position: absolute;
+
+  bottom: 17px;
+  left: 50%;
+
+  z-index: 10;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 11px;
+
+  padding: 10px 14px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.14);
+
+  border-radius: 999px;
+
+  background:
+    rgba(13, 12, 25, 0.70);
+
+  backdrop-filter: blur(14px);
+
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 6px 24px
+    rgba(0, 0, 0, 0.18);
+
+}
+
+
+/* Indicador normal */
+
+.about-gallery__dot {
+
+  display: block;
+
+  flex: 0 0 auto;
+
+  width: 10px;
+  height: 10px;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.42);
+
+  cursor: pointer;
+
+  transition:
+    width 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease;
+
+}
+
+
+/* Indicador activo */
+
+.about-gallery__dot.is-active {
+
+  width: 29px;
+
+  background: #b9a1ff;
+
+  box-shadow:
+    0 0 12px
+    rgba(169, 135, 255, 0.45);
+
+}
+
+
+/* Efecto de interacción */
+
+.about-gallery__dot:hover {
+
+  background: #d4c5ff;
+
+}
+
+
+/* Navegación con teclado */
+
+.about-gallery__dot:focus-visible {
+
+  outline: 2px solid #ffffff;
+
+  outline-offset: 4px;
+
+}
+
+
+/* =========================================================
+   08. INTEGRACIÓN CON EL PORTAFOLIO
+   ========================================================= */
+
+/*
+   Las tarjetas flotantes y gráficos originales
+   se mantienen visibles con el avatar.
+
+   En las fotografías reales se ocultan
+   para no tapar personas ni elementos importantes.
+
+   JavaScript controla data-gallery-index.
+*/
+
+.about-showcase__scene .tech-card,
+.about-showcase__scene .about-chart {
+
+  transition:
+    opacity 350ms ease,
+    visibility 350ms ease;
+
+}
+
+
+/* Ocultar decoración en SURA y SOCHE */
+
+.about-showcase__scene[data-gallery-index="1"]
+.tech-card,
+
+.about-showcase__scene[data-gallery-index="1"]
+.about-chart,
+
+.about-showcase__scene[data-gallery-index="2"]
+.tech-card,
+
+.about-showcase__scene[data-gallery-index="2"]
+.about-chart {
+
+  opacity: 0 !important;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+}
+
+
+/* =========================================================
+   09. BOTONES PARA AMPLIAR FOTOGRAFÍAS
+   ========================================================= */
+
+/*
+   NUEVA FUNCIONALIDAD
+
+   Permite hacer clic en las imágenes reales
+   para abrirlas en el visor ampliado.
+
+   No afecta la diapositiva del avatar.
+*/
+
+.about-gallery__zoom-trigger {
+
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+
+  border-radius: inherit;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  cursor: zoom-in;
+
+  overflow: hidden;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+}
+
+
+/* Imagen dentro del botón */
+
+.about-gallery__zoom-trigger img {
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position: center center;
+
+  transition:
+    filter 250ms ease;
+
+}
+
+
+/* Interacción visual */
+
+.about-gallery__zoom-trigger:hover img {
+
+  filter: brightness(1.08);
+
+}
+
+
+/* Navegación con teclado */
+
+.about-gallery__zoom-trigger:focus-visible {
+
+  outline: 3px solid #b9a1ff;
+
+  outline-offset: -4px;
+
+}
+
+
+/* ---------------------------------------------------------
+   ICONO VISUAL DE AMPLIACIÓN
+
+   Aparece en la esquina superior derecha.
+
+   No modifica la fotografía original.
+   --------------------------------------------------------- */
+
+.about-gallery__zoom-trigger::after {
+
+  content: "⤢";
+
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.28);
+
+  border-radius: 12px;
+
+  background:
+    rgba(16, 14, 29, 0.76);
+
+  color: #ffffff;
+
+  font-size: 25px;
+
+  line-height: 1;
+
+  box-shadow:
+    0 5px 20px
+    rgba(0, 0, 0, 0.24);
+
+  backdrop-filter: blur(10px);
+
+  -webkit-backdrop-filter: blur(10px);
+
+  pointer-events: none;
+
+  transition:
+    background 250ms ease,
+    border-color 250ms ease;
+
+}
+
+
+/* Efecto del icono */
+
+.about-gallery__zoom-trigger:hover::after {
+
+  background:
+    rgba(126, 88, 232, 0.94);
+
+  border-color:
+    rgba(205, 188, 255, 0.8);
+
+}
+
+
+/* =========================================================
+   10. VISOR AMPLIADO DE FOTOGRAFÍAS
+   ========================================================= */
+
+/*
+   El elemento <dialog> se encuentra en sobre-mi.html.
+
+   Su comportamiento será controlado desde galeria.js.
+
+   El visor aparecerá por encima de la página.
+*/
+
+.photo-lightbox {
+
+  position: fixed;
+
+  box-sizing: border-box;
+
+  width: min(94vw, 1100px);
+
+  max-width: none;
+
+  max-height: 94dvh;
+
+  margin: auto;
+
+  padding: 18px;
+
+  border: 1px solid
+    rgba(185, 161, 255, 0.30);
+
+  border-radius: 20px;
+
+  background: #10101b;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 25px 90px
+    rgba(0, 0, 0, 0.60);
+
+  overflow: auto;
+
+}
+
+
+/* No mostrar cuando el visor esté cerrado */
+
+.photo-lightbox:not([open]) {
+
+  display: none;
+
+}
+
+
+/* ---------------------------------------------------------
+   FONDO OSCURO DEL VISOR
+   --------------------------------------------------------- */
+
+.photo-lightbox::backdrop {
+
+  background:
+    rgba(0, 0, 0, 0.88);
+
+  backdrop-filter: blur(10px);
+
+  -webkit-backdrop-filter: blur(10px);
+
+}
+
+
+/* ---------------------------------------------------------
+   FOTOGRAFÍA AMPLIADA
+   --------------------------------------------------------- */
+
+/*
+   La imagen conserva sus proporciones.
+
+   Nunca se recortan personas ni elementos
+   de la fotografía.
+
+   Su tamaño máximo depende de la ventana.
+*/
+
+.photo-lightbox__image {
+
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+
+  max-height:
+    calc(94dvh - 36px);
+
+  margin: auto;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  border-radius: 10px;
+
+  -webkit-user-drag: none;
+
+  user-select: none;
+
+}
+
+
+/* =========================================================
+   11. BOTÓN PARA CERRAR EL VISOR
+   ========================================================= */
+
+.photo-lightbox__close {
+
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.25);
+
+  border-radius: 50%;
+
+  background:
+    rgba(15, 13, 28, 0.88);
+
+  color: #ffffff;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 30px;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 20px
+    rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(10px);
+
+  -webkit-backdrop-filter: blur(10px);
+
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    scale 250ms ease;
+
+}
+
+
+/* Interacción */
+
+.photo-lightbox__close:hover {
+
+  background: #8059dc;
+
+  border-color:
+    rgba(205, 188, 255, 0.85);
+
+  scale: 1.06;
+
+}
+
+
+/* Estado presionado */
+
+.photo-lightbox__close:active {
+
+  scale: 0.95;
+
+}
+
+
+/* Navegación mediante teclado */
+
+.photo-lightbox__close:focus-visible {
+
+  outline: 3px solid #b9a1ff;
+
+  outline-offset: 3px;
+
+}
+
+
+/* =========================================================
+   12. PANTALLAS MEDIANAS
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .about-gallery__arrow {
+
+    width: 42px;
+    height: 42px;
+
+    font-size: 18px;
+
+  }
+
+  .about-gallery__arrow--prev {
+
+    left: 8px;
+
+  }
+
+  .about-gallery__arrow--next {
+
+    right: 8px;
+
+  }
+
+  .about-gallery__caption {
+
+    font-size: 0.80rem;
+
+    padding:
+      38px
+      50px
+      60px;
+
+  }
+
+  .photo-lightbox {
+
+    width: 95vw;
+
+  }
+
+}
+
+
+/* =========================================================
+   13. TABLETS
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .about-gallery {
+
+    width: 100%;
+    height: 100%;
+
+  }
+
+  .about-gallery__viewport {
+
+    border-radius: 20px;
+
+  }
+
+  .about-gallery__slide--photo {
+
+    border-radius: 20px;
+
+  }
+
+  /* Avatar */
+
+  .about-gallery__slide--avatar
+  .about-avatar {
+
+    width: 100%;
+
+    min-height: 0;
+
+  }
+
+  .about-gallery__slide--avatar
+  .about-avatar__image {
+
+    width: min(94%, 460px);
+
+    max-height: 95%;
+
+  }
+
+  /* Descripción */
+
+  .about-gallery__caption {
+
+    font-size: 0.78rem;
+
+    padding:
+      36px
+      48px
+      58px;
+
+  }
+
+  /* Icono del zoom */
+
+  .about-gallery__zoom-trigger::after {
+
+    top: 12px;
+    right: 12px;
+
+    width: 35px;
+    height: 35px;
+
+    font-size: 22px;
+
+  }
+
+  /* Visor */
+
+  .photo-lightbox {
+
+    width: 95vw;
+
+    max-height: 94dvh;
+
+    padding: 14px;
+
+    border-radius: 16px;
+
+  }
+
+  .photo-lightbox__image {
+
+    max-height:
+      calc(94dvh - 28px);
+
+  }
+
+}
+
+
+/* =========================================================
+   14. TELÉFONOS MÓVILES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  /* Ventana */
+
+  .about-gallery__viewport {
+
+    border-radius: 16px;
+
+  }
+
+  .about-gallery__slide--photo {
+
+    border-radius: 16px;
+
+  }
+
+  /* Flechas */
+
+  .about-gallery__arrow {
+
+    width: 37px;
+    height: 37px;
+
+    font-size: 16px;
+
+    border-width: 1px;
+
+  }
+
+  .about-gallery__arrow--prev {
+
+    left: 5px;
+
+  }
+
+  .about-gallery__arrow--next {
+
+    right: 5px;
+
+  }
+
+  /* Indicadores */
+
+  .about-gallery__dots {
+
+    bottom: 12px;
+
+    gap: 9px;
+
+    padding: 8px 12px;
+
+  }
+
+  .about-gallery__dot {
+
+    width: 9px;
+    height: 9px;
+
+  }
+
+  .about-gallery__dot.is-active {
+
+    width: 25px;
+
+  }
+
+  /* Descripciones */
+
+  .about-gallery__caption {
+
+    font-size: 0.72rem;
+
+    line-height: 1.4;
+
+    padding:
+      30px
+      42px
+      52px;
+
+  }
+
+  /* Avatar */
+
+  .about-gallery__slide--avatar
+  .about-avatar__image {
+
+    width: 95%;
+
+    max-height: 94%;
+
+  }
+
+  /* Icono para ampliar */
+
+  .about-gallery__zoom-trigger::after {
+
+    top: 8px;
+    right: 8px;
+
+    width: 32px;
+    height: 32px;
+
+    font-size: 20px;
+
+    border-radius: 10px;
+
+  }
+
+  /* Visor ampliado */
+
+  .photo-lightbox {
+
+    width: 96vw;
+
+    max-height: 94dvh;
+
+    padding: 10px;
+
+    border-radius: 14px;
+
+  }
+
+  .photo-lightbox__image {
+
+    max-width: 100%;
+
+    max-height:
+      calc(94dvh - 20px);
+
+    border-radius: 8px;
+
+  }
+
+  /* Cerrar visor */
+
+  .photo-lightbox__close {
+
+    top: 8px;
+    right: 8px;
+
+    width: 38px;
+    height: 38px;
+
+    font-size: 27px;
+
+  }
+
+}
+
+
+/* =========================================================
+   15. ACCESIBILIDAD
+   ========================================================= */
+
+/* Texto exclusivo para lectores de pantalla */
+
+.about-gallery__sr {
+
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+
+  border: 0;
+
+}
+
+
+/* ---------------------------------------------------------
+   PREFERENCIAS DE MOVIMIENTO REDUCIDO
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .about-gallery__track {
+
+    transition: none !important;
+
+    will-change: auto;
+
+  }
+
+  .about-gallery__arrow,
+  .about-gallery__dot,
+  .about-gallery__zoom-trigger img,
+  .about-gallery__zoom-trigger::after,
+  .photo-lightbox__close {
+
+    transition: none !important;
+
+  }
+
+}
+
+
+/* =========================================================
+   FIN — GALERÍA INTERACTIVA + VISOR
+   MATÍAS CORTÉS
+   ========================================================= */

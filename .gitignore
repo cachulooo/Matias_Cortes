@@ -20,4 +20,9 @@ rad.json
 *.bclicense
 *.flf
 #Test results file
-TestResults.xml
+TestResults.xml.backups/
+tools/
+data/incendios/_fuentes_locales/
+*.parquet
+.env
+*.pem
