@@ -1,0 +1,141 @@
+/* Matias Cortes | capa movil V2. Se carga al final de cada pagina.
+   Conserva el diseÃ±o de escritorio y corrige las pantallas tactiles. */
+
+@media (max-width: 900px) {
+  .navbar { min-width: 0; gap: 10px; }
+  .navbar__brand, .navbar__theme, .navbar__menu { flex-shrink: 0; }
+  .navbar__actions { margin-left: auto; min-width: 0; gap: 8px; }
+  .navbar__cv { white-space: nowrap; }
+  .navbar__links {
+    z-index: 2000;
+    max-height: calc(100dvh - 90px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (max-width: 700px) {
+  :root { --container-padding: 18px; }
+  html { scroll-padding-top: 82px; }
+  body { overflow-x: clip; }
+  img, svg, canvas, video { max-width: 100%; }
+  main, section, article { min-width: 0; }
+  .container { max-width: 100%; }
+
+  /* Inicio: el contenido va primero; sin animaciones tapando el texto. */
+  .hero {
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 110px 0 66px !important;
+  }
+  .hero__container {
+    min-height: 0 !important;
+    height: auto !important;
+    display: block !important;
+    padding: 0 20px !important;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    width: 100% !important;
+    max-width: 100%;
+  }
+  .hero__content h1 {
+    font-size: clamp(2.65rem, 11.5vw, 4.3rem) !important;
+    max-width: 12ch !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.055em;
+  }
+  .hero__description { font-size: 1rem !important; line-height: 1.6; }
+  .hero__subdescription { font-size: .92rem !important; line-height: 1.6; }
+  .hero__formulas, .hero__visual { display: none !important; }
+  .hero__affiliation { max-width: 100%; }
+  .hero__affiliation-text { min-width: 0; }
+  .hero__affiliation-text strong, .hero__affiliation-text small { overflow-wrap: anywhere; }
+  .hero__actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100%;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .hero__actions .button { width: 100%; min-height: 48px; }
+  .home-explore { min-height: 0; }
+  .home-explore__grid { grid-template-columns: 1fr; }
+  .home-explore__item { min-height: 155px; }
+
+  /* Pagina de proyectos: tarjetas apiladas y texto legible. */
+  .mc-catalog { padding-top: 110px !important; padding-bottom: 50px !important; }
+  .mc-catalog__wrap { width: calc(100% - 36px); }
+  .mc-catalog__heading { padding-bottom: 40px; }
+  .mc-catalog__heading h1 { font-size: clamp(2.5rem, 10.5vw, 3.7rem); line-height: 1.08; }
+  .mc-catalog__heading p { font-size: .98rem; line-height: 1.6; }
+  .mc-catalog__grid { grid-template-columns: 1fr; gap: 18px; }
+  .mc-catalog__card { grid-template-columns: 1fr !important; min-height: 0 !important; }
+  .mc-catalog__media { min-height: 210px; border-right: 0; border-bottom: 1px solid var(--mc-border); }
+  .mc-catalog__content { min-width: 0; padding: 23px 20px 25px; }
+  .mc-catalog__bottom { gap: 12px; }
+
+  /* Sobre mi: elimina alturas grandes que dejan vacios. */
+  .page-hero--about { min-height: 0 !important; }
+  .about-showcase__grid { grid-template-columns: minmax(0, 1fr) !important; gap: 22px; }
+  .about-showcase__content { min-width: 0; }
+  .about-showcase__content h1 { font-size: clamp(3rem, 13vw, 4.7rem); }
+  .about-showcase__scene, #avatar-container { min-height: 350px !important; }
+  .about-showcase__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .about-gallery, .about-gallery__viewport { max-width: 100%; min-width: 0; }
+
+  /* Atlas Pets: un catalogo realmente util en telefono. */
+  .pets-app { padding: 108px 0 56px !important; }
+  .pets-wrap { width: calc(100% - 32px) !important; max-width: 100%; }
+  .pets-crumb { margin-bottom: 22px; }
+  .pets-hero { padding-bottom: 34px; }
+  .pets-hero h1 { font-size: clamp(2.45rem, 11vw, 3.8rem) !important; line-height: 1.07; }
+  .pets-hero > p:not(.pets-eyebrow) { font-size: 1rem; line-height: 1.6; }
+  .pets-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 22px; }
+  .pets-kpis > div { min-width: 0; padding: 14px 12px; gap: 5px; border-radius: 13px; }
+  .pets-kpis strong { font-size: clamp(1.55rem, 6vw, 2rem); line-height: 1.1; }
+  .pets-kpis span { font-size: .76rem; line-height: 1.35; }
+  .pets-tabs { gap: 4px; margin-bottom: 26px; -webkit-overflow-scrolling: touch; }
+  .pets-tab { padding: 11px 13px; font-size: .85rem; min-height: 43px; }
+  .pets-section-head { display: block; }
+  .pets-section-head h2 { font-size: clamp(1.75rem, 7.5vw, 2.35rem); }
+  .pets-counter { display: block; margin-top: 10px; }
+  .pets-controls, .pets-controls--compare {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px;
+    margin: 20px 0 24px;
+  }
+  .pets-search-wrap { grid-column: 1 / -1; }
+  .pets-controls input, .pets-controls select, .pets-food-search input { min-height: 46px; min-width: 0; font-size: 16px; }
+  .pets-cards { grid-template-columns: 1fr !important; gap: 15px; }
+  .pets-card { min-width: 0; }
+  .pets-card-photo, .pets-photo-empty { height: clamp(185px, 54vw, 245px) !important; }
+  .pets-card-content { padding: 16px; }
+  .pets-foods, .pets-country-stats { grid-template-columns: 1fr; }
+  .pets-map { padding: 9px; }
+  .pets-map-legend { align-items: flex-start; line-height: 1.45; }
+  .pets-compare-table { display: block; width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .pets-compare-table th, .pets-compare-table td { padding: 10px; white-space: normal; min-width: 120px; }
+  .pets-data-grid { grid-template-columns: 1fr; }
+  .pets-dialog { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); }
+  .pets-dialog-content { padding: 16px; max-height: calc(100dvh - 18px); }
+  .pets-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+  .pets-gallery img { height: clamp(110px, 34vw, 155px); }
+  .pets-ficha-title { font-size: clamp(1.75rem, 8vw, 2.4rem); overflow-wrap: anywhere; }
+  .pets-origin-row { min-width: 0; }
+  .pets-origin-row span { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 390px) {
+  .navbar__cv { display: none !important; }
+  .hero__container { padding-inline: 16px !important; }
+  .pets-controls, .pets-controls--compare { grid-template-columns: 1fr !important; }
+  .pets-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pets-gallery { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pets-card, .pets-tab { transition: none !important; }
+}
